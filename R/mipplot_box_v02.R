@@ -4,7 +4,7 @@
 
 #' @title A function to plot box graph
 #' @description box plots
-#' @param D A dataframe of IAMC data to produce garph.
+#' @param D A dataframe of IAMC data to produce graph.
 #' @return A list of graph
 #' @example mipplot_box(AR5_Sample_data)
 #' @export p_list1

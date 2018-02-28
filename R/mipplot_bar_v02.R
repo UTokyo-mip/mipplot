@@ -17,7 +17,7 @@
 
 
 mipplot_bar <- function(D,R,region=levels(D$region),
-                              target_year=levels(as.factor(D$period)),PRINT_OUT=F,DEBUG=T,fontsize=20){
+                              target_year=levels(as.factor(D$period)),facet_x=NULL, facet_y=NULL, PRINT_OUT=F,DEBUG=T,fontsize=20){
   #REPLACED THIS FUNCTION WITH 1-LINE CODE (SEE LINE 52).
   # wrap_text <- function(x, width=60){
   #   sapply(x,function(x) {paste(strwrap(x,width),collapse="\n")})
@@ -25,6 +25,8 @@ mipplot_bar <- function(D,R,region=levels(D$region),
 
   p_list1 <- list()
 
+  D <- quitte::as.quitte(D)  # Convert to quitte format (PIK package dataframe).
+  
   for (i in levels(as.factor(R$Rule_ID))){
 
     for(r in levels(as.factor(region))){
@@ -64,10 +66,22 @@ mipplot_bar <- function(D,R,region=levels(D$region),
           ## Line plots: using left-hand-side values of target rule.
           p_Out1 <- ggplot2::ggplot(na.omit(D_RHS), ggplot2::aes(x=scenario, y=value, fill=variable))+
             ggplot2::geom_bar(stat = "identity") +
-            facet_wrap(~model)+
+            ggplot2::facet_wrap(~model)+
             ggplot2::labs(title=tt1, subtitle=tt2, y=tt3)+
             ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90))
             #ggplot2::theme(legend.position = "bottom")
+
+			## Facet plots if horizontal and/or vertical dimension provided.
+            if(!is.null(facet_x) & !is.null(facet_y)){
+              facet_by <- paste(facet_y, facet_x, sep="~")
+              p_Out1 <- p_Out1 + ggplot2::facet_grid(facet_by)
+            }else if(!is.null(facet_x) & is.null(facet_y)){
+              facet_by <- paste(".", facet_x, sep="~")
+              p_Out1 <- p_Out1 + ggplot2::facet_grid(facet_by)
+            }else if(is.null(facet_x) & !is.null(facet_y)){
+              facet_by <- paste(facet_y, ".", sep="~")
+              p_Out1 <- p_Out1 + ggplot2::facet_grid(facet_by)
+            }
 
           p_Out1 <- p_Out1 + ggplot2::theme(text=ggplot2::element_text(size = fontsize))
 
