@@ -1,0 +1,15 @@
+Package: mipplot
+Type: Package
+Title: mip plot tool
+Version: 0.1.0
+Authors@R: c(person("Diego", "SilvaHerran", email = "silva-herran@iges.or.jp",role = c("aut","cre")),
+             person("Jiayang", "WANG", email = "wang@pari.u-tokyo.ac.jp",role = "aut"),
+             person("Masahiro", "SUGIYAMA", email = "masahiro_sugiyama@alum.mit.edu",role = "aut"),
+             person("Hiroto", "SHIRAKI", email = "shiraki.h@ses.usp.ac.jp",role = "aut"))
+Maintainer: Diego SilvaHerran <silva-herran@iges.or.jp>
+Description: Package contains generic functions to produce area/bar/box/line plots of data following IAMC submission format.
+Import: data.table, dplyr, ggplot2, openxlsx, tidyr, stringr
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
