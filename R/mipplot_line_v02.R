@@ -6,7 +6,7 @@
 #' @title A function to plot line graph
 #' @description Line plots
 #' @param D A dataframe of IAMC data to produce garph.
-#' @return A list of graph
+#' @return A list of plots.
 #' @example mipplot_line(AR5_Sample_data)
 #' @export p_list1
 
