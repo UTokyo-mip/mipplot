@@ -8,10 +8,11 @@ Authors@R: c(person("Diego", "Silva Herran", email = "silva-herran@iges.or.jp",r
              person("Hiroto", "SHIRAKI", email = "shiraki.h@ses.usp.ac.jp",role = "aut"))
 Maintainer: Diego SilvaHerran <silva-herran@iges.or.jp>
 Description: Package contains generic functions to produce area/bar/box/line plots of data following IAMC submission format.
-Import: data.table, dplyr, ggplot2, openxlsx, tidyr, stringr, magrittr 
+Import: data.table, dplyr, ggplot2, openxlsx, tidyr, stringr, magrittr
 License: MIT + file LICENSE
 Suggests:
   testthat
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
+Imports: dplyr
