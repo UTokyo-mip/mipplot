@@ -21,7 +21,7 @@ mipplot_interactive_plot_line <- function(D,R){
 	    #})
 	    output$plot2<-renderPlot(
 	         {
-	           mipplot_line(D%>%filter(variable==input$variable & region==input$region))[[1]]
+	           mipplot_line(D%>%dplyr::filter(variable==input$variable & region==input$region))#[[1]]
 	           # ggplot2::ggplot(data.frame(x=c(1,2),y=c(3,4)),ggplot2::aes(x=x,y=y)) + ggtitle(input$result)
 	         },
 	         height = 400,width = 600)
