@@ -9,11 +9,12 @@ Authors@R: c(person("Diego", "Silva Herran", email = "silva-herran@iges.or.jp",r
 Maintainer: Diego SilvaHerran <silva-herran@iges.or.jp>
 Description: Package contains generic functions to produce area/bar/box/line plots of data following IAMC submission format.
 Imports: data.table, dplyr, ggplot2, openxlsx, stringr
-Depends: dplyr
+Depends: dplyr, reshape2
 License: MIT + file LICENSE
 Suggests:
   testthat, iamc
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 6.0.1
-
+Remotes:
+  IAMconsortium/iamc

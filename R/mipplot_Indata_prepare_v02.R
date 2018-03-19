@@ -7,7 +7,26 @@
 #       to numerical values.
 #====================================================================
 
-mipplot_indata_prepare <- function(df1){
+mipplot_indata_prepare <- function(df1) {
+
+  # Check if input data is in data.frame format.
+  if (class(df1) != "data.frame") {
+    stop("The input data is not in data.frame format.")
+  }
+
+  # Check wheter the number of rows of input data is one or more.
+  if (nrow(df1) < 1) {
+    stop("The number of rows of input data is zero.")
+  }
+
+  # Check that the input data contains all necessary columns.
+  required_columns = c("model","scenario","region","variable","unit")
+  if (!all(required_columns %in% colnames(df1))) {
+    stop(sprintf(
+      "Input data must contain following columns: %s",
+      paste(required_columns, collapse=", ")
+      ))
+  }
 
   D1 <- melt(df1, id.vars=c("model","scenario","region","variable","unit"))
   names(D1) <- c("model","scenario","region","variable","unit","period","value")
