@@ -11,7 +11,8 @@
 #' @export p_list1
 
 mipplot_point <- function(D,region=levels(D$region),variable=levels(D$variable), target_year=levels(D$period),
-                          colorby="model", shapeby="model",
+                          colorby="model", shapeby="model", xby="scenario", facetby=NULL,
+                          facet_x=NULL, facet_y=NULL, fontsize=20,
                           PRINT_OUT=F,DEBUG=T){
   
   p_list1 <- list()
@@ -35,15 +36,27 @@ mipplot_point <- function(D,region=levels(D$region),variable=levels(D$variable),
         tt3 <- paste(' [',D_sub$unit[1],']', sep="")
         
         ## Box plots: using scenario
-        p_Out1 <- ggplot2::ggplot(data=D_sub,ggplot2::aes(x=scenario, y=value))+
-          #ggplot2::geom_point(ggplot2::aes(color=model, shape=model),size=5) +
-          ggplot2::geom_point(ggplot2::aes_(color=as.name(colorby), shape=as.name(shapeby), fill=as.name(colorby)),size=5) +
+        p_Out1 <- ggplot2::ggplot(data=D_sub,ggplot2::aes(y=value))+
+        ggplot2::geom_point(ggplot2::aes_(x=as.name(xby), color=as.name(colorby), shape=as.name(shapeby), fill=as.name(colorby)),size=5) +
           ggplot2::scale_shape_manual(values=seq(0,10))+
           ggplot2::labs(title=tt1, subtitle=tt2, y=tt3)+
           ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90))
         
+        ## Facet plots if horizontal and/or vertical dimension provided.
+        if(!is.null(facetby)){
+            p_Out1 <- p_Out1 + ggplot2::facet_wrap(~eval(parse(text=facetby)))
+        }else if(!is.null(facet_x) & !is.null(facet_y)){
+            facet_by <- paste(facet_y, facet_x, sep="~")
+            p_Out1 <- p_Out1 + ggplot2::facet_grid(facet_by)
+        }else if(!is.null(facet_x) & is.null(facet_y)){
+            facet_by <- paste(".", facet_x, sep="~")
+            p_Out1 <- p_Out1 + ggplot2::facet_grid(facet_by)
+        }else if(is.null(facet_x) & !is.null(facet_y)){
+            facet_by <- paste(facet_y, ".", sep="~")
+            p_Out1 <- p_Out1 + ggplot2::facet_grid(facet_by)
+        }
         
-        p_Out1 <- p_Out1 + ggplot2::theme(text=ggplot2::element_text(size = 20))
+        p_Out1 <- p_Out1 + ggplot2::theme(text=ggplot2::element_text(size = fontsize))
         
         ## STORE PLOTS TO LIST
         p_list1[[length(p_list1)+1]] <- p_Out1

@@ -72,10 +72,9 @@ mipplot_area <- function(D, R, region=levels(D$region), scenario=levels(D$scenar
             p_Out1 <- p_Out1 + ggplot2::geom_line(data=na.omit(D_LHS),ggplot2::aes(x=period,y=value),size=2)
             p_Out1 <- p_Out1 + ggplot2::labs(title=tt1, subtitle=tt2, y=tt3)    # Define plot titles and axes labels.
             #p_Out1 <- p_Out1 + ggplot2::theme(legend.title=tt_legend)    # Remove legend title.
-            #p_Out1 <- p_Out1 + ggplot2::facet_wrap(~model)
 
 			if(!is.null(facet_x) & !is.null(facet_y)){
-			facet_by <- paste(facet_y, facet_x, sep="~")
+			    facet_by <- paste(facet_y, facet_x, sep="~")
 	            p_Out1 <- p_Out1 + ggplot2::facet_grid(facet_by)
 			}
 			else{

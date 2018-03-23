@@ -15,8 +15,10 @@
 #' @example mipplot_bar(AR5_Sample_data, AR5_Rule_table)
 #' @export p_list1
 
+# Faceting approach: allow only for 1 dimension (facet_wrap) if one dimension is replicated in horizontal axis.
 
 mipplot_bar <- function(D,R,region=levels(D$region),
+                        xby="scenario",  
                               target_year=levels(as.factor(D$period)),facet_x=NULL, facet_y=NULL, PRINT_OUT=F,DEBUG=T,fontsize=20){
   #REPLACED THIS FUNCTION WITH 1-LINE CODE (SEE LINE 52).
   # wrap_text <- function(x, width=60){
@@ -63,24 +65,39 @@ mipplot_bar <- function(D,R,region=levels(D$region),
 
         # Only generate plots if data is available for a region.
         if(nrow(na.omit(D_RHS[D_RHS$region==r,]))){
-          ## Line plots: using left-hand-side values of target rule.
-          p_Out1 <- ggplot2::ggplot(na.omit(D_RHS), ggplot2::aes(x=scenario, y=value, fill=variable))+
-            ggplot2::geom_bar(stat = "identity") +
-            ggplot2::facet_wrap(~model)+
+          ## Bar plots: using right-hand-side values of target rule.
+          p_Out1 <- ggplot2::ggplot(na.omit(D_RHS), ggplot2::aes(y=value, fill=variable))+
+            ggplot2::geom_bar(stat = "identity", ggplot2::aes_(x=as.name(xby))) +
             ggplot2::labs(title=tt1, subtitle=tt2, y=tt3)+
             ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90))
             #ggplot2::theme(legend.position = "bottom")
 
+
 			## Facet plots if horizontal and/or vertical dimension provided.
-            if(!is.null(facet_x) & !is.null(facet_y)){
+
+          if(xby=="model"){
+              facet_by <- "scenario"  
+          }else{
+              facet_by <- "model"    
+          }
+          if(!is.null(facet_x) & !is.null(facet_y)){
+            if(facet_x!=xby & facet_y!=xby){
               facet_by <- paste(facet_y, facet_x, sep="~")
               p_Out1 <- p_Out1 + ggplot2::facet_grid(facet_by)
-            }else if(!is.null(facet_x) & is.null(facet_y)){
-              facet_by <- paste(".", facet_x, sep="~")
-              p_Out1 <- p_Out1 + ggplot2::facet_grid(facet_by)
-            }else if(is.null(facet_x) & !is.null(facet_y)){
-              facet_by <- paste(facet_y, ".", sep="~")
-              p_Out1 <- p_Out1 + ggplot2::facet_grid(facet_by)
+            }else{
+                p_Out1 <- p_Out1 + ggplot2::facet_wrap(~eval(parse(text=facet_by)))
+              }
+            }else{
+                if(!is.null(facet_x) & is.null(facet_y)){
+                    if(xby!=facet_x){
+                        facet_by <- facet_x
+                    }
+                }else if(is.null(facet_x) & !is.null(facet_y)){
+                    if(xby!=facet_y){
+                        facet_by <- facet_y
+                    }
+                }
+               p_Out1 <- p_Out1 + ggplot2::facet_wrap(~eval(parse(text=facet_by)))
             }
 
           p_Out1 <- p_Out1 + ggplot2::theme(text=ggplot2::element_text(size = fontsize))
