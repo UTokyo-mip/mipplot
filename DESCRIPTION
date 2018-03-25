@@ -14,7 +14,8 @@ Imports:
     ggplot2,
     openxlsx,
     stringr,
-    tibble
+    tibble,
+    readr
 Depends: dplyr, reshape2
 License: MIT + file LICENSE
 Suggests:
