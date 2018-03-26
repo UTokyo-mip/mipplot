@@ -21,7 +21,7 @@ mipplot_interactive_plot_line(mipplot::ar5_db_sample09_Wang, mipplot::ar5_db_rul
 
 ## Screenshots
 
-
+<img src=https://raw.githubusercontent.com/UTokyo-mip/mipplot/develop/images/top_screenshot.png width=70.0% alt="screenshot" />
 
 ## License
 
