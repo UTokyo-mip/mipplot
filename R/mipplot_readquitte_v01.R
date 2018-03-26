@@ -11,15 +11,18 @@
 #' @export empty
 
 mipplot_readquitte <- function(filename=NULL, sep=",", interactive=FALSE, DEBUG=T){
-  if(interactive==TRUE){
+
+  if (interactive == TRUE) {
     filename <- file.choose()
   }
   filenameext <- tools::file_ext(filename)
-  if(filenameext!="csv" & sep==","){
+
+  if (filenameext != "csv" & sep == ",") {
     print("File is not comma separated values (csv), please specify data delimiter.")
     sep <- readline()
-    } 
-  return(quitte::read.quitte(filename, sep=sep))
+  }
+
+  return(quitte::read.quitte(filename, sep = sep))
 }
 
 #END
