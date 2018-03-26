@@ -16,7 +16,7 @@ devtools::install_github("UTokyo-mip/mipplot", dependencies = TRUE)
 
 ```r
 library(mipplot)
-mipplot_interactive_plot_line(mipplot::AR5_sample_data)
+mipplot_interactive_plot_line(mipplot::ar5_db_sample09_Wang, mipplot::ar5_db_rule_table_v09_Wang)
 ```
 
 ## Screenshots
