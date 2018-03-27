@@ -8,7 +8,14 @@ Authors@R: c(person("Diego", "Silva Herran", email = "silva-herran@iges.or.jp",r
              person("Hiroto", "SHIRAKI", email = "shiraki.h@ses.usp.ac.jp",role = "aut"))
 Maintainer: Diego SilvaHerran <silva-herran@iges.or.jp>
 Description: Package contains generic functions to produce area/bar/box/line plots of data following IAMC submission format.
-Imports: data.table, dplyr, ggplot2, openxlsx, stringr
+Imports: 
+    data.table,
+    dplyr,
+    ggplot2,
+    openxlsx,
+    stringr,
+    tibble,
+    readr
 Depends: dplyr, reshape2
 License: MIT + file LICENSE
 Suggests:
