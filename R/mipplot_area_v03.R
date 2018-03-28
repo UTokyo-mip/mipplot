@@ -59,18 +59,34 @@ mipplot_area <- function(
         if (nrow(na.omit(D_RHS[D_RHS$scenario == s, ])) > 0) {
 
           ### FACET DOES NOT WORK IN NO DATA EXISTS.
-            p_Out1 <- ggplot2::ggplot() + ggplot2::geom_area(data=na.omit(D_RHS), ggplot2::aes(x=period, y=value,fill=variable), position="stack")
-            p_Out1 <- p_Out1 + ggplot2::geom_line(data=na.omit(D_LHS),ggplot2::aes(x=period,y=value),size=2)
-            p_Out1 <- p_Out1 + ggplot2::labs(title=tt1, subtitle=tt2, y=tt3)    # Define plot titles and axes labels.
-            #p_Out1 <- p_Out1 + ggplot2::theme(legend.title=tt_legend)    # Remove legend title.
+          p_Out1 <-
+            ggplot2::ggplot() +
+            ggplot2::geom_area(
+              data = na.omit(D_RHS),
+              ggplot2::aes(x = period, y = value, fill = variable),
+              position = "stack")
 
-			if(!is.null(facet_x) & !is.null(facet_y)){
-			    facet_by <- paste(facet_y, facet_x, sep="~")
-	            p_Out1 <- p_Out1 + ggplot2::facet_grid(facet_by)
-			}
-			else{
-	            p_Out1 <- p_Out1 + ggplot2::facet_wrap(~model)
-			}
+          p_Out1 <- p_Out1 +
+            ggplot2::geom_line(
+              data = na.omit(D_LHS),
+              ggplot2::aes(x = period, y = value), size = 2)
+
+          # Define plot titles and axes labels.
+          p_Out1 <- p_Out1 +
+            ggplot2::labs(title = tt1, subtitle = tt2, y = tt3)
+
+          # Remove legend title.
+          # p_Out1 <- p_Out1 + ggplot2::theme(legend.title=tt_legend)
+
+          if (!is.null(facet_x) & !is.null(facet_y)) {
+
+              facet_by <- paste(facet_y, facet_x, sep = "~")
+              p_Out1 <- p_Out1 + ggplot2::facet_grid(facet_by)
+
+          } else {
+
+              p_Out1 <- p_Out1 + ggplot2::facet_wrap(~model)
+          }
 
           p_Out1 <- p_Out1 + ggplot2::theme(
             text = ggplot2::element_text(size = fontsize))
