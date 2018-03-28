@@ -4,7 +4,7 @@
 \alias{mipplot_bar}
 \title{A function to plot bar graph}
 \usage{
-mipplot_bar(D, R, region = levels(D$region),
+mipplot_bar(D, R, region = levels(D$region), xby = "scenario",
   target_year = levels(as.factor(D$period)), facet_x = NULL,
   facet_y = NULL, PRINT_OUT = F, DEBUG = T, fontsize = 20)
 }
@@ -17,5 +17,6 @@ mipplot_bar(D, R, region = levels(D$region),
 A list of graph
 }
 \description{
-Bar plots using right-hand-side values of target additivity rule.
+Bar plots using right-hand-side values of
+             target additivity rule.
 }
