@@ -17,6 +17,7 @@ mipplot_area(D, R, region = levels(D$region), scenario = levels(D$scenario),
 A list of area plots
 }
 \description{
-Area plots using right-hand-side values of target additivity rule.
-The function arguments inlcude the input dataframe, labels for the plot/axes/legend, and faceting dimensions (two in this version).
+Area plots using right-hand-side values of target
+  additivity rule. The function arguments inlcude the input dataframe,
+  labels for the plot/axes/legend, and faceting dimensions (two in this version).
 }

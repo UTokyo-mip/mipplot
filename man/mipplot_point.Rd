@@ -5,7 +5,9 @@
 \title{A function to plot point graph}
 \usage{
 mipplot_point(D, region = levels(D$region), variable = levels(D$variable),
-  target_year = levels(D$period), PRINT_OUT = F, DEBUG = T)
+  target_year = levels(D$period), colorby = "model", shapeby = "model",
+  xby = "scenario", facetby = NULL, facet_x = NULL, facet_y = NULL,
+  fontsize = 20, PRINT_OUT = F, DEBUG = T)
 }
 \arguments{
 \item{D}{A dataframe of IAMC data to produce garph.}
