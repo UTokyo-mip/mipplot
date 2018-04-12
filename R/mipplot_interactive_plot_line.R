@@ -1,31 +1,43 @@
+#' @title A function to launch interactive plot using Shiny
+#' @description A function to launch interactive plot using Shiny
+#' @param D A quitte format dataframe of IAMC data to produce garph.
+#' @param R A table with additivity rules.
+#' @example mipplot_interactive_plot_line(mipplot::ar5_db_sample09_Wang, mipplot::ar5_db_rule_table_v09_Wang)
+#' @export
+
+mipplot_interactive_plot_line <- function(D, R) {
+
+  library(ggplot2)
+  library(shiny)
+
+  var_list <- levels(D$variable)
+  region_list <- levels(D$region)
+
+  ui <- fluidPage(
+
+    selectInput("variable", "Choose a variable:",
+                list(`variable` = var_list)),
+
+    selectInput("region", "Choose a region:",
+                list(`region` = region_list)),
+
+    textOutput("result"),
+
+    mainPanel(
+      plotOutput("plot2")));
 
 
-mipplot_interactive_plot_line <- function(D,R){
-    library(ggplot2)
-    library(shiny)
+  server <- function(input, output) {
 
-	var_list <- levels(D$variable)
-    region_list <- levels(D$region)
-	ui = fluidPage(
-	         selectInput("variable", "Choose a variable:",
-	                     list(`variable` = var_list)),
-	         selectInput("region", "Choose a region:",
-	                     list(`region` = region_list)),
-	         textOutput("result"),
-	         mainPanel(plotOutput("plot2"))
-	     );
+    output$plot2 <- renderPlot({
 
-	server = function(input, output) {
-	    #output$result <- renderText({
-	    #  paste("variable: ", input$variable)
-	    #})
-	    output$plot2<-renderPlot(
-	         {
-	           mipplot_line(D%>%filter(variable==input$variable & region==input$region))[[1]]
-	           # ggplot2::ggplot(data.frame(x=c(1,2),y=c(3,4)),ggplot2::aes(x=x,y=y)) + ggtitle(input$result)
-	         },
-	         height = 400,width = 600)
-	  }
+        mipplot_line(
+          D %>% dplyr::filter(
+              variable == input$variable & region == input$region))
+      },
 
-	shinyApp(ui,server);
+      height = 400, width = 600)
+    }
+
+  shinyApp(ui, server);
 }
