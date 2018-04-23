@@ -3,6 +3,8 @@
 
 mipplot_read_ruletab <- function(R_without_id) {
 
+  R_without_id <- read.csv(R_without_id)
+
   # Stop when input data is not data.frame.
   if (!("data.frame" %in% class(R_without_id)))
     stop("Input data is not data.frame class")
