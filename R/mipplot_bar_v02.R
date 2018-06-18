@@ -9,11 +9,13 @@
 
 #' @title A function to plot bar graph
 #' @description Bar plots using right-hand-side values of
-#'              target additivity rule.
+#'              target additivity rule. The function arguments include the
+#'              input dataframe, labels for the plot/axes/legend, and
+#'              faceting dimensions
 #' @param D A dataframe of IAMC data to produce garph.
 #' @param R A dataframe of data aggregation rules (meta data).
-#' @return A list of graph
-#' @example mipplot_bar(AR5_Sample_data, AR5_Rule_table)
+#' @return A list of bar graph output
+#' @example mipplot_bar(ar5_db_sample_data, ar5_db_rule_table)
 #' @export p_list1
 
 # Faceting approach: allow only for 1 dimension (facet_wrap)

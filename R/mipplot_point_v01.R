@@ -4,10 +4,11 @@
 #--------------------------------------------------------------------
 
 #' @title A function to plot point graph
-#' @description point plots
+#' @description The function arguments include the input dataframe,
+#'              labels for the plot/axes/legend, and faceting dimensions
 #' @param D A dataframe of IAMC data to produce garph.
-#' @return A list of graph
-#' @example mipplot_point(AR5_Sample_data)
+#' @return A list of line graph output
+#' @example mipplot_point(ar5_db_sample_data)
 #' @export p_list1
 
 mipplot_point <- function(

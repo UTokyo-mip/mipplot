@@ -10,12 +10,13 @@
 
 #' @title A function to plot area graph
 #' @description Area plots using right-hand-side values of target
-#'   additivity rule. The function arguments inlcude the input dataframe,
-#'   labels for the plot/axes/legend, and faceting dimensions (two in this version).
+#'              additivity rule. The function arguments include the input dataframe,
+#'              labels for the plot/axes/legend, and faceting dimensions
+#'              (two in this version).
 #' @param D A dataframe of IAMC data to produce area plot.
 #' @param R A dataframe of data aggregation rules (meta data).
 #' @return A list of area plots
-#' @example mipplot_area (AR5_Sample_data, AR5_Rule_table)
+#' @example mipplot_area (ar5_db_sample_data, ar5_db_rule_table)
 #' @export p_list1
 
 mipplot_area <- function(

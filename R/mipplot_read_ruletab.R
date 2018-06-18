@@ -1,5 +1,13 @@
+#--------------------------------------------------------------------
+# RULETABLE READ FUNCTION: READ RULETABLE DATA AS MATE DATA
+#--------------------------------------------------------------------
+
 #' @title A function to read rule table without ID number
 #' @description Read table of additivity rule and adds column with id number.
+#' @param R_without_id Path to a file containing data of additivity rule.
+#' @return A dataframe of additivity rule ("ID, Left_side, Right_side")
+#' @example mipplot_readquitte(ar5_db_rule_table)
+#' @export empty
 
 mipplot_read_ruletab <- function(R_without_id) {
 
