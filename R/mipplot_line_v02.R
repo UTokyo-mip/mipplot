@@ -4,10 +4,11 @@
 #--------------------------------------------------------------------
 
 #' @title A function to plot line graph
-#' @description Line plots
+#' @description The function arguments include the input dataframe,
+#'              labels for the plot/axes/legend, and faceting dimensions
 #' @param D A dataframe of IAMC data to produce garph.
-#' @return A list of plots.
-#' @example mipplot_line(AR5_Sample_data)
+#' @return A list of line graph.
+#' @example mipplot_box(ar5_db_sample_data)
 #' @export p_list1
 
 mipplot_line <- function(
