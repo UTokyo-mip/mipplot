@@ -1,13 +1,15 @@
 #' @title A function to launch interactive plot using Shiny
-#' @description A function to launch interactive line plot.
+#' @description A function to launch interactive bar plot using
+#'              right-hand-side values of  target additivity rule.
 #'              The function arguments include the input dataframe,
 #'              labels for the plot/axes/legend, and faceting dimensions
 #' @param D A quitte format dataframe of IAMC data to produce garph.
-#' @example mipplot_interactive_line(mipplot::ar5_db_sample09_Wang)
+#' @param R A table with additivity rules.
+#' @example mipplot_interactive_bar(mipplot::ar5_db_sample09_Wang,mipplot::ar5_db_rule_table_v09_Wang)
 #' @export  interactive polt window
 
 
-mipplot_interactive_line <- function(D) {
+mipplot_interactive_bar <- function(D,R) {
 
   library(shiny)
 
@@ -38,7 +40,7 @@ mipplot_interactive_line <- function(D) {
                              list("AIM-Enduse 12.1" = "AIM-Enduse 12.1",
                                   "GCAM 3.0" = "GCAM 3.0",
                                   "IMAGE 2.4" = "IMAGE 2.4"
-                                  ),
+                             ),
                            selected = "AIM-Enduse 12.1"
                            ),
 
@@ -53,34 +55,30 @@ mipplot_interactive_line <- function(D) {
                                   "EMF27-Base-FullTech" = "EMF27-Base-FullTech",
                                   "EMF27-Base-LimBio" = "EMF27-Base-LimBio",
                                   "EMF27-Base-NucOff" = "EMF27-Base-NucOff"
-                                  ),
+                             ),
                            selected = "EMF27-450-Conv"
                            ),
 
-        selectInput("period_start", "period_start:",
+        selectInput("target_year", "target_year:",
                     list(`period` = period_list),
                     selected = 2005
-                    ),
-
-        selectInput("period_end", "period_end:",
-                    list(`period` = period_list),
-                    selected = 2050
                     )
         ),
 
 
-      mainPanel(plotOutput("line_plot"))
+      mainPanel(plotOutput("bar_plot"))
 
     )
   )
 
   server <- function(input, output) {
 
-    output$line_plot <- renderPlot({
-      mipplot_line(D,variable = input$variable, #model = input$model,
-                        scenario = input$scenario
-                        #period = seq(input$period_start,input$period_end,5)
-                   )
+    output$bar_plot <- renderPlot({
+      mipplot_bar(D,R,region = input$region, variable = input$variable,
+                  model = input$model,
+                  scenario = input$scenario,
+                  target_year = input$target_year
+                  )
     },
     height = 400, width = 600
     )
