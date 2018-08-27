@@ -61,5 +61,5 @@ In case of questions / problems please contact Diego Silva Herran <silva-herran@
 
 The mipplot R package is open source licensed under the MIT license.
 
-test text: edit by wnag
+
 >>>>>>> develop
