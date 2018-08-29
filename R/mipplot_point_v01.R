@@ -86,7 +86,7 @@ mipplot_point <- function(
 
     ## Open printing device.
     filename <- sprintf(
-      "../data_output/JpMIP_plots_point_%s.pdf",
+      "JpMIP_plots_point_%s.pdf",
       format(Sys.time(), "%Y_%m%d"))
 
     pdf(filename, onefile = TRUE, width = 11.69, height = 8.27)
