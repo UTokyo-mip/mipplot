@@ -55,7 +55,7 @@ mipplot_box <- function(
   if (PRINT_OUT == TRUE) {
 
     ## Open printing device.
-    filename <-sprintf("../data_output/JpMIP_plots_box_%s.pdf", format(Sys.time(), "%Y_%m%d"))
+    filename <-sprintf("JpMIP_plots_box_%s.pdf", format(Sys.time(), "%Y_%m%d"))
     pdf(filename, onefile = TRUE, width = 11.69, height = 8.27)
 
     ## Plot for each variable set.
