@@ -1,6 +1,6 @@
-#' @title A function to launch interactive plot using Shiny
+#' @title Interactive line plot from IAMC data using Shiny
 #' @description A function to launch interactive plot using Shiny
-#' @param D A quitte format dataframe of IAMC data to produce garph.
+#' @param D A quitte format dataframe of IAMC data to produce plot.
 #' @param R A table with additivity rules.
 #' @example mipplot_interactive_plot_line(mipplot::ar5_db_sample09_Wang, mipplot::ar5_db_rule_table_v09_Wang)
 #' @export

@@ -3,11 +3,12 @@
 # PLOTTING FUNCTION: Point
 #--------------------------------------------------------------------
 
-#' @title A function to plot point graph
-#' @description point plots
-#' @param D A dataframe of IAMC data to produce garph.
-#' @return A list of graph
-#' @example mipplot_point(AR5_Sample_data)
+#' @title Point plot from IAMC data
+#' @description The function arguments include the input dataframe,
+#'              labels for the plot/axes/legend, and faceting dimensions
+#' @param D A dataframe of IAMC data in quitte format to produce plots.
+#' @return A list of point plots.
+#' @example mipplot_point(ar5_db_sample_data)
 #' @export p_list1
 
 mipplot_point <- function(
