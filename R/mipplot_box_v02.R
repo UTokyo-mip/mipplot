@@ -2,11 +2,11 @@
 # PLOTTING FUNCTION: BOX
 #--------------------------------------------------------------------
 
-#' @title A function to plot box graph
+#' @title Box plot from IAMC data
 #' @description The function arguments include the input dataframe,
 #'              labels for the plot/axes/legend, and faceting dimensions
-#' @param D A dataframe of IAMC data to produce graph.
-#' @return A list of box graph
+#' @param D A dataframe of IAMC data in quitte format to produce plots.
+#' @return A list of box plots.
 #' @example mipplot_box(ar5_db_sample_data)
 #' @export p_list1
 
