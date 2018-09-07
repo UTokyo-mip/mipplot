@@ -2,7 +2,7 @@
 # FILE READ FUNCTION: READ IAMC DATA AS QUITTE DATAFRAME
 #--------------------------------------------------------------------
 
-#' @title A function to read scenario input data.
+#' @title Read IAMC scenario input data.
 #' @description Read scenario input data (in IAMC format) as quitte format dataframe.
 #' @param filename Path to a file containing scenario data in IAMC format.
 #' @param sep A character indicating the separator used in the input file.
