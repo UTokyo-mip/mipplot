@@ -3,11 +3,11 @@
 # PLOTTING FUNCTION: LINE
 #--------------------------------------------------------------------
 
-#' @title A function to plot line graph
+#' @title Line plot from IAMC data
 #' @description The function arguments include the input dataframe,
 #'              labels for the plot/axes/legend, and faceting dimensions
-#' @param D A dataframe of IAMC data to produce garph.
-#' @return A list of line graph.
+#' @param D A dataframe of IAMC data in quitte format to produce plots.
+#' @return A list of line plots.
 #' @example mipplot_box(ar5_db_sample_data)
 #' @export p_list1
 
