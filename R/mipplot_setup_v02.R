@@ -1,7 +1,4 @@
-# TITLE: JP MIP submission tool setup.
-# OUTLINE: funtion to prepare the JP MIP submission tool.
-# Developed by: Masahiro SUGIYAMA and Diego SILVA HERRAN.
-# Last revision by: XX.
+
 
 mipplot_setup <- function(target.package,
                                            repos="https://cloud.r-project.org/"){
