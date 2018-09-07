@@ -13,7 +13,7 @@
 #'              additivity rule. The function arguments include the input dataframe,
 #'              labels for the plot/axes/legend, and faceting dimensions
 #'              (two in this version).
-#' @param D A dataframe of IAMC data to produce area plot.
+#' @param D A dataframe of IAMC data in quitte format to produce area plots.
 #' @param R A dataframe of data aggregation rules (meta data).
 #' @return A list of area plots.
 #' @example mipplot_area (ar5_db_sample_data, ar5_db_rule_table)
