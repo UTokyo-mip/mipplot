@@ -2,7 +2,7 @@
 # RULETABLE READ FUNCTION: READ RULETABLE DATA AS MATE DATA
 #--------------------------------------------------------------------
 
-#' @title A function to read rule table without ID number
+#' @title Read file of rule table without ID number
 #' @description Read table of additivity rule and adds column with id number.
 #' @param R_without_id Path to a file containing data of additivity rule.
 #' @return A dataframe of additivity rule ("ID, Left_side, Right_side")
