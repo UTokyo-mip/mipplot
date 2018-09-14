@@ -87,17 +87,8 @@ mipplot_line <- function(
 
   if (PRINT_OUT == TRUE) {
 
-    ## Open printing device.
-    filename <- sprintf(
-      "JpMIP_plots_line_%s.pdf", format(Sys.time(), "%Y_%m%d"))
-    pdf(filename, onefile = TRUE, width = 11.69, height = 8.27)
+    mipplot_print_pdf(p_list1, filelabel = "line")
 
-    ## Plot for each variable set.
-    for (p in p_list1) {
-      plot(p)
-    }
-
-    dev.off()
   }
 
   return(p_list1)
