@@ -1,6 +1,5 @@
 Left_side,Right_side
 Emissions|CO2,
-,Emissions|CO2|Carbon Capture and Storage
 ,Emissions|CO2|Fossil Fuels and Industry
 ,Emissions|CO2|Land Use
 Emissions|CO2|Fossil Fuels and Industry,
@@ -46,3 +45,4 @@ Secondary Energy|Electricity,
 ,Secondary Energy|Electricity|Ocean
 Population,
 Price|Carbon,
+Emissions|CO2|Carbon Capture and Storage,
