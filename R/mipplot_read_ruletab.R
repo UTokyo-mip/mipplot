@@ -6,7 +6,7 @@
 #' @description Read table of additivity rule and adds column with id number.
 #' @param R_without_id Path to a file containing data of additivity rule.
 #' @return A dataframe of additivity rule ("ID, Left_side, Right_side")
-#' @example mipplot_readquitte(ar5_db_rule_table)
+#' @example mipplot_readquitte(ar5_db_rule_table_v09_wo_id)
 #' @export empty
 
 mipplot_read_ruletab <- function(R_without_id) {
