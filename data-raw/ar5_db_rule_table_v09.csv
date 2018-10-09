@@ -36,6 +36,7 @@ Rule_ID,Left_side,Right_side
 7,Secondary Energy|Electricity,
 7,,Secondary Energy|Electricity|Coal
 7,,Secondary Energy|Electricity|Gas
+7,,Secondary Energy|Electricity|Oil
 7,,Secondary Energy|Electricity|Nuclear
 7,,Secondary Energy|Electricity|Hydro
 7,,Secondary Energy|Electricity|Biomass
