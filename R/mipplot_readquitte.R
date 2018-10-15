@@ -7,8 +7,9 @@
 #' @param filename Path to a file containing scenario data in IAMC format.
 #' @param sep A character indicating the separator used in the input file.
 #' @return A dataframe in quitte format ("model, scenario, variable, unit, period, value")
-#' @example mipplot_readquitte(ar5_db_sample_data)
-#' @export empty
+#' @examples
+#' mipplot_readquitte(ar5_db_sample_data)
+#' @export
 
 mipplot_readquitte <- function(filename=NULL, sep=",", interactive=FALSE, DEBUG=T){
 
