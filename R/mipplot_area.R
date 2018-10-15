@@ -15,6 +15,7 @@
 #'              (two in this version).
 #' @param D A dataframe of IAMC data in quitte format to produce area plots.
 #' @param R A dataframe of data aggregation rules (meta data).
+#' @param color_code_specify set FALSE if you apply default color palette.
 #' @return A list of area plots.
 #' @examples
 #' mipplot_area (ar5_db_sample_data, ar5_db_rule_table)
@@ -22,7 +23,8 @@
 
 mipplot_area <- function(
   D, R, region=levels(D$region), scenario=levels(D$scenario),
-  facet_x=NULL, facet_y=NULL, PRINT_OUT=F, DEBUG=T, fontsize=20){
+  facet_x=NULL, facet_y=NULL, PRINT_OUT=F, DEBUG=T, fontsize=20,
+  color_code_specify=T){
 
   p_list1 <- list()
 
@@ -93,8 +95,22 @@ mipplot_area <- function(
           p_Out1 <- p_Out1 + ggplot2::theme(
             text = ggplot2::element_text(size = fontsize))
 
-          print(D_RHS$variable)
-          #p_Out1 <- p_Out1 + ggplot2::scale_fill_manual(values=f)
+
+          # if color palette isn't specified or color_code column isn't included,
+          # default color palette is applied.
+          if (color_code_specify == FALSE || !("Color_code" %in% colnames(R))) {
+
+            color_mapper <- mipplot_default_color_palette
+
+          } else {
+
+            # otherwise, generate palette.
+            color_mapper <- mipplot_generate_color_mapper(R)
+
+          }
+          # apply color palette.
+          p_Out1 <- p_Out1 + ggplot2::scale_fill_manual(values=color_mapper)
+
 
           p_list1[[length(p_list1) + 1]] <- p_Out1
 
