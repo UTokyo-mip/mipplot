@@ -3,7 +3,8 @@ context("test-read_ruletab.R")
 test_that("Load normal data without exception.", {
 
   # Convert rule table without id to one with id.
-  converted <- mipplot_read_ruletab(mipplot::ar5_db_rule_table_v09_wo_id)
+  file_path <- system.file("inst", "mipplot/ar5_db_rule_table_v09.csv", package="mipplot")
+  converted <- mipplot_read_ruletab(file_path)
 
   # Check if converted rule table contains rule id header.
   expect_true("Rule_ID" %in% colnames(converted))
