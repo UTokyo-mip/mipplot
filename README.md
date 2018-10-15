@@ -45,7 +45,7 @@ Package contains generic functions to produce area/bar/box/line plots of data fo
 
 ```r
 library(mipplot)
-mipplot_interactive_plot_line(mipplot::ar5_db_sample09_Wang, mipplot::ar5_db_rule_table_v09_Wang)
+mipplot_interactive_plot_line(mipplot::ar5_db_sample_data, mipplot::ar5_db_rule_table_v09_wo_id)
 ```
 
 ## Questions / Problems
