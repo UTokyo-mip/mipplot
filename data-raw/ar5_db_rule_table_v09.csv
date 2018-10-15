@@ -1,49 +1,49 @@
-Rule_ID,Left_side,Right_side
-1,Emissions|CO2,
-1,,Emissions|CO2|Fossil Fuels and Industry
-1,,Emissions|CO2|Land Use
-2,Emissions|CO2|Fossil Fuels and Industry,
-2,,Emissions|CO2|Fossil Fuels and Industry|Energy Demand
-2,,Emissions|CO2|Fossil Fuels and Industry|Energy Supply
-3,Emissions|CO2|Fossil Fuels and Industry|Energy Demand,
-3,,Emissions|CO2|Fossil Fuels and Industry|Energy Demand|Industry
-3,,Emissions|CO2|Fossil Fuels and Industry|Energy Demand|Residential and Commercial
-3,,Emissions|CO2|Fossil Fuels and Industry|Energy Demand|Transportation
-4,Final Energy,
-4,,Final Energy|Electricity
-4,,Final Energy|Gases
-4,,Final Energy|Geothermal
-4,,Final Energy|Heat
-4,,Final Energy|Hydrogen
-4,,Final Energy|Liquids
-4,,Final Energy|Solar
-4,,Final Energy|Solids
-5,Final Energy,
-5,,Final Energy|Industry
-5,,Final Energy|Residential and Commercial
-5,,Final Energy|Transportation
-6,Primary Energy,
-6,,Primary Energy|Coal
-6,,Primary Energy|Gas
-6,,Primary Energy|Oil
-6,,Primary Energy|Nuclear
-6,,Primary Energy|Hydro
-6,,Primary Energy|Biomass
-6,,Primary Energy|Solar
-6,,Primary Energy|Wind
-6,,Primary Energy|Geothermal
-6,,Primary Energy|Ocean
-7,Secondary Energy|Electricity,
-7,,Secondary Energy|Electricity|Coal
-7,,Secondary Energy|Electricity|Gas
-7,,Secondary Energy|Electricity|Oil
-7,,Secondary Energy|Electricity|Nuclear
-7,,Secondary Energy|Electricity|Hydro
-7,,Secondary Energy|Electricity|Biomass
-7,,Secondary Energy|Electricity|Solar
-7,,Secondary Energy|Electricity|Wind
-7,,Secondary Energy|Electricity|Geothermal
-7,,Secondary Energy|Electricity|Ocean
-8,Population,
-9,Price|Carbon,
-10,Emissions|CO2|Carbon Capture and Storage,
+Left_side,Right_side,Color_code
+Emissions|CO2,,
+,Emissions|CO2|Fossil Fuels and Industry,#17202a
+,Emissions|CO2|Land Use,#008000
+Emissions|CO2|Fossil Fuels and Industry,,
+,Emissions|CO2|Fossil Fuels and Industry|Energy Demand,#444444
+,Emissions|CO2|Fossil Fuels and Industry|Energy Supply,#cdc9c9
+Emissions|CO2|Fossil Fuels and Industry|Energy Demand,,
+,Emissions|CO2|Fossil Fuels and Industry|Energy Demand|Industry,#444444
+,Emissions|CO2|Fossil Fuels and Industry|Energy Demand|Residential and Commercial,#888888
+,Emissions|CO2|Fossil Fuels and Industry|Energy Demand|Transportation,#cdc9c9
+Final Energy,,
+,Final Energy|Electricity,#66bb33
+,Final Energy|Gases,#cdaf95
+,Final Energy|Geothermal,#ee0000
+,Final Energy|Heat,#cdc9c9
+,Final Energy|Hydrogen,#0000CD
+,Final Energy|Liquids,#54BBAC
+,Final Energy|Solar,#FFD700
+,Final Energy|Solids,#444444
+Final Energy,,
+,Final Energy|Industry,#444444
+,Final Energy|Residential and Commercial,#888888
+,Final Energy|Transportation,#cdc9c9
+Primary Energy,,
+,Primary Energy|Coal,#444444
+,Primary Energy|Gas,#cdaf95
+,Primary Energy|Oil,#54BBAC
+,Primary Energy|Nuclear,#cdc9c9
+,Primary Energy|Hydro,#0000CD
+,Primary Energy|Biomass,#008000
+,Primary Energy|Solar,#FFD700
+,Primary Energy|Wind,#00BFFF
+,Primary Energy|Geothermal,#ee0000
+,Primary Energy|Ocean,#82175a
+Secondary Energy|Electricity,,
+,Secondary Energy|Electricity|Coal,#444444
+,Secondary Energy|Electricity|Gas,#cdaf95
+,Secondary Energy|Electricity|Oil,#54BBAC
+,Secondary Energy|Electricity|Nuclear,#cdc9c9
+,Secondary Energy|Electricity|Hydro,#0000CD
+,Secondary Energy|Electricity|Biomass,#008000
+,Secondary Energy|Electricity|Solar,#FFD700
+,Secondary Energy|Electricity|Wind,#00BFFF
+,Secondary Energy|Electricity|Geothermal,#ee0000
+,Secondary Energy|Electricity|Ocean,#82175a
+Population,,
+Price|Carbon,,
+Emissions|CO2|Carbon Capture and Storage,,
