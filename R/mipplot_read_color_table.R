@@ -8,7 +8,7 @@
 #' For example: separator should be "\\|" for "Secondary Energy|Electricity|Coal"
 #' @return list. which elements are mapping from variable name to color
 #'
-#' @export
+#' @export mipplot_read_color_table
 
 mipplot_read_color_table <-
   function(filepath, category_separator = "\\|")
