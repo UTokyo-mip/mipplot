@@ -8,8 +8,9 @@
 #'              labels for the plot/axes/legend, and faceting dimensions
 #' @param D A dataframe of IAMC data in quitte format to produce plots.
 #' @return A list of point plots.
-#' @example mipplot_point(ar5_db_sample_data)
-#' @export p_list1
+#' @examples
+#' mipplot_point(ar5_db_sample_data)
+#' @export
 
 mipplot_point <- function(
   D, region = levels(D$region), variable = levels(D$variable),
