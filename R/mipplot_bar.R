@@ -15,8 +15,9 @@
 #' @param D A dataframe of IAMC data in quitte format to produce plots.
 #' @param R A dataframe of data aggregation rules (meta data).
 #' @return A list of bar plots.
-#' @example mipplot_bar(ar5_db_sample_data, ar5_db_rule_table)
-#' @export p_list1
+#' @examples
+#' mipplot_bar(ar5_db_sample_data, ar5_db_rule_table)
+#' @export
 
 # Faceting approach: allow only for 1 dimension (facet_wrap)
 # if one dimension is replicated in horizontal axis.
