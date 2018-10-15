@@ -20,8 +20,6 @@ mipplot_generate_color_mapper <-
     # Variable names that include non-detailed part.
     non_detailed_variable_names <- raw_table$Right_side
 
-    print(str(non_detailed_variable_names))
-
     # Number of elements of variable names
     n_names <- length(non_detailed_variable_names)
 
