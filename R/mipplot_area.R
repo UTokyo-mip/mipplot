@@ -16,8 +16,9 @@
 #' @param D A dataframe of IAMC data in quitte format to produce area plots.
 #' @param R A dataframe of data aggregation rules (meta data).
 #' @return A list of area plots.
-#' @example mipplot_area (ar5_db_sample_data, ar5_db_rule_table)
-#' @export p_list1
+#' @examples
+#' mipplot_area (ar5_db_sample_data, ar5_db_rule_table)
+#' @export
 
 mipplot_area <- function(
   D, R, region=levels(D$region), scenario=levels(D$scenario),
@@ -91,6 +92,9 @@ mipplot_area <- function(
 
           p_Out1 <- p_Out1 + ggplot2::theme(
             text = ggplot2::element_text(size = fontsize))
+
+          print(D_RHS$variable)
+          #p_Out1 <- p_Out1 + ggplot2::scale_fill_manual(values=f)
 
           p_list1[[length(p_list1) + 1]] <- p_Out1
 
