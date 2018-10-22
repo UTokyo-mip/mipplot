@@ -36,9 +36,6 @@ mipplot_bar <- function(
 
   p_list1 <- list()
 
-  # Convert to quitte format (PIK package dataframe).
-  D <- quitte::as.quitte(D)
-
   for (i in levels(as.factor(R$Rule_ID))) {
 
     for (r in levels(as.factor(region))) {
@@ -69,8 +66,8 @@ mipplot_bar <- function(
         # Change name of variable by removing
         # common part from aggregated vairable (LHS).
         D_RHS$variable <-
-          gsub(paste(var_common_name, "|", sep = ""),
-               "", D_RHS$variable, fixed = T)
+          forcats::fct_rev(gsub(paste(var_common_name, "|", sep = ""),
+               "", D_RHS$variable, fixed = T))
 
         # Only generate plots if data is available for a region.
         if (nrow(na.omit(D_RHS[D_RHS$region == r, ]))) {
