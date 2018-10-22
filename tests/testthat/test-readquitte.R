@@ -3,7 +3,7 @@ context("test-readquitte.R")
 test_that("Read the file that meets the specification", {
 
   # Read sample quitte format file
-  quitte_file_path = system.file("mipplot/ar5_db_sample09_EMF_v01.csv", package = "mipplot")
+  quitte_file_path = system.file("inst", "mipplot/ar5_db_sample_data.csv", package = "mipplot")
 
   # Load quitte format file.
   loaded_data <- mipplot_readquitte(quitte_file_path, interactive = FALSE)
