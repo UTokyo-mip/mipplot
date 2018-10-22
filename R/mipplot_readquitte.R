@@ -10,7 +10,6 @@
 #' @examples
 #' mipplot_readquitte(ar5_db_sample_data)
 #' @export
-
 mipplot_readquitte <- function(filename=NULL, sep=",", interactive=FALSE, DEBUG=T){
 
   if (interactive == TRUE) {
@@ -23,17 +22,34 @@ mipplot_readquitte <- function(filename=NULL, sep=",", interactive=FALSE, DEBUG=
     sep <- readline()
   }
 
-  loaded_quitte = quitte::read.quitte(filename, sep = sep)
+  loaded_quitte = read_quitte(filename, sep = sep)
 
   if (nrow(loaded_quitte) == 0) {
     stop("No rows available in the given quitte file.")
   }
 
-  if (!("quitte" %in% class(loaded_quitte))) {
-    stop("This is not quitte format file.")
-  }
-
   return(loaded_quitte)
 }
+
+read_quitte <- function(file_path, sep = ",") {
+
+  # read column names from data file
+  all_columns <- tolower(scan(file_path, sep = sep, what = "character", nlines = 1))
+
+  # extract year columns
+  year_columns <- extract_year_columns(all_columns)
+
+  # read contents
+  content <- readr::read_delim(file_path, delim = sep)
+  colnames(content) <- tolower(colnames(content))
+
+  return(tidyr::gather_(content, "period", "value", year_columns))
+}
+
+extract_year_columns <- function(columns) {
+
+  return(columns[grep("^[0-9].*?$", columns)])
+}
+
 
 #END
