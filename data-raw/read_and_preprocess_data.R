@@ -1,10 +1,10 @@
 # Run this script in `mipplot/data-raw` directory.
 
-ar5_db_sample_data <- mipplot_readquitte("ar5_db_sample09_EMF_v01.csv")
+ar5_db_sample_data <- mipplot_readquitte("ar5_db_sample_data.csv")
 devtools::use_data(ar5_db_sample_data, overwrite = TRUE)
 
-ar5_db_rule_table_v09_wo_id <- mipplot_read_ruletab("ar5_db_rule_table_v09.csv")
-devtools::use_data(ar5_db_rule_table_v09_wo_id, overwrite = TRUE)
+ar5_db_sample_rule_table <- mipplot_read_ruletab("ar5_db_sample_rule_table.csv")
+devtools::use_data(ar5_db_sample_rule_table, overwrite = TRUE)
 
 # Generate default color pallete
 mipplot_default_color_palette <-
