@@ -21,7 +21,9 @@
 #' @param DEBUG set TRUE to show debug messages.
 #' @return A list of point plots.
 #' @examples
+#' \donttest{
 #' mipplot_point(ar5_db_sample_data)
+#' }
 #' @export
 
 mipplot_point <- function(

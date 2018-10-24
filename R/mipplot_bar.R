@@ -25,7 +25,9 @@
 #' @param color_code_specify set FALSE if you apply default color palette.
 #' @return A list of bar plots.
 #' @examples
+#' \donttest{
 #' mipplot_bar(ar5_db_sample_data, ar5_db_sample_rule_table)
+#' }
 #' @export
 
 # Faceting approach: allow only for 1 dimension (facet_wrap)

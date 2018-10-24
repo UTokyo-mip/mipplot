@@ -13,7 +13,9 @@
 #' @param DEBUG set TRUE to show debug messages.
 #' @return A list of box plots.
 #' @examples
+#' \donttest{
 #' mipplot_box(ar5_db_sample_data)
+#' }
 #' @export
 
 mipplot_box <- function(

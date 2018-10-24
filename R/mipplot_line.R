@@ -19,7 +19,9 @@
 #' @param DEBUG set TRUE to show debug messages.
 #' @return A list of line plots.
 #' @examples
+#' \donttest{
 #' mipplot_box(ar5_db_sample_data)
+#' }
 #' @export
 
 mipplot_line <- function(

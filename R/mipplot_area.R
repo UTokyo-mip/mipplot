@@ -25,7 +25,9 @@
 #' @param color_code_specify set FALSE if you apply default color palette.
 #' @return A list of area plots.
 #' @examples
+#' \donttest{
 #' mipplot_area(ar5_db_sample_data, ar5_db_sample_rule_table)
+#' }
 #' @export
 
 mipplot_area <- function(
