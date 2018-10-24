@@ -6,6 +6,11 @@
 #' @description The function arguments include the input dataframe,
 #'              labels for the plot/axes/legend, and faceting dimensions
 #' @param D A dataframe of IAMC data in quitte format to produce plots.
+#' @param region A list of regions.
+#' @param variable A list of variables.
+#' @param target_year target year.
+#' @param PRINT_OUT set TRUE to generate PDF file.
+#' @param DEBUG set TRUE to show debug messages.
 #' @return A list of box plots.
 #' @examples
 #' mipplot_box(ar5_db_sample_data)

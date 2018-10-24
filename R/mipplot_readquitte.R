@@ -6,9 +6,13 @@
 #' @description Read scenario input data (in IAMC format) as quitte format dataframe.
 #' @param filename Path to a file containing scenario data in IAMC format.
 #' @param sep A character indicating the separator used in the input file.
+#' @param interactive open a dialog for selecting file if interactive=TRUE.
+#' @param DEBUG experimental.
 #' @return A dataframe in quitte format ("model, scenario, variable, unit, period, value")
 #' @examples
-#' mipplot_readquitte(ar5_db_sample_data)
+#' \donttest{
+#' mipplot_readquitte("filename")
+#' }
 #' @export
 mipplot_readquitte <- function(filename=NULL, sep=",", interactive=FALSE, DEBUG=T){
 

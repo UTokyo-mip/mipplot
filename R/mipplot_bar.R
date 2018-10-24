@@ -14,10 +14,18 @@
 #'              faceting dimensions.
 #' @param D A dataframe of IAMC data in quitte format to produce plots.
 #' @param R A dataframe of data aggregation rules (meta data).
+#' @param region A list of region.
+#' @param xby name of axis. the default setting is "scenario".
+#' @param target_year target year.
+#' @param facet_x facet_x
+#' @param facet_y facet_y
+#' @param PRINT_OUT set TRUE to generate A PDF file.
+#' @param DEBUG set TRUE to show debug messages.
+#' @param fontsize size of font in the output plot.
 #' @param color_code_specify set FALSE if you apply default color palette.
 #' @return A list of bar plots.
 #' @examples
-#' mipplot_bar(ar5_db_sample_data, ar5_db_rule_table)
+#' mipplot_bar(ar5_db_sample_data, ar5_db_sample_rule_table)
 #' @export
 
 # Faceting approach: allow only for 1 dimension (facet_wrap)

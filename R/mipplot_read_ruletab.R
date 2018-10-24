@@ -7,8 +7,11 @@
 #' @param R_without_id Path to a file containing data of additivity rule.
 #' @return A dataframe of additivity rule ("ID, Left_side, Right_side")
 #' @examples
-#' mipplot_readquitte(ar5_db_rule_table_v09_wo_id)
+#' \donttest{
+#' mipplot_read_ruletab("filename")
+#' }
 #' @export mipplot_read_ruletab
+
 
 mipplot_read_ruletab <- function(R_without_id) {
 

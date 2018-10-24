@@ -7,6 +7,18 @@
 #' @description The function arguments include the input dataframe,
 #'              labels for the plot/axes/legend, and faceting dimensions
 #' @param D A dataframe of IAMC data in quitte format to produce plots.
+#' @param region A list of regions.
+#' @param variable A list of variables.
+#' @param target_year A list of target years.
+#' @param colorby An axis for color setting.
+#' @param shapeby An axis for shape setting.
+#' @param xby An axis for x locating setting.
+#' @param facetby facetby.
+#' @param facet_x facet_x.
+#' @param facet_y facet_y.
+#' @param fontsize font size.
+#' @param PRINT_OUT set TRUE to generate PDF image.
+#' @param DEBUG set TRUE to show debug messages.
 #' @return A list of point plots.
 #' @examples
 #' mipplot_point(ar5_db_sample_data)
@@ -14,7 +26,7 @@
 
 mipplot_point <- function(
   D, region = levels(D$region), variable = levels(D$variable),
-  target_year = levels(D$period), colorby = "model",
+  target_year = levels(as.factor(D$period)), colorby = "model",
   shapeby = "model", xby = "scenario",
   facetby = NULL, facet_x = NULL, facet_y=NULL,
   fontsize=20, PRINT_OUT = F, DEBUG = T) {

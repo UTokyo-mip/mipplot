@@ -15,10 +15,17 @@
 #'              (two in this version).
 #' @param D A dataframe of IAMC data in quitte format to produce area plots.
 #' @param R A dataframe of data aggregation rules (meta data).
+#' @param region A list of regions.
+#' @param scenario A list of scenario.
+#' @param facet_x facet_x
+#' @param facet_y facet_y
+#' @param PRINT_OUT generate PDF file.
+#' @param DEBUG set TRUE to show debug messages.
+#' @param fontsize font size of text.
 #' @param color_code_specify set FALSE if you apply default color palette.
 #' @return A list of area plots.
 #' @examples
-#' mipplot_area (ar5_db_sample_data, ar5_db_rule_table)
+#' mipplot_area(ar5_db_sample_data, ar5_db_sample_rule_table)
 #' @export
 
 mipplot_area <- function(
