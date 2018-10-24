@@ -13,7 +13,7 @@
 #'              additivity rule. The function arguments include the input dataframe,
 #'              labels for the plot/axes/legend, and faceting dimensions
 #'              (two in this version).
-#' @param D A dataframe of IAMC data in quitte format to produce area plots.
+#' @param D A dataframe of IAMC data in tibble format to produce area plots.
 #' @param R A dataframe of data aggregation rules (meta data).
 #' @param region A list of regions.
 #' @param scenario A list of scenario.
