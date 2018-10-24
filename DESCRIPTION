@@ -14,7 +14,7 @@ Imports:
     stringr,
     tibble,
     tidyr,
-Depends: dplyr, reshape2, forcats, readr,
+Depends: R (>= 2.10), reshape2, forcats, readr,
 License: MIT + file LICENSE
 Suggests:
   testthat
