@@ -3,18 +3,18 @@
 #--------------------------------------------------------------------
 
 #' @title Read IAMC scenario input data.
-#' @description Read scenario input data (in IAMC format) as quitte format dataframe.
+#' @description Read scenario input data (in IAMC format) as tibble format dataframe.
 #' @param filename Path to a file containing scenario data in IAMC format.
 #' @param sep A character indicating the separator used in the input file.
 #' @param interactive open a dialog for selecting file if interactive=TRUE.
 #' @param DEBUG experimental.
-#' @return A dataframe in quitte format ("model, scenario, variable, unit, period, value")
+#' @return A dataframe in tibble format ("model, scenario, variable, unit, period, value")
 #' @examples
 #' \donttest{
-#' mipplot_readquitte("filename")
+#' mipplot_read_iamc("filename")
 #' }
 #' @export
-mipplot_readquitte <- function(filename=NULL, sep=",", interactive=FALSE, DEBUG=T){
+mipplot_read_iamc <- function(filename=NULL, sep=",", interactive=FALSE, DEBUG=T){
 
   if (interactive == TRUE) {
     filename <- file.choose()
@@ -26,16 +26,16 @@ mipplot_readquitte <- function(filename=NULL, sep=",", interactive=FALSE, DEBUG=
     sep <- readline()
   }
 
-  loaded_quitte = read_quitte(filename, sep = sep)
+  loaded_iamc = read_iamc(filename, sep = sep)
 
-  if (nrow(loaded_quitte) == 0) {
-    stop("No rows available in the given quitte file.")
+  if (nrow(loaded_iamc) == 0) {
+    stop("No rows available in the given iamc file.")
   }
 
-  return(loaded_quitte)
+  return(loaded_iamc)
 }
 
-read_quitte <- function(file_path, sep = ",") {
+read_iamc <- function(file_path, sep = ",") {
 
   # read column names from data file
   all_columns <- tolower(scan(file_path, sep = sep, what = "character", nlines = 1))
