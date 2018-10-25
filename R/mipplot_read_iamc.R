@@ -38,7 +38,7 @@ mipplot_read_iamc <- function(filename=NULL, sep=",", interactive=FALSE, DEBUG=T
 read_iamc <- function(file_path, sep = ",") {
 
   # read column names from data file
-  all_columns <- tolower(scan(file_path, sep = sep, what = "character", nlines = 1))
+  all_columns <- tolower(scan(file_path, sep = sep, what = "character", nlines = 1, quiet = TRUE))
 
   # extract year columns
   year_columns <- extract_year_columns(all_columns)
