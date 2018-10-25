@@ -145,9 +145,10 @@ mipplot_bar <- function(
             color_mapper <- mipplot_generate_color_mapper(R)
           }
           # apply color palette.
-          #p_Out1 <- p_Out1 + ggplot2::scale_fill_manual(values=color_mapper)
-          #p_Out1 <- p_Out1 + ggplot2::scale_fill_brewer()
-          print(var_common_name)
+          if (!is.null(color_mapper[[var_common_name]])) {
+            new_mapper <- color_mapper[[var_common_name]]
+            p_Out1 <- p_Out1 + ggplot2::scale_fill_manual(values=new_mapper)
+          }
 
           # STORE PLOTS TO LIST
           p_list1[[length(p_list1) + 1]] <- p_Out1
