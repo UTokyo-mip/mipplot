@@ -44,10 +44,20 @@ read_iamc <- function(file_path, sep = ",") {
   year_columns <- extract_year_columns(all_columns)
 
   # read contents
-  content <- readr::read_delim(file_path, delim = sep)
-  colnames(content) <- tolower(colnames(content))
+  content <- readr::read_delim(file_path, delim = sep, col_types = cols(
+    .default = col_double(),
+    MODEL = col_factor(NULL),
+    SCENARIO = col_factor(NULL),
+    REGION = col_factor(NULL),
+    VARIABLE = col_factor(NULL),
+    UNIT = col_factor(NULL)
+  ))
 
-  return(tidyr::gather_(content, "period", "value", year_columns))
+  colnames(content) <- tolower(colnames(content))
+  content <- tidyr::gather_(content, "period", "value", year_columns)
+  content$period <- as.integer(content$period)
+
+  return(content)
 }
 
 extract_year_columns <- function(columns) {
