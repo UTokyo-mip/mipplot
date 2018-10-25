@@ -10,7 +10,7 @@ mipplot_bar(D, R, region = levels(D$region), xby = "scenario",
   color_code_specify = T)
 }
 \arguments{
-\item{D}{A dataframe of IAMC data in quitte format to produce plots.}
+\item{D}{A dataframe of IAMC data in tibble format to produce plots.}
 
 \item{R}{A dataframe of data aggregation rules (meta data).}
 

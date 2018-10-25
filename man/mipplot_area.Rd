@@ -9,7 +9,7 @@ mipplot_area(D, R, region = levels(D$region),
   PRINT_OUT = F, DEBUG = T, fontsize = 20, color_code_specify = T)
 }
 \arguments{
-\item{D}{A dataframe of IAMC data in quitte format to produce area plots.}
+\item{D}{A dataframe of IAMC data in tibble format to produce area plots.}
 
 \item{R}{A dataframe of data aggregation rules (meta data).}
 

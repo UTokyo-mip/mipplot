@@ -11,7 +11,7 @@ mipplot_line(D, region = levels(D$region),
   PRINT_OUT = F, DEBUG = T)
 }
 \arguments{
-\item{D}{A dataframe of IAMC data in quitte format to produce plots.}
+\item{D}{A dataframe of IAMC data in tibble format to produce plots.}
 
 \item{region}{A list of regions.}
 
