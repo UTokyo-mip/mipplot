@@ -12,10 +12,9 @@
 #'   result = list(
 #'     "Emissions|CO2" = c(
 #'       "Fossi Fuels and Industry" = "#17202a",
-#'       "Land Use" = "#008000"),
+#'       "Land Use" = "#008000", ...),
 #'     "Emissions|CO2|Fossil Fuels and Industry" = c(
-#'       "Energy Demand" = "#444444",
-#'       ...
+#'       "Energy Demand" = "#444444", ...
 #'     ),...
 #'
 #' @export
@@ -35,6 +34,8 @@ mipplot_generate_color_mapper <- function(raw_table, category_separator = "\\|")
     COLUMN_OF_COLOR_CODE <- 4
 
     mapper <- list()
+
+    aggregated_mapping <- c()
 
     for (i in 1:nrow(raw_table)) {
 
@@ -64,6 +65,21 @@ mipplot_generate_color_mapper <- function(raw_table, category_separator = "\\|")
       # store color_code
       mapper[[common_part]][deepest_category_part] <- color_code
 
+      # add color_code too to aggreated_mapping
+      aggregated_mapping[deepest_category_part] <- color_code
+
+    }
+
+    # merge mapper and aggregated_mapping
+    for (i in 1:length(mapper)) {
+      for (j in 1:length(aggregated_mapping)) {
+        additional_map <- aggregated_mapping[j]
+        additional_variable_name <- names(additional_map)
+        additional_color_code <- additional_map
+        if (is.na(mapper[[i]][additional_variable_name])) {
+          mapper[[i]][additional_variable_name] <- additional_color_code
+        }
+      }
     }
 
     return(mapper)
