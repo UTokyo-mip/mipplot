@@ -68,6 +68,16 @@ mipplot_bar <- function(
         # Common Part of Var-name
         var_common_name <- Var_set[1, 2]
 
+        # if color palette isn't specified or color_code column isn't included,
+        # default color palette is applied.
+        # This color_map is used to sort variable names too.
+        if (color_code_specify == FALSE || !("Color_code" %in% colnames(R))) {
+          color_mapper <- mipplot_default_color_palette
+        } else {
+          # otherwise, generate palette.
+          color_mapper <- mipplot_generate_color_mapper(R)
+        }
+
         # Title
         tt1 <- paste("region:", r, ",  period:", ty, sep = "")
         tt2 <- paste("variable:", as.character(Var_set[1, 2]), sep = "")
@@ -75,9 +85,9 @@ mipplot_bar <- function(
 
         # Change name of variable by removing
         # common part from aggregated vairable (LHS).
-        D_RHS$variable <-
-          forcats::fct_rev(gsub(paste(var_common_name, "|", sep = ""),
-               "", D_RHS$variable, fixed = T))
+        D_RHS$variable <- factor(
+          gsub(paste(var_common_name, "|", sep = ""),"", D_RHS$variable, fixed = T),
+          levels = names(color_mapper[[var_common_name]]))
 
         # Only generate plots if data is available for a region.
         if (nrow(na.omit(D_RHS[D_RHS$region == r, ]))) {
@@ -136,14 +146,6 @@ mipplot_bar <- function(
           p_Out1 <- p_Out1 + ggplot2::theme(
             text = ggplot2::element_text(size = fontsize))
 
-          # if color palette isn't specified or color_code column isn't included,
-          # default color palette is applied.
-          if (color_code_specify == FALSE || !("Color_code" %in% colnames(R))) {
-            color_mapper <- mipplot_default_color_palette
-          } else {
-            # otherwise, generate palette.
-            color_mapper <- mipplot_generate_color_mapper(R)
-          }
           # apply color palette.
           if (!is.null(color_mapper[[var_common_name]])) {
             new_mapper <- color_mapper[[var_common_name]]
