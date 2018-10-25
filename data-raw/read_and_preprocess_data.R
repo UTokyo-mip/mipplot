@@ -8,5 +8,5 @@ devtools::use_data(ar5_db_sample_rule_table, overwrite = TRUE)
 
 # Generate default color pallete
 mipplot_default_color_palette <-
-  mipplot_generate_color_mapper(ar5_db_rule_table_v09_wo_id)
+  mipplot_generate_color_mapper(ar5_db_sample_rule_table)
 devtools::use_data(mipplot_default_color_palette, overwrite = TRUE)

@@ -14,7 +14,17 @@ right-hand-side variable name into categories.
 For example: separator should be "\\|" for "Secondary Energy|Electricity|Coal"}
 }
 \value{
-list. which elements are mapping from variable name to color
+named list of named string vectors.
+for example,
+
+  result = list(
+    "Emissions|CO2" = c(
+      "Fossi Fuels and Industry" = "#17202a",
+      "Land Use" = "#008000"),
+    "Emissions|CO2|Fossil Fuels and Industry" = c(
+      "Energy Demand" = "#444444",
+      ...
+    ),...
 }
 \description{
 Generate mapper from name of variable to name of color

@@ -6,64 +6,65 @@
 #' @param category_separator regular expression for separating
 #' right-hand-side variable name into categories.
 #' For example: separator should be "\\|" for "Secondary Energy|Electricity|Coal"
-#' @return list. which elements are mapping from variable name to color
+#' @return named list of named string vectors.
+#' for example,
+#'
+#'   result = list(
+#'     "Emissions|CO2" = c(
+#'       "Fossi Fuels and Industry" = "#17202a",
+#'       "Land Use" = "#008000"),
+#'     "Emissions|CO2|Fossil Fuels and Industry" = c(
+#'       "Energy Demand" = "#444444",
+#'       ...
+#'     ),...
 #'
 #' @export
 
-mipplot_generate_color_mapper <-
-  function(raw_table, category_separator = "\\|")
-  {
-    ####################################################################
-    # Add column of variable names that include only most detailed part.
-    ####################################################################
+mipplot_generate_color_mapper <- function(raw_table, category_separator = "\\|") {
+    ########################################################################
+    # Add columns of variable names that contain only most detailed category
+    # and parent category separately.
+    #
+    # c.f.
+    # full_variable_name = common_part + deepest_category_part
+    #
+    #######################################################################
 
-    # Variable names that include non-detailed part.
-    non_detailed_variable_names <- raw_table$Right_side
+    COLUMN_OF_COMMON_PART <- 2
+    COLUMN_OF_FULL_VARIABLE_NAME_PART <- 3
+    COLUMN_OF_COLOR_CODE <- 4
 
-    # Number of elements of variable names
-    n_names <- length(non_detailed_variable_names)
+    mapper <- list()
 
-    # Initialize detailed variable names
-    detailed_variable_names <- rep("", n_names)
+    for (i in 1:nrow(raw_table)) {
 
-    for (i in 1:n_names) {
+      # update common_part if common_part is available.
+      if (raw_table[i, COLUMN_OF_COMMON_PART] != "") {
+        common_part <- raw_table[i, COLUMN_OF_COMMON_PART]
+      }
 
-      # Target non-detailed variable name
-      non_detailed_variable_name <- non_detailed_variable_names[i]
+      # update full_variable_name if it is available.
+      if (raw_table[i, COLUMN_OF_FULL_VARIABLE_NAME_PART] != "") {
+        full_variable_name_part <- raw_table[i, COLUMN_OF_FULL_VARIABLE_NAME_PART]
+      } else {
+        next
+      }
 
-      # Skip if non-detailed variable name is empty
-      if (non_detailed_variable_name == "") next
+      # update color_code if color_code is available.
+      if (raw_table[i, COLUMN_OF_COLOR_CODE] != "") {
+        color_code <- raw_table[i, COLUMN_OF_COLOR_CODE]
+      }
 
-      # Split variable name into categories
-      category_names <- strsplit(non_detailed_variable_name, split = category_separator)[[1]]
+      # split category names like "a|b|c" to c("a", "b", "c")
+      splitted_categories <- strsplit(full_variable_name_part, split = category_separator)[[1]]
 
-      # Extract the name of most detailed category
-      name_of_deepest_category <- tail(category_names, n = 1)
+      # get deepest_category_part
+      deepest_category_part <- tail(splitted_categories, n = 1)
 
-      # Store the category name as detailed variable name
-      detailed_variable_names[i] <- name_of_deepest_category
+      # store color_code
+      mapper[[common_part]][deepest_category_part] <- color_code
+
     }
 
-    # Add detailed variable name to dataframe as a new column.
-    raw_table$detailed_variable_name <- detailed_variable_names
-
-    ####################################################################
-    # Create ggplot2 scale object (mapping from variable name to color)
-    ####################################################################
-
-    # Empty mapping object (list with names attributes)
-    mapper_from_variable_name_to_color = c()
-
-    for (i in 1:n_names) {
-
-      # Skip if detailed variable name is empty
-      if (raw_table$detailed_variable_name[i] == "") next
-
-      # Upsert (update or insert) a mapping from variable name to
-      mapper_from_variable_name_to_color[raw_table$detailed_variable_name[i]] <-
-        raw_table$Color_code[i]
-    }
-
-    return(mapper_from_variable_name_to_color)
-
-  }
+    return(mapper)
+}
