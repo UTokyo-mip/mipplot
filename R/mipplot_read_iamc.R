@@ -1,5 +1,5 @@
 #--------------------------------------------------------------------
-# FILE READ FUNCTION: READ IAMC DATA AS QUITTE DATAFRAME
+# FILE READ FUNCTION: READ IAMC DATA AS TIBBLE DATAFRAME
 #--------------------------------------------------------------------
 
 #' @title Read IAMC scenario input data.

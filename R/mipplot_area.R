@@ -19,7 +19,7 @@
 #' @param scenario A list of scenario.
 #' @param facet_x facet_x
 #' @param facet_y facet_y
-#' @param PRINT_OUT generate PDF file.
+#' @param PRINT_OUT set TRUE to generate PDF file.
 #' @param DEBUG set TRUE to show debug messages.
 #' @param fontsize font size of text.
 #' @param color_code_specify set FALSE if you apply default color palette.

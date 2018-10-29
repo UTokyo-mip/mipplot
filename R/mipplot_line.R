@@ -20,7 +20,7 @@
 #' @return A list of line plots.
 #' @examples
 #' \donttest{
-#' mipplot_box(ar5_db_sample_data)
+#' mipplot_line(ar5_db_sample_data)
 #' }
 #' @export
 

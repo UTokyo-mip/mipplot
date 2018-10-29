@@ -21,7 +21,7 @@ mipplot_area(D, R, region = levels(D$region),
 
 \item{facet_y}{facet_y}
 
-\item{PRINT_OUT}{generate PDF file.}
+\item{PRINT_OUT}{set TRUE to generate PDF file.}
 
 \item{DEBUG}{set TRUE to show debug messages.}
 

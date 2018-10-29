@@ -42,6 +42,6 @@ The function arguments include the input dataframe,
 }
 \examples{
 \donttest{
-mipplot_box(ar5_db_sample_data)
+mipplot_line(ar5_db_sample_data)
 }
 }
