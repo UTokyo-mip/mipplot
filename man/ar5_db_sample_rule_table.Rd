@@ -11,9 +11,6 @@
   \item{Right_side}{name of right-side variable}
   \item{Color_code}{hex color code}
 }}
-\source{
-\url{http://.../}
-}
 \usage{
 ar5_db_sample_rule_table
 }

@@ -12,5 +12,5 @@
 #'   \item{period}{year}
 #'   \item{value}{the value of a variable}
 #' }
-#' @source \url{http://.../}
+#' @source \url{https://tntcat.iiasa.ac.at/AR5DB/dsd?Action=htmlpage&page=about}
 "ar5_db_sample_data"

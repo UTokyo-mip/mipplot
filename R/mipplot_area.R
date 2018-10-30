@@ -77,7 +77,7 @@ mipplot_area <- function(
         # common part from aggregated vairable (LHS).
         D_RHS$variable <- factor(
           gsub(paste(var_common_name, "|", sep = ""),"", D_RHS$variable, fixed = T),
-          levels = names(color_mapper[[var_common_name]]))
+          levels = rev(names(color_mapper[[var_common_name]])))
 
         ## Generate plots only if data is available for a given scenario.
         if (nrow(na.omit(D_RHS[D_RHS$scenario == s, ])) > 0) {

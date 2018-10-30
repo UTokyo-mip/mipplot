@@ -15,7 +15,7 @@
   \item{value}{the value of a variable}
 }}
 \source{
-\url{http://.../}
+\url{https://tntcat.iiasa.ac.at/AR5DB/dsd?Action=htmlpage&page=about}
 }
 \usage{
 ar5_db_sample_data
