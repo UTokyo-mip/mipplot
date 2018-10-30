@@ -6,10 +6,23 @@
 #' @title Line plot from IAMC data
 #' @description The function arguments include the input dataframe,
 #'              labels for the plot/axes/legend, and faceting dimensions
-#' @param D A dataframe of IAMC data in quitte format to produce plots.
+#' @param D A dataframe of IAMC data in tibble format to produce plots.
+#' @param region A list of regions.
+#' @param variable A list of variables.
+#' @param colorby an axis for color setting.
+#' @param linetypeby an axis for line type setting.
+#' @param shapeby an axis for shape setting.
+#' @param scenario A list of cenarios.
+#' @param facet_x facet_x
+#' @param facet_y facet_y
+#' @param PRINT_OUT set TRUE to generate PDF files.
+#' @param DEBUG set TRUE to show debug messages.
 #' @return A list of line plots.
-#' @example mipplot_box(ar5_db_sample_data)
-#' @export p_list1
+#' @examples
+#' \donttest{
+#' mipplot_line(ar5_db_sample_data)
+#' }
+#' @export
 
 mipplot_line <- function(
   D, region = levels(D$region), variable = levels(D$variable),
@@ -18,9 +31,6 @@ mipplot_line <- function(
   facet_y = NULL, PRINT_OUT = F, DEBUG = T) {
 
   p_list1 <- list()
-
-  # Convert to quitte format (PIK package dataframe).
-  D <- quitte::as.quitte(D)
 
   for (r in levels(as.factor(region))) {
 

@@ -12,11 +12,23 @@
 #'              target additivity rule. The function arguments include the
 #'              input dataframe, labels for the plot/axes/legend, and
 #'              faceting dimensions.
-#' @param D A dataframe of IAMC data in quitte format to produce plots.
+#' @param D A dataframe of IAMC data in tibble format to produce plots.
 #' @param R A dataframe of data aggregation rules (meta data).
+#' @param region A list of region.
+#' @param xby name of axis. the default setting is "scenario".
+#' @param target_year target year.
+#' @param facet_x facet_x
+#' @param facet_y facet_y
+#' @param PRINT_OUT set TRUE to generate A PDF file.
+#' @param DEBUG set TRUE to show debug messages.
+#' @param fontsize size of font in the output plot.
+#' @param color_code_specify set FALSE if you apply default color palette.
 #' @return A list of bar plots.
-#' @example mipplot_bar(ar5_db_sample_data, ar5_db_rule_table)
-#' @export p_list1
+#' @examples
+#' \donttest{
+#' mipplot_bar(ar5_db_sample_data, ar5_db_sample_rule_table)
+#' }
+#' @export
 
 # Faceting approach: allow only for 1 dimension (facet_wrap)
 # if one dimension is replicated in horizontal axis.
@@ -24,7 +36,8 @@
 mipplot_bar <- function(
   D, R,region = levels(D$region), xby = "scenario",
   target_year = levels(as.factor(D$period)),
-  facet_x = NULL, facet_y = NULL, PRINT_OUT = F, DEBUG = T, fontsize = 20) {
+  facet_x = NULL, facet_y = NULL, PRINT_OUT = F, DEBUG = T, fontsize = 20,
+  color_code_specify = T) {
 
   # REPLACED THIS FUNCTION WITH 1-LINE CODE (SEE LINE 52).
   # wrap_text <- function(x, width=60){
@@ -32,9 +45,6 @@ mipplot_bar <- function(
   # }
 
   p_list1 <- list()
-
-  # Convert to quitte format (PIK package dataframe).
-  D <- quitte::as.quitte(D)
 
   for (i in levels(as.factor(R$Rule_ID))) {
 
@@ -58,6 +68,16 @@ mipplot_bar <- function(
         # Common Part of Var-name
         var_common_name <- Var_set[1, 2]
 
+        # if color palette isn't specified or color_code column isn't included,
+        # default color palette is applied.
+        # This color_map is used to sort variable names too.
+        if (color_code_specify == FALSE || !("Color_code" %in% colnames(R))) {
+          color_mapper <- mipplot_default_color_palette
+        } else {
+          # otherwise, generate palette.
+          color_mapper <- mipplot_generate_color_mapper(R)
+        }
+
         # Title
         tt1 <- paste("region:", r, ",  period:", ty, sep = "")
         tt2 <- paste("variable:", as.character(Var_set[1, 2]), sep = "")
@@ -65,9 +85,9 @@ mipplot_bar <- function(
 
         # Change name of variable by removing
         # common part from aggregated vairable (LHS).
-        D_RHS$variable <-
-          gsub(paste(var_common_name, "|", sep = ""),
-               "", D_RHS$variable, fixed = T)
+        D_RHS$variable <- factor(
+          gsub(paste(var_common_name, "|", sep = ""),"", D_RHS$variable, fixed = T),
+          levels = rev(names(color_mapper[[var_common_name]])))
 
         # Only generate plots if data is available for a region.
         if (nrow(na.omit(D_RHS[D_RHS$region == r, ]))) {
@@ -125,6 +145,12 @@ mipplot_bar <- function(
 
           p_Out1 <- p_Out1 + ggplot2::theme(
             text = ggplot2::element_text(size = fontsize))
+
+          # apply color palette.
+          if (!is.null(color_mapper[[var_common_name]])) {
+            new_mapper <- color_mapper[[var_common_name]]
+            p_Out1 <- p_Out1 + ggplot2::scale_fill_manual(values=new_mapper)
+          }
 
           # STORE PLOTS TO LIST
           p_list1[[length(p_list1) + 1]] <- p_Out1

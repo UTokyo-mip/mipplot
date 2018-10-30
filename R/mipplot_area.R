@@ -13,15 +13,27 @@
 #'              additivity rule. The function arguments include the input dataframe,
 #'              labels for the plot/axes/legend, and faceting dimensions
 #'              (two in this version).
-#' @param D A dataframe of IAMC data in quitte format to produce area plots.
+#' @param D A dataframe of IAMC data in tibble format to produce area plots.
 #' @param R A dataframe of data aggregation rules (meta data).
+#' @param region A list of regions.
+#' @param scenario A list of scenario.
+#' @param facet_x facet_x
+#' @param facet_y facet_y
+#' @param PRINT_OUT set TRUE to generate PDF file.
+#' @param DEBUG set TRUE to show debug messages.
+#' @param fontsize font size of text.
+#' @param color_code_specify set FALSE if you apply default color palette.
 #' @return A list of area plots.
-#' @example mipplot_area (ar5_db_sample_data, ar5_db_rule_table)
-#' @export p_list1
+#' @examples
+#' \donttest{
+#' mipplot_area(ar5_db_sample_data, ar5_db_sample_rule_table)
+#' }
+#' @export
 
 mipplot_area <- function(
   D, R, region=levels(D$region), scenario=levels(D$scenario),
-  facet_x=NULL, facet_y=NULL, PRINT_OUT=F, DEBUG=T, fontsize=20){
+  facet_x=NULL, facet_y=NULL, PRINT_OUT=F, DEBUG=T, fontsize=20,
+  color_code_specify=T){
 
   p_list1 <- list()
 
@@ -46,6 +58,16 @@ mipplot_area <- function(
         # Common Part of Var-name
         var_common_name <- Var_set[1, 2]
 
+        # if color palette isn't specified or color_code column isn't included,
+        # default color palette is applied.
+        # This color_map is used to sort variable names too.
+        if (color_code_specify == FALSE || !("Color_code" %in% colnames(R))) {
+          color_mapper <- mipplot_default_color_palette
+        } else {
+          # otherwise, generate palette.
+          color_mapper <- mipplot_generate_color_mapper(R)
+        }
+
         ## Title
         tt1 <- paste("region:", r, ",  scenario:", s, sep = "")
         tt2 <- paste("variable:", as.character(Var_set[1, 2]), sep = "")
@@ -53,8 +75,9 @@ mipplot_area <- function(
 
         # Change name of variable by removing
         # common part from aggregated vairable (LHS).
-        D_RHS$variable <- gsub(
-          paste(var_common_name, "|", sep = ""), "", D_RHS$variable, fixed = T)
+        D_RHS$variable <- factor(
+          gsub(paste(var_common_name, "|", sep = ""),"", D_RHS$variable, fixed = T),
+          levels = rev(names(color_mapper[[var_common_name]])))
 
         ## Generate plots only if data is available for a given scenario.
         if (nrow(na.omit(D_RHS[D_RHS$scenario == s, ])) > 0) {
@@ -91,6 +114,12 @@ mipplot_area <- function(
 
           p_Out1 <- p_Out1 + ggplot2::theme(
             text = ggplot2::element_text(size = fontsize))
+
+          # apply color palette.
+          if (!is.null(color_mapper[[var_common_name]])) {
+            new_mapper <- color_mapper[[var_common_name]]
+            p_Out1 <- p_Out1 + ggplot2::scale_fill_manual(values=new_mapper)
+          }
 
           p_list1[[length(p_list1) + 1]] <- p_Out1
 
