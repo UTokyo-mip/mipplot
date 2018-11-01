@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # R mipplot package
 
 ## Purpose and Functionality
@@ -8,58 +7,76 @@ The mipplot package contains generic functions to produce area/bar/box/line plot
 
 ## Installation
 
-Install mipplot package from GitHub (requires [devtools](https://github.com/hadley/devtools) package):
+#### Windows
 
+1. Visit the [release page on GitHub](https://github.com/UTokyo-mip/mipplot/tree/master/release).
+
+2. Download the latest **zip** file (binary package).
+
+3. Start R.
+
+4. Set working directory to where the downloaded file is in.
+
+5. Run following commands.
 ```r
-if (!require("devtools")) install.packages("devtools")
-library(devtools)
-devtools::install_github("UTokyo-mip/mipplot", dependencies = TRUE)
+install.packages("tidyverse")
+install.packages("mipplot_0.1.0.zip", repos = NULL)
 ```
 
-Need to install mip package from PIK.
-For installation of the most recent package version an additional repository has to be added in R:
+#### Mac OS
 
+1. Visit the [release page on GitHub](https://github.com/UTokyo-mip/mipplot/tree/master/release).
+
+2. Download the latest **tar.gz** file (source package).
+
+3. Start R.
+
+4. Set working directory to where the downloaded file is in.
+
+5. Run following commands.
 ```r
-options(repos = c(CRAN = "@CRAN@", rd3mod_repo = "http://www.pik-potsdam.de/rd3mod/R/"))
-```
-The additional repository can be made availably permanently by adding the line above to a file called `.Rprofile` stored in the home folder of your system (`Sys.glob("~")` in R returns the home directory).
-
-After that the most recent version of the package can be installed using `install.packages`:
-
-```r 
-install.packages("mip")
+install.packages("tidyverse")
+install.packages("mipplot_0.1.0.tar.gz", repos = NULL)
 ```
 
-Package updates can be installed using `update.packages` (make sure that the additional repository has been added before running that command):
+#### Ubuntu (or Debian based distribution)
 
-```r 
-update.packages()
+1. Run the following commands:
+```bash
+sudo apt install build-essential gfortran g++ libcurl4-openssl-dev libxml2-dev libssl-dev
 ```
+  This commands install the library which `tidyverse` library depends.
 
-# mipplot
+2. Visit the [release page on GitHub](https://github.com/UTokyo-mip/mipplot/tree/master/release).
 
-Package contains generic functions to produce area/bar/box/line plots of data following IAMC submission format.
+3. Download the latest **tar.gz** file (source package).
 
+4. Start R.
+
+5. Set working directory to where the downloaded file is in.
+
+6. Run following commands.
+```r
+install.packages("tidyverse")
+install.packages("mipplot_0.1.0.tar.gz", repos = NULL)
+```
 
 ## Example
 
 ```r
 library(mipplot)
-mipplot_interactive_plot_line(mipplot::ar5_db_sample_data, mipplot::ar5_db_rule_table_v09_wo_id)
+mipplot_area(ar5_db_sample_data, ar5_db_sample_rule_table,
+  region = "World", scenario = "EMF27-450-FullTech")
 ```
 
 ## Questions / Problems
 
 In case of questions / problems please contact Diego Silva Herran <silva-herran@iges.or.jp>.
 
-
 ## Screenshots
 
-<img src="/images/top_screenshot.png?raw=true" width=70.0% alt="screenshot" />
+<img src="/images/top_screenshot.png?raw=true" alt="screenshot" />
 
 ## License
 
 The mipplot R package is open source licensed under the MIT license.
-
-
->>>>>>> develop
