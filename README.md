@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # R mipplot package
 
 ## Purpose and Functionality
@@ -60,6 +59,3 @@ In case of questions / problems please contact Diego Silva Herran <silva-herran@
 ## License
 
 The mipplot R package is open source licensed under the MIT license.
-
-
->>>>>>> develop
