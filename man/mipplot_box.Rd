@@ -5,8 +5,9 @@
 \title{Box plot from IAMC data}
 \usage{
 mipplot_box(D, region = levels(D$region),
-  variable = levels(D$variable), target_year = levels(D$period),
-  PRINT_OUT = F, DEBUG = T)
+  variable = levels(D$variable),
+  target_year = levels(as.factor(D$period)), PRINT_OUT = F,
+  DEBUG = T)
 }
 \arguments{
 \item{D}{A dataframe of IAMC data in tibble format to produce plots.}
