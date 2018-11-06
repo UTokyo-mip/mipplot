@@ -21,7 +21,7 @@
 mipplot_box <- function(
   D, region=levels(D$region),
   variable=levels(D$variable),
-  target_year=levels(D$period), PRINT_OUT=F, DEBUG=T) {
+  target_year=levels(as.factor(D$period)), PRINT_OUT=F, DEBUG=T) {
 
   p_list1 <- list()
 
