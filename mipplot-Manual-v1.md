@@ -273,7 +273,7 @@ mipplot_line(ar5_db_sample_data)
 * **Box plot:** box plots representing spread of data (minimum/maximum values, median, 25th/75th interquartiles, outliers) for a specific period.
 ```r
 mipplot_box ( D, region = levels(D$region), variable = levels(D$variable),
-     target_year = levels(D$period), PRINT_OUT = F, DEBUG = T)
+     target_year = levels(as.factor(D$period)), PRINT_OUT = F, DEBUG = T)
 ```
   - Input Arguments
     - **D**: A dataframe of IAMC data in tibble format to produce plots.
