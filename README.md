@@ -9,6 +9,8 @@ The mipplot package contains generic functions to produce area/bar/box/line plot
 
 #### Windows
 
+The latest release of `mipplot` can be installed from a binary package.
+
 1. Visit the [release page on GitHub](https://github.com/UTokyo-mip/mipplot/tree/master/release).
 
 2. Download the latest **zip** file (binary package).
@@ -23,7 +25,17 @@ install.packages("tidyverse")
 install.packages("mipplot_0.1.0.zip", repos = NULL)
 ```
 
+Or via `devtools`:
+
+```r
+if (!require("devtools")) install.packages("devtools")
+library(devtools)
+devtools::install_github("UTokyo-mip/mipplot", dependencies = TRUE)
+```
+
 #### Mac OS
+
+The latest release of `mipplot` can be installed from a binary package.
 
 1. Visit the [release page on GitHub](https://github.com/UTokyo-mip/mipplot/tree/master/release).
 
@@ -39,26 +51,45 @@ install.packages("tidyverse")
 install.packages("mipplot_0.1.0.tar.gz", repos = NULL)
 ```
 
+Or via `devtools`:
+
+```r
+if (!require("devtools")) install.packages("devtools")
+library(devtools)
+devtools::install_github("UTokyo-mip/mipplot", dependencies = TRUE)
+```
+
 #### Ubuntu (or Debian based distribution)
 
-1. Run the following commands:
+Run the following commands:
+
 ```bash
 sudo apt install build-essential gfortran g++ libcurl4-openssl-dev libxml2-dev libssl-dev
 ```
   This commands install the library which `tidyverse` library depends.
 
-2. Visit the [release page on GitHub](https://github.com/UTokyo-mip/mipplot/tree/master/release).
+The latest release of `mipplot` can be installed from a tarball.
 
-3. Download the latest **tar.gz** file (source package).
+1. Visit the [release page on GitHub](https://github.com/UTokyo-mip/mipplot/tree/master/release).
 
-4. Start R.
+2. Download the latest **tar.gz** file (source package).
 
-5. Set working directory to where the downloaded file is in.
+3. Start R.
 
-6. Run following commands.
+4. Set working directory to where the downloaded file is in.
+
+5. Run following commands.
 ```r
 install.packages("tidyverse")
 install.packages("mipplot_0.1.0.tar.gz", repos = NULL)
+```
+
+Or via `devtools`:
+
+```r
+if (!require("devtools")) install.packages("devtools")
+library(devtools)
+devtools::install_github("UTokyo-mip/mipplot", dependencies = TRUE)
 ```
 
 ## Example
