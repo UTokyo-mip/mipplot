@@ -1,6 +1,6 @@
 # R mipplot package
 
-[![Travis-CI Build Status]https://travis-ci.org/UTokyo-mip/mipplot.svg?branch=master)](https://travis-ci.org/UTokyo-mip/mipplot)
+[![Travis-CI Build Status](https://travis-ci.org/UTokyo-mip/mipplot.svg?branch=master)](https://travis-ci.org/UTokyo-mip/mipplot)
 
 ## Purpose and Functionality
 
