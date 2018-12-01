@@ -1,5 +1,7 @@
 # R mipplot package
 
+[![Travis-CI Build Status]https://travis-ci.org/UTokyo-mip/mipplot.svg?branch=master)](https://travis-ci.org/UTokyo-mip/mipplot)
+
 ## Purpose and Functionality
 
 The mipplot package contains generic functions to produce area/bar/box/line plots of data following the IAMC submission format.
