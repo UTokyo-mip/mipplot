@@ -1,0 +1,60 @@
+{
+    "languages": [
+        "en",
+        "jp",
+        "zh-cn",
+        "zh-tw",
+        "es"
+    ],
+    "translation": [
+        {
+            "en": "model",
+            "es": "modelo",
+            "jp": "モデル",
+            "zh-cn": "模型",
+            "zh-tw": "模型"
+        },
+        {
+            "en": "scenario",
+            "es": "escenario",
+            "jp": "シナリオ",
+            "zh-cn": "情景",
+            "zh-tw": "情景"
+        },
+        {
+            "en": "region",
+            "es": "region",
+            "jp": "地域",
+            "zh-cn": "地区",
+            "zh-tw": "地區"
+        },
+        {
+            "en": "variable",
+            "es": "variable",
+            "jp": "変数",
+            "zh-cn": "变量",
+            "zh-tw": "變量"
+        },
+        {
+            "en": "unit",
+            "es": "unidades",
+            "jp": "単位",
+            "zh-cn": "单位",
+            "zh-tw": "單位"
+        },
+        {
+            "en": "period",
+            "es": "periodo",
+            "jp": "年",
+            "zh-cn": "年",
+            "zh-tw": "年"
+        },
+        {
+            "en": "value",
+            "es": "valor",
+            "jp": "数値",
+            "zh-cn": "数值",
+            "zh-tw": "數值"
+        }
+    ]
+}

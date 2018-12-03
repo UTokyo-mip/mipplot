@@ -14,10 +14,11 @@ Imports:
     stringr,
     tibble,
     tidyr,
+    shiny.i18n
 Depends: R (>= 2.10), reshape2, forcats, readr,
 License: MIT + file LICENSE
 Suggests:
   testthat
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1

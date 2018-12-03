@@ -10,3 +10,6 @@ devtools::use_data(ar5_db_sample_rule_table, overwrite = TRUE)
 mipplot_default_color_palette <-
   mipplot_generate_color_mapper(ar5_db_sample_rule_table)
 devtools::use_data(mipplot_default_color_palette, overwrite = TRUE)
+
+s <- read.table("data-raw/translation_header.csv", fileEncoding = "utf8", sep=",")
+library(shiny.i18n)

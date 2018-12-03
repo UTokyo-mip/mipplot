@@ -23,6 +23,8 @@
 #' @param DEBUG set TRUE to show debug messages.
 #' @param fontsize font size of text.
 #' @param color_code_specify set FALSE if you apply default color palette.
+#' @param language A string of language. Possible values are "en", "jp",
+#' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @return A list of area plots.
 #' @examples
 #' \donttest{
@@ -33,7 +35,24 @@
 mipplot_area <- function(
   D, R, region=levels(D$region), scenario=levels(D$scenario),
   facet_x=NULL, facet_y=NULL, PRINT_OUT=F, DEBUG=T, fontsize=20,
-  color_code_specify=T){
+  color_code_specify=T, language="en"){
+
+  # internationalization
+
+  i18n_header <- shiny.i18n::Translator(
+    translation_json_path =
+      system.file("mipplot", "translation_header.json", package="mipplot"))
+  i18n_header$set_translation_language(language)
+
+  i18n_region <- shiny.i18n::Translator(
+    translation_json_path =
+      system.file("mipplot", "translation_region.json", package="mipplot"))
+  i18n_region$set_translation_language(language)
+
+  i18n_variable <- shiny.i18n::Translator(
+    translation_json_path =
+      system.file("mipplot", "translation_variable.json", package="mipplot"))
+  i18n_variable$set_translation_language(language)
 
   p_list1 <- list()
 
@@ -78,6 +97,14 @@ mipplot_area <- function(
         D_RHS$variable <- factor(
           gsub(paste(var_common_name, "|", sep = ""),"", D_RHS$variable, fixed = T),
           levels = rev(names(color_mapper[[var_common_name]])))
+
+        D_RHS <- translate_data_table(D_RHS, language)
+        D_LHS <- translate_data_table(D_LHS, language)
+        for (i_mapper in 1:length(color_mapper)) {
+          color_mapper[[i_mapper]] <- translate_color_mapper(color_mapper[[i_mapper]], language)
+          print(color_mapper[[i_mapper]])
+        }
+
 
         ## Generate plots only if data is available for a given scenario.
         if (nrow(na.omit(D_RHS[D_RHS$scenario == s, ])) > 0) {
