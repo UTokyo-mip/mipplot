@@ -54,6 +54,10 @@ mipplot_area <- function(
       system.file("mipplot", "translation_variable.json", package="mipplot"))
   i18n_variable$set_translation_language(language)
 
+  D <- translate_data_table(D, language)
+  R <- translate_rule_table(R, language)
+  region <- translate_vector(region, language)
+
   p_list1 <- list()
 
   for (i in levels(as.factor(R$Rule_ID))){
@@ -61,6 +65,8 @@ mipplot_area <- function(
     for (r in levels(as.factor(region))){
 
       for (s in levels(as.factor(scenario))){
+
+        browser()
 
         Var_set <- R[R$Rule_ID == i, ]
 
@@ -70,6 +76,8 @@ mipplot_area <- function(
 
         D_RHS <- D[D$region == r & D$scenario == s &
                      D$variable %in% Var_set$Right_side, ]
+
+        print(D_LHS)
 
         # Renaming levels of a factor
         # http://www.cookbook-r.com/Manipulating_data/Renaming_levels_of_a_factor/
@@ -98,11 +106,11 @@ mipplot_area <- function(
           gsub(paste(var_common_name, "|", sep = ""),"", D_RHS$variable, fixed = T),
           levels = rev(names(color_mapper[[var_common_name]])))
 
-        D_RHS <- translate_data_table(D_RHS, language)
-        D_LHS <- translate_data_table(D_LHS, language)
+        #D_RHS <- translate_data_table(D_RHS, language)
+        #D_LHS <- translate_data_table(D_LHS, language)
         for (i_mapper in 1:length(color_mapper)) {
           color_mapper[[i_mapper]] <- translate_color_mapper(color_mapper[[i_mapper]], language)
-          print(color_mapper[[i_mapper]])
+          #print(color_mapper[[i_mapper]])
         }
 
 
