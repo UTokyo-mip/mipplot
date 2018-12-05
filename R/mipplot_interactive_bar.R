@@ -5,9 +5,11 @@
 #'              labels for the plot/axes/legend, and faceting dimensions
 #' @param D A quitte format dataframe of IAMC data to produce garph.
 #' @param R A table with additivity rules.
-#' @example mipplot_interactive_bar(mipplot::ar5_db_sample09_Wang,mipplot::ar5_db_rule_table_v09_Wang)
-#' @export  interactive polt window
-
+#' @examples
+#' \donttest{
+#' mipplot_interactive_bar(ar5_db_sample_data, ar5_db_sample_rule_table)
+#' }
+#' @export
 
 mipplot_interactive_bar <- function(D,R) {
 

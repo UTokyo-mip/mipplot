@@ -3,9 +3,11 @@
 #'              The function arguments include the input dataframe,
 #'              labels for the plot/axes/legend, and faceting dimensions
 #' @param D A quitte format dataframe of IAMC data to produce garph.
-#' @example mipplot_interactive_line(mipplot::ar5_db_sample09_Wang)
-#' @export  interactive polt window
-
+#' @examples
+#' \donttest{
+#' mipplot_interactive_line(ar5_db_sample_data)
+#' }
+#' @export
 
 mipplot_interactive_line <- function(D) {
 
