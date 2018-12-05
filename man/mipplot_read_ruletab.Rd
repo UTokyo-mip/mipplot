@@ -2,10 +2,21 @@
 % Please edit documentation in R/mipplot_read_ruletab.R
 \name{mipplot_read_ruletab}
 \alias{mipplot_read_ruletab}
-\title{A function to read rule table without ID number}
+\title{Read file of rule table without ID number}
 \usage{
 mipplot_read_ruletab(R_without_id)
 }
+\arguments{
+\item{R_without_id}{Path to a file containing data of additivity rule.}
+}
+\value{
+A dataframe of additivity rule ("ID, Left_side, Right_side")
+}
 \description{
 Read table of additivity rule and adds column with id number.
+}
+\examples{
+\donttest{
+mipplot_read_ruletab("filename")
+}
 }

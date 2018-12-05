@@ -4,6 +4,6 @@
 #'
 #' @name mipplot
 #' @docType package
-#' @import ggplot2 data.table openxlsx stringr reshape2 shiny stringi quitte magrittr iamc
+#' @import ggplot2 stringr reshape2 tidyr
 #'
 NULL

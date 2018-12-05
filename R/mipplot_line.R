@@ -3,12 +3,26 @@
 # PLOTTING FUNCTION: LINE
 #--------------------------------------------------------------------
 
-#' @title A function to plot line graph
-#' @description Line plots
-#' @param D A dataframe of IAMC data to produce garph.
-#' @return A list of plots.
-#' @example mipplot_line(AR5_Sample_data)
-#' @export p_list1
+#' @title Line plot from IAMC data
+#' @description The function arguments include the input dataframe,
+#'              labels for the plot/axes/legend, and faceting dimensions
+#' @param D A dataframe of IAMC data in tibble format to produce plots.
+#' @param region A list of regions.
+#' @param variable A list of variables.
+#' @param colorby an axis for color setting.
+#' @param linetypeby an axis for line type setting.
+#' @param shapeby an axis for shape setting.
+#' @param scenario A list of cenarios.
+#' @param facet_x facet_x
+#' @param facet_y facet_y
+#' @param PRINT_OUT set TRUE to generate PDF files.
+#' @param DEBUG set TRUE to show debug messages.
+#' @return A list of line plots.
+#' @examples
+#' \donttest{
+#' mipplot_line(ar5_db_sample_data)
+#' }
+#' @export
 
 mipplot_line <- function(
   D, region = levels(D$region), variable = levels(D$variable),
@@ -17,9 +31,6 @@ mipplot_line <- function(
   facet_y = NULL, PRINT_OUT = F, DEBUG = T) {
 
   p_list1 <- list()
-
-  # Convert to quitte format (PIK package dataframe).
-  D <- quitte::as.quitte(D)
 
   for (r in levels(as.factor(region))) {
 
@@ -86,17 +97,8 @@ mipplot_line <- function(
 
   if (PRINT_OUT == TRUE) {
 
-    ## Open printing device.
-    filename <- sprintf(
-      "../data_output/JpMIP_plots_line_%s.pdf", format(Sys.time(), "%Y_%m%d"))
-    pdf(filename, onefile = TRUE, width = 11.69, height = 8.27)
+    mipplot_print_pdf(p_list1, filelabel = "line")
 
-    ## Plot for each variable set.
-    for (p in p_list1) {
-      plot(p)
-    }
-
-    dev.off()
   }
 
   return(p_list1)

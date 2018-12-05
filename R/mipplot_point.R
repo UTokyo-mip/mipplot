@@ -3,16 +3,32 @@
 # PLOTTING FUNCTION: Point
 #--------------------------------------------------------------------
 
-#' @title A function to plot point graph
-#' @description point plots
-#' @param D A dataframe of IAMC data to produce garph.
-#' @return A list of graph
-#' @example mipplot_point(AR5_Sample_data)
-#' @export p_list1
+#' @title Point plot from IAMC data
+#' @description The function arguments include the input dataframe,
+#'              labels for the plot/axes/legend, and faceting dimensions
+#' @param D A dataframe of IAMC data in tibble format to produce plots.
+#' @param region A list of regions.
+#' @param variable A list of variables.
+#' @param target_year A list of target years.
+#' @param colorby An axis for color setting.
+#' @param shapeby An axis for shape setting.
+#' @param xby An axis for x locating setting.
+#' @param facetby facetby.
+#' @param facet_x facet_x.
+#' @param facet_y facet_y.
+#' @param fontsize font size.
+#' @param PRINT_OUT set TRUE to generate PDF image.
+#' @param DEBUG set TRUE to show debug messages.
+#' @return A list of point plots.
+#' @examples
+#' \donttest{
+#' mipplot_point(ar5_db_sample_data)
+#' }
+#' @export
 
 mipplot_point <- function(
   D, region = levels(D$region), variable = levels(D$variable),
-  target_year = levels(D$period), colorby = "model",
+  target_year = levels(as.factor(D$period)), colorby = "model",
   shapeby = "model", xby = "scenario",
   facetby = NULL, facet_x = NULL, facet_y=NULL,
   fontsize=20, PRINT_OUT = F, DEBUG = T) {
@@ -84,19 +100,8 @@ mipplot_point <- function(
 
   if (PRINT_OUT == TRUE) {
 
-    ## Open printing device.
-    filename <- sprintf(
-      "../data_output/JpMIP_plots_point_%s.pdf",
-      format(Sys.time(), "%Y_%m%d"))
+    mipplot_print_pdf(p_list1, filelabel = "point")
 
-    pdf(filename, onefile = TRUE, width = 11.69, height = 8.27)
-
-    ## Plot for each variable set.
-    for (p in p_list1) {
-      plot(p)
-    }
-
-    dev.off()
   }
 
   return(p_list1)

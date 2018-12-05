@@ -2,17 +2,26 @@
 # PLOTTING FUNCTION: BOX
 #--------------------------------------------------------------------
 
-#' @title A function to plot box graph
-#' @description box plots
-#' @param D A dataframe of IAMC data to produce graph.
-#' @return A list of graph
-#' @example mipplot_box(AR5_Sample_data)
-#' @export p_list1
+#' @title Box plot from IAMC data
+#' @description The function arguments include the input dataframe,
+#'              labels for the plot/axes/legend, and faceting dimensions
+#' @param D A dataframe of IAMC data in tibble format to produce plots.
+#' @param region A list of regions.
+#' @param variable A list of variables.
+#' @param target_year target year.
+#' @param PRINT_OUT set TRUE to generate PDF file.
+#' @param DEBUG set TRUE to show debug messages.
+#' @return A list of box plots.
+#' @examples
+#' \donttest{
+#' mipplot_box(ar5_db_sample_data)
+#' }
+#' @export
 
 mipplot_box <- function(
   D, region=levels(D$region),
   variable=levels(D$variable),
-  target_year=levels(D$period), PRINT_OUT=F, DEBUG=T) {
+  target_year=levels(as.factor(D$period)), PRINT_OUT=F, DEBUG=T) {
 
   p_list1 <- list()
 
@@ -54,16 +63,8 @@ mipplot_box <- function(
 
   if (PRINT_OUT == TRUE) {
 
-    ## Open printing device.
-    filename <-sprintf("../data_output/JpMIP_plots_box_%s.pdf", format(Sys.time(), "%Y_%m%d"))
-    pdf(filename, onefile = TRUE, width = 11.69, height = 8.27)
+    mipplot_print_pdf(p_list1, filelabel = "box")
 
-    ## Plot for each variable set.
-    for(p in p_list1){
-      plot(p)
-    }
-
-    dev.off()
   }
 
   return(p_list1)
