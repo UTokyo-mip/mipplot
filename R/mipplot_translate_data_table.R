@@ -63,7 +63,7 @@ translate_data_table <- function(english_data_table, language) {
 
     for (i_row in 1:nrow(english_data_table)) {
       translated_data_table[[i_row, 'variable']] <-
-        i18n_variable$t(english_data_table[[i_row, 'variable']])
+        i18n_variable$t(as.character(english_data_table[[i_row, 'variable']]))
     }
     translated_data_table$variable <- as.factor(translated_data_table$variable)
   }

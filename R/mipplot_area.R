@@ -66,8 +66,6 @@ mipplot_area <- function(
 
       for (s in levels(as.factor(scenario))){
 
-        browser()
-
         Var_set <- R[R$Rule_ID == i, ]
 
         ## SELECT DATA
@@ -76,8 +74,6 @@ mipplot_area <- function(
 
         D_RHS <- D[D$region == r & D$scenario == s &
                      D$variable %in% Var_set$Right_side, ]
-
-        print(D_LHS)
 
         # Renaming levels of a factor
         # http://www.cookbook-r.com/Manipulating_data/Renaming_levels_of_a_factor/
