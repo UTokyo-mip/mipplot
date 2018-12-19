@@ -1,11 +1,26 @@
-additivity_check <- function(D, R, max_n_plots = Inf) {
+#' @title check additivity of rules and data
+#' @description This function is used for debugging a rule table and data-set.
+#' An input is a rule table and a data-set, the outputs are some area plots
+#' showing the divergence between the left-side variable and
+#' the sum of the right-side variables.
+#' @param D A dataframe of IAMC data in tibble format to produce area plots.
+#' @param R A dataframe of data aggregation rules (meta data).
+#' @param max_n_plots The maximum number of output plots.
+#' @return A list of area plots.
+#' @examples
+#' \donttest{
+#' mipplot_print_pdf(mipplot_additivity_check(
+#'     ar5_db_sample_data, ar5_db_sample_rule_table, max_n_plots = 10))
+#' }
+#' @export
+mipplot_additivity_check <- function(D, R, max_n_plots = Inf) {
 
   # Compute maximum of absolute relative deviation for all combination.
   max_abs_relative_deviation_table <- get_max_abs_relative_deviation_table(D, R)
 
   # Sort combinations in descending order of maximum of absolute relative deviation.
   sorted_max_abs_relative_deviation_table <-
-    max_abs_relative_deviation_table %>% arrange(desc(max_abs_relative_deviation))
+    max_abs_relative_deviation_table %>% dplyr::arrange(desc(max_abs_relative_deviation))
 
   # Limited conditions will be plotted.
   n_plots <- min(max_n_plots, nrow(sorted_max_abs_relative_deviation_table))
@@ -64,17 +79,17 @@ get_max_abs_relative_deviation_table <- function(D, R) {
         ## Generate plots only if data is available for a given scenario.
         if (nrow(na.omit(D_RHS[D_RHS$scenario == s, ])) > 0) {
 
-          this_abs_relative_deviation_table <- full_join(
-            D_RHS %>% group_by(model, period) %>% summarize(rhs_sum_value = sum(value)),
-              D_LHS, by = c('model', 'period')) %>% mutate(
+          this_abs_relative_deviation_table <- dplyr::full_join(
+            D_RHS %>% dplyr::group_by(model, period) %>% dplyr::summarize(rhs_sum_value = sum(value)),
+              D_LHS, by = c('model', 'period')) %>% dplyr::mutate(
                 abs_relative_deviation =
                   abs((rhs_sum_value - value) / value)) %>%
-            mutate(rule_id = i) # add rule id column
+            dplyr::mutate(rule_id = i) # add rule id column
 
           if (is.null(result)) {
             result <- this_abs_relative_deviation_table
           } else {
-            result <- bind_rows(result, this_abs_relative_deviation_table)
+            result <- dplyr::bind_rows(result, this_abs_relative_deviation_table)
           }
 
           ## Title
