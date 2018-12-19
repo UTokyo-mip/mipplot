@@ -92,8 +92,8 @@ mipplot_area <- function(
         }
 
         ## Title
-        tt1 <- paste("region:", r, ",  scenario:", s, sep = "")
-        tt2 <- paste("variable:", as.character(Var_set[1, 2]), sep = "")
+        tt1 <- paste(i18n_header$t("region"), ":", i18n_region$t(r), ",  ", i18n_header$t("scenario"), ":", s, sep = "")
+        tt2 <- paste(i18n_header$t("variable"), ":", as.character(Var_set[1, 2]), sep = "")
         tt3 <- paste(" [", D_RHS$unit[1], "]", sep = "")
 
         # Change name of variable by removing
@@ -128,7 +128,7 @@ mipplot_area <- function(
 
           # Define plot titles and axes labels.
           p_Out1 <- p_Out1 +
-            ggplot2::labs(title = tt1, subtitle = tt2, y = tt3)
+            ggplot2::labs(title = tt1, subtitle = tt2, y = tt3, fill = i18n_header$t("variable"), x = i18n_header$t("period"))
 
           # Remove legend title.
           # p_Out1 <- p_Out1 + ggplot2::theme(legend.title=tt_legend)
