@@ -34,6 +34,9 @@ mipplot_print_pdf <- function(p_list1, filelabel = "", filename=tryCatch(file.ch
 
       expr = {
 
+        # Enable showtext package
+        showtext::showtext_auto()
+
         pdf(filename, onefile = TRUE, width = 11.69, height = 8.27)
 
         for (p in p_list1) {
@@ -51,6 +54,9 @@ mipplot_print_pdf <- function(p_list1, filelabel = "", filename=tryCatch(file.ch
       },
 
       finally = {
+
+        # Turn off showtext package
+        showtext::showtext_auto(FALSE)
 
         dev.off()
 
