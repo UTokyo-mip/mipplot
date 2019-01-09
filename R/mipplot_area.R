@@ -109,7 +109,6 @@ mipplot_area <- function(
           #print(color_mapper[[i_mapper]])
         }
 
-
         ## Generate plots only if data is available for a given scenario.
         if (nrow(na.omit(D_RHS[D_RHS$scenario == s, ])) > 0) {
 
