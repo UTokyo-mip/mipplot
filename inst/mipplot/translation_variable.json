@@ -45,58 +45,86 @@
         {
             "en": "Emissions|CO2|Fossil Fuels and Industry",
             "es": "Emisiones|CO2|Combustibles Fósiles e Industria",
-            "jp": "排出|CO2|エネルギー需要",
+            "jp": "排出|CO2|化石燃料と工業",
             "zh-cn": "排放|CO2|化石能源和工业",
             "zh-tw": "排放|CO2|化石能源和工業"
         },
         {
             "en": "Fossil Fuels and Industry",
             "es": "Combustibles Fósiles e Industria",
-            "jp": "エネルギー需要",
+            "jp": "化石燃料と工業",
             "zh-cn": "化石能源和工业",
             "zh-tw": "化石能源和工業"
         },
         {
             "en": "Emissions|CO2|Fossil Fuels and Industry|Energy Demand",
             "es": "Emisiones|CO2|Combustibles Fósiles e Industria|Demanda de Energía",
-            "jp": "排出|CO2|エネルギー需要|工業",
+            "jp": "排出|CO2|化石燃料と工業|エネルギー需要",
             "zh-cn": "排放|CO2|化石能源和工业|能源需求",
             "zh-tw": "排放|CO2|化石能源和工業|能源需求"
         },
         {
             "en": "Energy Demand",
             "es": "Demanda de Energía",
-            "jp": "工業",
+            "jp": "エネルギー需要",
             "zh-cn": "能源需求",
             "zh-tw": "能源需求"
         },
         {
             "en": "Emissions|CO2|Fossil Fuels and Industry|Energy Demand|Industry",
             "es": "Emisiones|CO2|Combustibles Fósiles e Industria|Demanda de Energía|Industria",
-            "jp": "排出|CO2|エネルギー需要|工業",
+            "jp": "排出|CO2|化石燃料と工業|エネルギー需要|工業",
             "zh-cn": "排放|CO2|化石能源和工业|能源需求|工业",
             "zh-tw": "排放|CO2|化石能源和工業|能源需求|工業"
         },
         {
+            "en": "Industry",
+            "es": "Industria",
+            "jp": "工業",
+            "zh-cn": "工业",
+            "zh-tw": "工業"
+        },
+        {
             "en": "Emissions|CO2|Fossil Fuels and Industry|Energy Demand|Residential and Commercial",
             "es": "Emisiones|CO2|Combustibles Fósiles e Industria|Demanda de Energía|Residencial y Comercial",
-            "jp": "排出|CO2|エネルギー需要|住民と商業",
+            "jp": "排出|CO2|化石燃料と工業|エネルギー需要|住民と商業",
             "zh-cn": "排放|CO2|化石能源和工业|能源需求|居民和商业",
             "zh-tw": "排放|CO2|化石能源和工業|能源需求|居民和商業"
         },
         {
+            "en": "Residential and Commercial",
+            "es": "Residencial y Comercial",
+            "jp": "住民と商業",
+            "zh-cn": "居民和商业",
+            "zh-tw": "居民和商業"
+        },
+        {
             "en": "Emissions|CO2|Fossil Fuels and Industry|Energy Demand|Transportation",
             "es": "Emisiones|CO2|Combustibles Fósiles e Industria|Demanda de Energía|Transporte",
-            "jp": "排出|CO2|エネルギー需要|運送業",
-            "zh-cn": "排放|CO2|化石能源和工业|交通运输业",
-            "zh-tw": "排放|CO2|化石能源和工業|交通運輸業"
+            "jp": "排出|CO2|化石燃料と工業|エネルギー需要|運送業",
+            "zh-cn": "排放|CO2|化石能源和工业|能源需求|交通运输业",
+            "zh-tw": "排放|CO2|化石能源和工業|能源需求|交通運輸業"
+        },
+        {
+            "en": "Transportation",
+            "es": "Transporte",
+            "jp": "運送業",
+            "zh-cn": "交通运输业",
+            "zh-tw": "交通運輸業"
         },
         {
             "en": "Emissions|CO2|Fossil Fuels and Industry|Energy Supply",
             "es": "Emisiones|CO2|Combustibles Fósiles e Industria|Suministro de Energía",
-            "jp": "排出|CO2|エネルギー供給",
+            "jp": "排出|CO2|化石燃料と工業|エネルギー供給",
             "zh-cn": "排放|CO2|化石能源和工业|能源供应",
             "zh-tw": "排放|CO2|化石能源和工業|能源供應"
+        },
+        {
+            "en": "Energy Supply",
+            "es": "Suministro de Energía",
+            "jp": "エネルギー供給",
+            "zh-cn": "能源供应",
+            "zh-tw": "能源供應"
         },
         {
             "en": "Emissions|CO2|Land Use",
@@ -197,13 +225,6 @@
             "zh-tw": "最終能源|工業"
         },
         {
-            "en": "Industry",
-            "es": "Industria",
-            "jp": "工業",
-            "zh-cn": "工业",
-            "zh-tw": "工業"
-        },
-        {
             "en": "Final Energy|Liquids",
             "es": "Energía Final|Líquidos",
             "jp": "最終エネルギー|液体燃料",
@@ -223,13 +244,6 @@
             "jp": "最終エネルギー|住民と商業",
             "zh-cn": "最终能源|居民和商业",
             "zh-tw": "最終能源|居民和商業"
-        },
-        {
-            "en": "Residential and Commercial",
-            "es": "Residencial y Comercial",
-            "jp": "住民と商業",
-            "zh-cn": "居民和商业",
-            "zh-tw": "居民和商業"
         },
         {
             "en": "Final Energy|Solar",
@@ -265,13 +279,6 @@
             "jp": "最終エネルギー|運送業",
             "zh-cn": "最终能源|交通运输业",
             "zh-tw": "最終能源|交通運輸業"
-        },
-        {
-            "en": "Transportation",
-            "es": "Transporte",
-            "jp": "運送業",
-            "zh-cn": "交通运输业",
-            "zh-tw": "交通運輸業"
         },
         {
             "en": "Population",
