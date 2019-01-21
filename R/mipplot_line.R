@@ -17,6 +17,8 @@
 #' @param facet_y facet_y
 #' @param PRINT_OUT set TRUE to generate PDF files.
 #' @param DEBUG set TRUE to show debug messages.
+#' @param language A string of language. Possible values are "en", "jp",
+#' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @return A list of line plots.
 #' @examples
 #' \donttest{
@@ -28,7 +30,30 @@ mipplot_line <- function(
   D, region = levels(D$region), variable = levels(D$variable),
   colorby = "scenario", linetypeby = "model", shapeby = "model",
   scenario = levels(D$scenario), facet_x = NULL,
-  facet_y = NULL, PRINT_OUT = F, DEBUG = T) {
+  facet_y = NULL, PRINT_OUT = F, DEBUG = T, language="en") {
+
+  # load translations
+  i18n_header <- shiny.i18n::Translator(
+    translation_json_path =
+      system.file("mipplot", "translation_header.json", package="mipplot"))
+  i18n_header$set_translation_language(language)
+
+  i18n_region <- shiny.i18n::Translator(
+    translation_json_path =
+      system.file("mipplot", "translation_region.json", package="mipplot"))
+  i18n_region$set_translation_language(language)
+
+  i18n_variable <- shiny.i18n::Translator(
+    translation_json_path =
+      system.file("mipplot", "translation_variable.json", package="mipplot"))
+  i18n_variable$set_translation_language(language)
+
+  # apply internationalization
+  D <- translate_data_table(D, i18n_variable)
+
+  # font setting (for internationalization of Chinese and Japansese)
+  install_font_if_not_available(language = language)
+  theme_to_specify_font <- get_theme_to_change_font(language = language)
 
   p_list1 <- list()
 
@@ -51,8 +76,8 @@ mipplot_line <- function(
         }
 
         ## Title
-        tt1 <- paste("region:", r, sep = "")
-        tt2 <- paste("variable:", as.character(v), sep = "")
+        tt1 <- paste(i18n_header$t("region"), ":", i18n_region$t(r), sep = "")
+        tt2 <- paste(i18n_header$t("variable"), ":", i18n_variable$t(as.character(v)), sep = "")
         tt3 <- paste(" [", D_sub$unit[1], "]", sep = "")
 
         ## Line plots: using values name
@@ -68,7 +93,7 @@ mipplot_line <- function(
               color = as.name(colorby),
               shape = as.name(shapeby)), size = 2) +
             ggplot2::scale_shape_manual(values = seq(0, 10)) +
-            ggplot2::labs(title = tt1, subtitle = tt2, y = tt3)
+            ggplot2::labs(title = tt1, subtitle = tt2, y = tt3, x = i18n_header$t("period"))
 
         ## Facet plots if horizontal and/or vertical dimension provided.
         if (!is.null(facet_x) & !is.null(facet_y)) {
@@ -88,7 +113,8 @@ mipplot_line <- function(
         }
 
         p_Out1 <- p_Out1 +
-          ggplot2::theme(text = ggplot2::element_text(size = 20))
+          ggplot2::theme(text = ggplot2::element_text(size = 20)) +
+          ggplot2::labs(color=i18n_header$t(colorby), linetype=i18n_header$t(linetypeby), shape=i18n_header$t(linetypeby))
 
         ## STORE PLOTS TO LIST
         p_list1[[length(p_list1) + 1]] <- p_Out1
