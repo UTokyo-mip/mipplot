@@ -4,7 +4,7 @@
 \alias{mipplot_additivity_check}
 \title{check additivity of rules and data}
 \usage{
-mipplot_additivity_check(D, R, max_n_plots = Inf)
+mipplot_additivity_check(D, R, max_n_plots = Inf, plot_all = FALSE)
 }
 \arguments{
 \item{D}{A dataframe of IAMC data in tibble format to produce area plots.}
@@ -12,6 +12,8 @@ mipplot_additivity_check(D, R, max_n_plots = Inf)
 \item{R}{A dataframe of data aggregation rules (meta data).}
 
 \item{max_n_plots}{The maximum number of output plots.}
+
+\item{plot_all}{set FALSE to plot only inconsistent combinations}
 }
 \value{
 A list of area plots.

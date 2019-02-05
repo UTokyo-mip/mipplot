@@ -6,6 +6,7 @@
 #' @param D A dataframe of IAMC data in tibble format to produce area plots.
 #' @param R A dataframe of data aggregation rules (meta data).
 #' @param max_n_plots The maximum number of output plots.
+#' @param plot_all set FALSE to plot only inconsistent combinations
 #' @return A list of area plots.
 #' @examples
 #' \donttest{
@@ -13,7 +14,12 @@
 #'     ar5_db_sample_data, ar5_db_sample_rule_table, max_n_plots = 10))
 #' }
 #' @export
-mipplot_additivity_check <- function(D, R, max_n_plots = Inf) {
+mipplot_additivity_check <- function(
+  D, R, max_n_plots = Inf, plot_all = FALSE) {
+
+  # Define `inconsistent` that maximum of absolute relative
+  # error is larger than 1%.
+  THRESHOLD_OF_INCONSISTENCY = 0.01
 
   # Compute maximum of absolute relative deviation for all combination.
   max_abs_relative_deviation_table <- get_max_abs_relative_deviation_table(D, R)
@@ -28,12 +34,21 @@ mipplot_additivity_check <- function(D, R, max_n_plots = Inf) {
   # A container of ggplot2 objects
   p_list = list()
 
+  cat("Found inconsistencies in the following conditions:\n")
+
   # Draw area plots for each conditions
   for (i_condition in 1:n_plots) {
 
     # Extract ith condition
     this_condition <-
       sorted_max_abs_relative_deviation_table[i_condition, ]
+
+    # Skip if maximum of absolute relative error is less than 1%.
+    if (!plot_all) {
+      if (this_condition$max_abs_relative_deviation < THRESHOLD_OF_INCONSISTENCY) {
+        next
+      }
+    }
 
     # Draw plot
     this_plot <- area_plot_of_specific_rule_id(D, R,
@@ -44,9 +59,24 @@ mipplot_additivity_check <- function(D, R, max_n_plots = Inf) {
     # Append new plot to the container
     p_list[[length(p_list) + 1]] <- this_plot[[1]]
 
+    # Print the condition if absolute relative error is larger than or equal to 1%
+    if (this_condition$max_abs_relative_deviation >= THRESHOLD_OF_INCONSISTENCY) {
+      print_condition(this_condition)
+    }
+
+
   }
 
   return(p_list)
+}
+
+print_condition <- function(condition) {
+  cat(paste(paste(
+    paste("variable:", condition$variable),
+    paste("region:", condition$region),
+    paste("scenario:", condition$scenario),
+    paste("model:", condition$model),
+    sep="\t"), "\n", sep=""))
 }
 
 get_max_abs_relative_deviation_table <- function(D, R) {
@@ -96,7 +126,7 @@ get_max_abs_relative_deviation_table <- function(D, R) {
           tt1 <- paste("region:", r, ",  scenario:", s, sep = "")
           tt2 <- paste("variable:", as.character(Var_set[1, 2]), sep = "")
           tt3 <- paste(" [", D_RHS$unit[1], "]", sep = "")
-          print(paste(tt1, tt2, tt3))
+          # print(paste(tt1, tt2, tt3))
 
         }
       }
