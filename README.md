@@ -11,8 +11,7 @@ See the [extended manual](https://github.com/UTokyo-mip/mipplot/tree/master/mipp
 
 ## Citation
 
-https://zenodo.org/badge/DOI/10.5281/zenodo.2406482.svg
-
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.2406482.svg)](https://doi.org/10.5281/zenodo.2406482)
 
 
 ## Installation
