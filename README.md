@@ -9,6 +9,12 @@ The tool can be applied to datasets from climate mitigation scenarios (also know
 See the [extended manual](https://github.com/UTokyo-mip/mipplot/tree/master/mipplot-Manual-v1.md) for details. 
 
 
+## Citation
+
+https://zenodo.org/badge/DOI/10.5281/zenodo.2406482.svg
+
+
+
 ## Installation
 
 #### Windows
