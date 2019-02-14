@@ -8,14 +8,18 @@ Authors@R: c(person("Diego", "Silva Herran", email = "silva-herran@iges.or.jp",r
              person("Hiroto", "SHIRAKI", email = "shiraki.h@ses.usp.ac.jp",role = "aut"))
 Maintainer: Diego SilvaHerran <silva-herran@iges.or.jp>
 Description: Package contains generic functions to produce area/bar/box/line plots of data following IAMC submission format.
-Imports: 
-    dplyr,
+Imports:
+    grDevices,
+    graphics,
+    utils,
+    stats,
     ggplot2,
     stringr,
     tibble,
     tidyr,
-    shiny.i18n
-Depends: R (>= 2.10), reshape2, forcats, readr, showtext
+    shiny.i18n,
+    showtextdb    
+Depends: R (>= 2.10), reshape2, dplyr, forcats, readr, showtext
 License: MIT + file LICENSE
 Suggests:
   testthat

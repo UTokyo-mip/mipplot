@@ -73,7 +73,7 @@ create_dir_with_user_permission <- function(dir_path) {
       if (interactive()) {
 
         if (
-          menu(c("Yes", "No"),
+          utils::menu(c("Yes", "No"),
             title = sprintf(
               "The output directiory doesn't exist. Do you want to create folder to %s ?",
               dir_path)) != 1) {

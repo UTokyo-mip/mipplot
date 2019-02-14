@@ -2,3 +2,6 @@
 ^\.Rproj\.user$
 ^data-raw$
 ^release$
+^\.travis\.yml$
+^mipplot-Manual-v1\.md$
+^images$

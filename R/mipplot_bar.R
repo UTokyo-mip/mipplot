@@ -67,7 +67,7 @@ mipplot_bar <- function(
   # This color_map is used to sort variable names too.
   R_original_english = R
   if (color_code_specify == FALSE || !("Color_code" %in% colnames(R_original_english))) {
-    color_mapper <- mipplot_default_color_palette
+    color_mapper <- mipplot::mipplot_default_color_palette
   } else {
     # otherwise, generate palette.
     color_mapper <- mipplot_generate_color_mapper(R_original_english)
