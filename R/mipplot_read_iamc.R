@@ -65,5 +65,23 @@ extract_year_columns <- function(columns) {
   return(columns[grep("^[0-9].*?$", columns)])
 }
 
+read_iamc_xlsx <- function(file_path, sheet = 1) {
+
+  # load a sheet from xlsx file
+  df <- readxl::read_xlsx(file_path, sheet = sheet)
+
+  # strings of header must be in lower case
+  names(df) <- tolower(names(df))
+
+  # select columns which start with numbers
+  # (for example, excludes "abcd", includes "2019-abcd")
+  col_names <- names(df)
+  year_col_names <- col_names[grep("^[0-9].*?$", col_names)]
+
+  # convert contents to tidy data
+  df <- tidyr::gather_(df, "period", "value", year_col_names)
+
+  return(df)
+}
 
 #END
