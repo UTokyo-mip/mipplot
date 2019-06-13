@@ -12,6 +12,7 @@
 mipplot_interactive_line <- function(D) {
 
   library(shiny)
+  library(shinyWidgets)
 
   region_list <- levels(D$region)
   var_list <- levels(D$variable)
@@ -35,19 +36,37 @@ mipplot_interactive_line <- function(D) {
                     list(`variable` = var_list)
                     ),
 
-        checkboxGroupInput("model", "model:",
-                           choiceNames = get_model_name_list(D),
-                           choiceValues = get_model_name_list(D),
-                           # the default model is a first appeared model in D
-                           selected = get_model_name_list(D)[1]
-                           ),
+        # checkboxGroupInput("model", "model:",
+        #                    choiceNames = get_model_name_list(D),
+        #                    choiceValues = get_model_name_list(D),
+        #                    # the default model is a first appeared model in D
+        #                    selected = get_model_name_list(D)[1]
+        #                    ),
 
-        checkboxGroupInput("scenario", "scenario:",
-                           choiceNames = get_scenario_name_list(D),
-                           choiceValues = get_scenario_name_list(D),
-                           # the default scenario is a first appeared scenario in D
-                           selected = get_scenario_name_list(D)[1]
-                           ),
+        # checkboxGroupInput("scenario", "scenario:",
+        #                    choiceNames = get_scenario_name_list(D),
+        #                    choiceValues = get_scenario_name_list(D),
+        #                    # the default scenario is a first appeared scenario in D
+        #                    selected = get_scenario_name_list(D)[1]
+        #                    ),
+
+        pickerInput("model",
+                    label = "model:",
+                    choices = get_model_name_list(D),
+                    selected = get_model_name_list(D)[1],
+                    multiple = TRUE,
+                    options = list(
+                      `actions-box` = TRUE
+                    )),
+
+        pickerInput("scenario",
+                    label = "scenario:",
+                    choices = get_scenario_name_list(D),
+                    selected = get_scenario_name_list(D)[1],
+                    multiple = TRUE,
+                    options = list(
+                      `actions-box` = TRUE
+                    )),
 
         selectInput("period_start", "period_start:",
                     list(`period` = period_list),
@@ -57,7 +76,9 @@ mipplot_interactive_line <- function(D) {
         selectInput("period_end", "period_end:",
                     list(`period` = period_list),
                     selected = 2050
-                    )
+                    ),
+
+        submitButton(text = "Apply Changes", icon = NULL, width = NULL)
         ),
 
 
@@ -69,10 +90,25 @@ mipplot_interactive_line <- function(D) {
   server <- function(input, output) {
 
     output$line_plot <- renderPlot({
-      mipplot_line(D,variable = input$variable, #model = input$model,
-                        scenario = input$scenario
-                        #period = seq(input$period_start,input$period_end,5)
-                   )
+
+      # Since mipplot_line() function has no arguments to filter
+      # models and periods to be plotted,
+      # manually narrow the records in D
+      # before entering the mipplot_line() function.
+      D_subset = D %>%
+
+        # filter model
+        dplyr::filter( model %in% input$model ) %>%
+
+        # filter period
+        dplyr::filter(input$period_start <= period) %>%
+        dplyr::filter(period <= input$period_end)
+
+      # plot D_subset instead of D.
+      mipplot_line(D_subset,
+                   variable = input$variable,
+                   scenario = input$scenario,
+                   region = input$region)
     },
     height = 400, width = 600
     )
