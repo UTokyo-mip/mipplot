@@ -54,6 +54,7 @@ mipplot_interactive_line <- function(D) {
         #                    selected = get_model_name_list(D)[1]
         #                    ),
 
+
         shinyWidgets::pickerInput("model",
                     label = "model:",
                     choices = get_model_name_list(D),
@@ -72,6 +73,7 @@ mipplot_interactive_line <- function(D) {
                       `actions-box` = TRUE
                     )),
 
+<<<<<<< HEAD
         # TODO:
         # previous user interfaces are commented out.
         # if new experimental user interfaces are employed,
