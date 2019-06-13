@@ -42,19 +42,11 @@ mipplot_interactive_line <- function(D) {
                            selected = get_model_name_list(D)[1]
                            ),
 
-
         checkboxGroupInput("scenario", "scenario:",
-                           choices =
-                             list("EMF27-450-Conv" = "EMF27-450-Conv",
-                                  "EMF27-450-FullTech" = "EMF27-450-FullTech",
-                                  "EMF27-450-NoCCS" = "EMF27-450-NoCCS",
-                                  "EMF27-450-NucOff" = "EMF27-450-NucOff",
-                                  "EMF27-Base-Conv" = "EMF27-Base-Conv",
-                                  "EMF27-Base-FullTech" = "EMF27-Base-FullTech",
-                                  "EMF27-Base-LimBio" = "EMF27-Base-LimBio",
-                                  "EMF27-Base-NucOff" = "EMF27-Base-NucOff"
-                                  ),
-                           selected = "EMF27-450-Conv"
+                           choiceNames = get_scenario_name_list(D),
+                           choiceValues = get_scenario_name_list(D),
+                           # the default scenario is a first appeared scenario in D
+                           selected = get_scenario_name_list(D)[1]
                            ),
 
         selectInput("period_start", "period_start:",
@@ -104,4 +96,17 @@ mipplot_interactive_line <- function(D) {
 #' }
 get_model_name_list <- function(D) {
   return (D %>% dplyr::pull(model) %>% unique() %>% levels())
+}
+
+#' @title Get name list of scenarios in IAMC formatted data frame
+#' @description select name of scenarios from the column "scenario" then make unique it.
+#' output is character vector such as,
+#' c("EMF27-450-Conv", "EMF27-450-FullTech", "EMF27-450-NoCCS", "EMF27-450-NucOff")
+#' @param D A quitte format dataframe of IAMC data to produce garph.
+#' @examples
+#' @dontrun{
+#' get_scenario_name_list(ar5_db_sample_data)
+#' }
+get_scenario_name_list <- function(D) {
+  return (D %>% dplyr::pull(scenario) %>% unique() %>% levels())
 }
