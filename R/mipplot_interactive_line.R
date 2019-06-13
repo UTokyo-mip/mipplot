@@ -36,12 +36,10 @@ mipplot_interactive_line <- function(D) {
                     ),
 
         checkboxGroupInput("model", "model:",
-                           choices =
-                             list("AIM-Enduse 12.1" = "AIM-Enduse 12.1",
-                                  "GCAM 3.0" = "GCAM 3.0",
-                                  "IMAGE 2.4" = "IMAGE 2.4"
-                                  ),
-                           selected = "AIM-Enduse 12.1"
+                           choiceNames = get_model_name_list(D),
+                           choiceValues = get_model_name_list(D),
+                           # the default model is a first appeared model in D
+                           selected = get_model_name_list(D)[1]
                            ),
 
 
@@ -93,4 +91,17 @@ mipplot_interactive_line <- function(D) {
 
 
   shinyApp(ui, server);
+}
+
+#' @title Get name list of models in IAMC formatted data frame
+#' @description select name of models from the column "model" then make unique it.
+#' output is character vector such as,
+#' c("AIM-Enduse 12.1", "GCAM 3.0", "IMAGE 2.4" )
+#' @param D A quitte format dataframe of IAMC data to produce garph.
+#' @examples
+#' @dontrun{
+#' get_model_name_list(ar5_db_sample_data)
+#' }
+get_model_name_list <- function(D) {
+  return (D %>% dplyr::pull(model) %>% unique() %>% levels())
 }
