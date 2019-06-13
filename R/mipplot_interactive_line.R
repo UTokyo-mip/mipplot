@@ -73,7 +73,6 @@ mipplot_interactive_line <- function(D) {
                       `actions-box` = TRUE
                     )),
 
-<<<<<<< HEAD
         # TODO:
         # previous user interfaces are commented out.
         # if new experimental user interfaces are employed,
