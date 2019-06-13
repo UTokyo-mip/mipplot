@@ -14,6 +14,9 @@ Imports:
     stringr,
     tibble,
     tidyr,
+    shinyWidgets,
+    data.table,
+    openxlsx,
 Depends: R (>= 2.10), reshape2, forcats, readr,
 License: MIT + file LICENSE
 Suggests:
