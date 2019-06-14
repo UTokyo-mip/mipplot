@@ -65,6 +65,16 @@ extract_year_columns <- function(columns) {
   return(columns[grep("^[0-9].*?$", columns)])
 }
 
+#' @title Read IAMC scenario input data in Excel format
+#' @description Read scenario input data (in IAMC format) as tibble format dataframe from Excel
+#' @param filename Path to a file containing scenario data in IAMC format.
+#' @param sheet the index of sheet which contains records.
+#' @return A dataframe in tibble format ("model, scenario, variable, unit, period, value")
+#' @examples
+#' \donttest{
+#' read_iamc_xlsx("c:\\...\\...", sheet = 2)
+#' }
+#' @export
 read_iamc_xlsx <- function(file_path, sheet = 2) {
 
   # load a sheet from xlsx file
@@ -80,6 +90,14 @@ read_iamc_xlsx <- function(file_path, sheet = 2) {
 
   # convert contents to tidy data
   df <- tidyr::gather_(df, "period", "value", year_col_names)
+
+  # convert data type
+  df$model <- as.factor(df$model)
+  df$scenario <- as.factor(df$scenario)
+  df$region <- as.factor(df$region)
+  df$variable <- as.factor(df$variable)
+  df$period <- as.integer(df$period)
+  df$unit <- as.factor(df$unit)
 
   return(df)
 }
