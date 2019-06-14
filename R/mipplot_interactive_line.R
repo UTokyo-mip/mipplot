@@ -11,9 +11,6 @@
 
 mipplot_interactive_line <- function(D) {
 
-  library(shiny)
-  library(shinyWidgets)
-
   region_list <- levels(D$region)
   var_list <- levels(D$variable)
   model_list <- levels(D$model)
