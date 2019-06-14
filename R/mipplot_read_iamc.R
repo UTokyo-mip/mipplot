@@ -65,7 +65,7 @@ extract_year_columns <- function(columns) {
   return(columns[grep("^[0-9].*?$", columns)])
 }
 
-read_iamc_xlsx <- function(file_path, sheet = 1) {
+read_iamc_xlsx <- function(file_path, sheet = 2) {
 
   # load a sheet from xlsx file
   df <- readxl::read_xlsx(file_path, sheet = sheet)

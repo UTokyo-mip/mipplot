@@ -29,7 +29,7 @@ mipplot_interactive_line <- function(D) {
       sidebarPanel(
 
         selectInput("region", "region:",
-                    list(`region` = region_list)
+                    choices = region_list
                     ),
 
         selectInput("variable", "variable:",
