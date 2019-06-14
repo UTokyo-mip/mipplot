@@ -33,25 +33,6 @@ mipplot_interactive_line <- function(D) {
                     list(`variable` = var_list)
                     ),
 
-        # TODO:
-        # The code for the user interface of previous version
-        # are commented out.
-        #
-        # I wonder number of models are not so big to
-        # user shinyWidgets::pickerInput instead of
-        # checkboxGroupInput.
-        #
-        # if new experimental user interface are employed,
-        # please delete these comments.
-
-        # checkboxGroupInput("model", "model:",
-        #                    choiceNames = get_model_name_list(D),
-        #                    choiceValues = get_model_name_list(D),
-        #                    # the default model is a first appeared model in D
-        #                    selected = get_model_name_list(D)[1]
-        #                    ),
-
-
         shinyWidgets::pickerInput("model",
                     label = "model:",
                     choices = get_model_name_list(D),
