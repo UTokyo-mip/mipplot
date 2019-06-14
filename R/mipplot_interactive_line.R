@@ -89,6 +89,19 @@ mipplot_interactive_line <- function(D) {
 
     output$line_plot <- renderPlot({
 
+      code <- stringr::str_interp("
+      D_subset = D %>%
+        dplyr::filter( model %in% ${get_string_expression_of_vector_of_strings(input$model)} ) %>%
+        dplyr::filter(${input$period[1]} <= period) %>%
+        dplyr::filter(period <= ${input$period[2]}) %>%
+      mipplot_line(  #D_subset,
+                   variable = ${get_string_expression_of_vector_of_strings(input$variable)},
+                   scenario = ${get_string_expression_of_vector_of_strings(input$scenario)},
+                   region = ${get_string_expression_of_vector_of_strings(input$region)})
+      ")
+
+      cat(code)
+
       # Since mipplot_line() function has no arguments to filter
       # models and periods to be plotted,
       # manually narrow the records in D
@@ -145,4 +158,17 @@ get_model_name_list <- function(D) {
 #' }
 get_scenario_name_list <- function(D) {
   return (D %>% dplyr::pull(scenario) %>% unique() %>% levels())
+}
+
+#' @title Get expression of vector of string in string format
+#' @description To evaluate expression, get string of expression
+#' @param vector_of_strings vector of strings, such as c("A", "B")
+#' @examples
+#' \donttest{
+#' noquote(
+#'   get_string_expression_of_vector_of_strings(c("A", "B"))
+#' )
+#' }
+get_string_expression_of_vector_of_strings <- function(vector_of_strings) {
+  return (paste("c(\"", stringr::str_c(vector_of_strings, collapse = "\", \""), "\")", sep=""))
 }
