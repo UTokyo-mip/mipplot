@@ -17,6 +17,9 @@ mipplot_interactive_line <- function(D) {
   scenario_list <- levels(D$scenario)
   period_list <- levels(as.factor(D$period))
 
+  # input_parameter_name is a string such as "ar5_db_sample_data"
+  # this variable is used for generating R code to reproduce plot
+  input_parameter_name = as.character(substitute(D))
 
   ui <- fluidPage(
 
@@ -76,31 +79,39 @@ mipplot_interactive_line <- function(D) {
 
         # To disable automatic re-draw,
         # we only have to includes submitButton.
-        submitButton(text = "Apply Changes", icon = NULL, width = NULL)
+        shiny::div(
+          class = "form-group shiny-input-container",
+          submitButton(text = "Apply Changes", icon = NULL, width = NULL)
         ),
 
+        # Show container which shows R code
+        # to reproduce current plot.
+        shiny::div(
+          class="form-group shiny-input-container",
+          shiny::tags$label(class="control-label", "code:"),
+          shiny::htmlOutput(
+            "code_to_reproduce_plot"
+          )
+        )
+      ),
 
-      mainPanel(plotOutput("line_plot"))
-
+      mainPanel(
+        plotOutput("line_plot")
+      )
     )
   )
 
   server <- function(input, output) {
 
+    output$code_to_reproduce_plot <- shiny::reactive({
+
+      # as
+      r_code <- generate_code_to_plot_line(input, parameter_name = input_parameter_name)
+      pre_code_tag(r_code)
+
+    })
+
     output$line_plot <- renderPlot({
-
-      code <- stringr::str_interp("
-      D_subset = D %>%
-        dplyr::filter( model %in% ${get_string_expression_of_vector_of_strings(input$model)} ) %>%
-        dplyr::filter(${input$period[1]} <= period) %>%
-        dplyr::filter(period <= ${input$period[2]}) %>%
-      mipplot_line(  #D_subset,
-                   variable = ${get_string_expression_of_vector_of_strings(input$variable)},
-                   scenario = ${get_string_expression_of_vector_of_strings(input$scenario)},
-                   region = ${get_string_expression_of_vector_of_strings(input$region)})
-      ")
-
-      cat(code)
 
       # Since mipplot_line() function has no arguments to filter
       # models and periods to be plotted,
@@ -171,4 +182,38 @@ get_scenario_name_list <- function(D) {
 #' }
 get_string_expression_of_vector_of_strings <- function(vector_of_strings) {
   return (paste("c(\"", stringr::str_c(vector_of_strings, collapse = "\", \""), "\")", sep=""))
+}
+
+#' @title generate code to reproduce line plot
+#' @description from `input` argument generally used in
+#' reactive context in Shiny, this function generates
+#' R code to reproduce current plot.
+#' This function could not used out of reactive expression in Shiny.
+#' @param input it is same as the argument of shiny::ui()
+#' this function accesses following attributes:
+#' - model
+#' - period
+#' - variable
+#' - scenario
+#' - region
+#' @param parameter_name name of parameter.
+#' If you call function f by f(x), name of parameter is 'x'.
+generate_code_to_plot_line <- function(input, parameter_name="D") {
+    return(stringr::str_interp(
+"${parameter_name} %>%
+  dplyr::filter( model %in% ${get_string_expression_of_vector_of_strings(input$model)} ) %>%
+  dplyr::filter(${input$period[1]} <= period) %>%
+  dplyr::filter(period <= ${input$period[2]}) %>%
+  mipplot_line(
+    variable = ${get_string_expression_of_vector_of_strings(input$variable)},
+    scenario = ${get_string_expression_of_vector_of_strings(input$scenario)},
+    region = ${get_string_expression_of_vector_of_strings(input$region)})
+"))
+}
+
+
+#' @title create <pre><code>...</code></pre>
+#' @description returns string
+pre_code_tag <- function(code) {
+  return(paste("<pre><code>", code, "</pre></code>", sep=""))
 }
