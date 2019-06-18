@@ -11,15 +11,14 @@
 
 mipplot_interactive_line <- function(D) {
 
+  # check and correct data format if necessary
+  D <- correct_format_of_iamc_dataframe(D)
+
   region_list <- levels(D$region)
   var_list <- levels(D$variable)
   model_list <- levels(D$model)
   scenario_list <- levels(D$scenario)
   period_list <- levels(as.factor(D$period))
-
-  # input_parameter_name is a string such as "ar5_db_sample_data"
-  # this variable is used for generating R code to reproduce plot
-  input_parameter_name = as.character(substitute(D))
 
   ui <- fluidPage(
 
@@ -106,7 +105,7 @@ mipplot_interactive_line <- function(D) {
     output$code_to_reproduce_plot <- shiny::reactive({
 
       # as
-      r_code <- generate_code_to_plot_line(input, parameter_name = input_parameter_name)
+      r_code <- generate_code_to_plot_line(input)
       pre_code_tag(r_code)
 
     })
@@ -196,11 +195,10 @@ get_string_expression_of_vector_of_strings <- function(vector_of_strings) {
 #' - variable
 #' - scenario
 #' - region
-#' @param parameter_name name of parameter.
-#' If you call function f by f(x), name of parameter is 'x'.
-generate_code_to_plot_line <- function(input, parameter_name="D") {
+generate_code_to_plot_line <- function(input) {
     return(stringr::str_interp(
-"${parameter_name} %>%
+"# don't forget to replace name of variable
+df %>%
   dplyr::filter( model %in% ${get_string_expression_of_vector_of_strings(input$model)} ) %>%
   dplyr::filter(${input$period[1]} <= period) %>%
   dplyr::filter(period <= ${input$period[2]}) %>%
