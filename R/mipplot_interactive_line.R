@@ -76,6 +76,12 @@ mipplot_interactive_line <- function(D) {
                        tail(period_list, n = 1))
         ),
 
+        shiny::checkboxInput(
+          inputId = "printCredit",
+          label = "print credit",
+          value = TRUE
+        ),
+
         # To disable automatic re-draw,
         # we only have to includes submitButton.
         shiny::div(
@@ -128,10 +134,16 @@ mipplot_interactive_line <- function(D) {
         # dplyr::filter(period <= input$period_end)
 
       # plot D_subset instead of D.
-      mipplot_line(D_subset,
+      subset_plot <- mipplot_line(D_subset,
                    variable = input$variable,
                    scenario = input$scenario,
                    region = input$region)
+
+      if (input$printCredit) {
+        subset_plot <- add_credit_to_list_of_plot(subset_plot)
+      }
+
+      subset_plot
     },
     height = 400, width = 600
     )
@@ -142,6 +154,28 @@ mipplot_interactive_line <- function(D) {
 
 
   shinyApp(ui, server);
+}
+
+#' @title Add credit text to a list of ggplot2 plot object
+add_credit_to_list_of_plot <- function(list_of_plot) {
+  return(
+    lapply(list_of_plot, add_credit_to_plot)
+    )
+}
+
+#' @title Add credit text to a ggplot2 plot object
+add_credit_to_plot <- function(plot_object) {
+  return (
+    plot_object +
+
+      # credit text
+      ggplot2::labs(
+        caption = "copyright 2019 UTokyo-mip All Rights Reserved.") +
+
+      # formatting of the text
+      ggplot2::theme(
+        plot.caption = ggplot2::element_text(size=10, colour = "#666666"))
+  )
 }
 
 #' @title Get name list of models in IAMC formatted data frame
@@ -208,7 +242,6 @@ df %>%
     region = ${get_string_expression_of_vector_of_strings(input$region)})
 "))
 }
-
 
 #' @title create <pre><code>...</code></pre>
 #' @description returns string
