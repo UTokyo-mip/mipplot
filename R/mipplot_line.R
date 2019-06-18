@@ -15,6 +15,7 @@
 #' @param scenario A list of cenarios.
 #' @param facet_x facet_x
 #' @param facet_y facet_y
+#' @param legend set TRUE to plot legend. default is TRUE.
 #' @param PRINT_OUT set TRUE to generate PDF files.
 #' @param DEBUG set TRUE to show debug messages.
 #' @return A list of line plots.
@@ -28,7 +29,7 @@ mipplot_line <- function(
   D, region = levels(D$region), variable = levels(D$variable),
   colorby = "scenario", linetypeby = "model", shapeby = "model",
   scenario = levels(D$scenario), facet_x = NULL,
-  facet_y = NULL, PRINT_OUT = F, DEBUG = T) {
+  facet_y = NULL, legend = TRUE, PRINT_OUT = F, DEBUG = T) {
 
   p_list1 <- list()
 
@@ -89,6 +90,12 @@ mipplot_line <- function(
 
         p_Out1 <- p_Out1 +
           ggplot2::theme(text = ggplot2::element_text(size = 20))
+
+        # Remove the legend if legend option is FALSE
+        if (!legend) {
+          p_Out1 <- p_Out1 + ggplot2::theme(legend.position = "none")
+        }
+
 
         ## STORE PLOTS TO LIST
         p_list1[[length(p_list1) + 1]] <- p_Out1

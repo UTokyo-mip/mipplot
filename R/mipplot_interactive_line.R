@@ -77,6 +77,12 @@ mipplot_interactive_line <- function(D) {
         ),
 
         shiny::checkboxInput(
+          inputId = "showLegend",
+          label = "show legend",
+          value = TRUE
+        ),
+
+        shiny::checkboxInput(
           inputId = "printCredit",
           label = "print credit",
           value = TRUE
@@ -137,7 +143,8 @@ mipplot_interactive_line <- function(D) {
       subset_plot <- mipplot_line(D_subset,
                    variable = input$variable,
                    scenario = input$scenario,
-                   region = input$region)
+                   region = input$region,
+                   legend = input$showLegend)
 
       if (input$printCredit) {
         subset_plot <- add_credit_to_list_of_plot(subset_plot)
@@ -231,7 +238,7 @@ get_string_expression_of_vector_of_strings <- function(vector_of_strings) {
 #' - region
 generate_code_to_plot_line <- function(input) {
     return(stringr::str_interp(
-"# don't forget to replace name of variable
+"# don't forget to replace the name of input variable
 df %>%
   dplyr::filter( model %in% ${get_string_expression_of_vector_of_strings(input$model)} ) %>%
   dplyr::filter(${input$period[1]} <= period) %>%
