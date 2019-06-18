@@ -77,6 +77,12 @@ mipplot_interactive_line <- function(D) {
         ),
 
         shiny::checkboxInput(
+          inputId = "showLegend",
+          label = "show legend",
+          value = TRUE
+        ),
+
+        shiny::checkboxInput(
           inputId = "printCredit",
           label = "print credit",
           value = TRUE
@@ -92,10 +98,13 @@ mipplot_interactive_line <- function(D) {
         # Show container which shows R code
         # to reproduce current plot.
         shiny::div(
-          class="form-group shiny-input-container",
+          class = "form-group shiny-input-container",
           shiny::tags$label(class="control-label", "code:"),
-          shiny::htmlOutput(
-            "code_to_reproduce_plot"
+          shiny::tags$pre(
+            style = "overflow: scroll; max-height: 10em;",
+            shiny::textOutput(
+              "code_to_reproduce_plot", inline = TRUE
+            )
           )
         )
       ),
@@ -109,11 +118,7 @@ mipplot_interactive_line <- function(D) {
   server <- function(input, output) {
 
     output$code_to_reproduce_plot <- shiny::reactive({
-
-      # as
-      r_code <- generate_code_to_plot_line(input)
-      pre_code_tag(r_code)
-
+      generate_code_to_plot_line(input)
     })
 
     output$line_plot <- renderPlot({
@@ -137,7 +142,8 @@ mipplot_interactive_line <- function(D) {
       subset_plot <- mipplot_line(D_subset,
                    variable = input$variable,
                    scenario = input$scenario,
-                   region = input$region)
+                   region = input$region,
+                   legend = input$showLegend)
 
       if (input$printCredit) {
         subset_plot <- add_credit_to_list_of_plot(subset_plot)
@@ -231,7 +237,8 @@ get_string_expression_of_vector_of_strings <- function(vector_of_strings) {
 #' - region
 generate_code_to_plot_line <- function(input) {
     return(stringr::str_interp(
-"# don't forget to replace name of variable
+"
+# don't forget to replace the name of input variable
 df %>%
   dplyr::filter( model %in% ${get_string_expression_of_vector_of_strings(input$model)} ) %>%
   dplyr::filter(${input$period[1]} <= period) %>%
@@ -241,10 +248,4 @@ df %>%
     scenario = ${get_string_expression_of_vector_of_strings(input$scenario)},
     region = ${get_string_expression_of_vector_of_strings(input$region)})
 "))
-}
-
-#' @title create <pre><code>...</code></pre>
-#' @description returns string
-pre_code_tag <- function(code) {
-  return(paste("<pre><code>", code, "</pre></code>", sep=""))
 }
