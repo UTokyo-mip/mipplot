@@ -246,6 +246,7 @@ df %>%
   mipplot_line(
     variable = ${get_string_expression_of_vector_of_strings(input$variable)},
     scenario = ${get_string_expression_of_vector_of_strings(input$scenario)},
-    region = ${get_string_expression_of_vector_of_strings(input$region)})
+    region = ${get_string_expression_of_vector_of_strings(input$region)},
+    legend = ${as.character(input$showLegend)})
 "))
 }
