@@ -11,6 +11,10 @@
 
 mipplot_interactive_line <- function(D) {
 
+  # name_of_input_df is a string such as "ar5_db_sample_data"
+  # this variable is used for generating R code to reproduce plot
+  name_of_input_df = as.character(substitute(D))
+
   # check and correct data format if necessary
   D <- correct_format_of_iamc_dataframe(D)
 
@@ -118,7 +122,7 @@ mipplot_interactive_line <- function(D) {
   server <- function(input, output) {
 
     output$code_to_reproduce_plot <- shiny::reactive({
-      generate_code_to_plot_line(input)
+      generate_code_to_plot_line(input, name_of_input_df)
     })
 
     output$line_plot <- renderPlot({
@@ -235,11 +239,10 @@ get_string_expression_of_vector_of_strings <- function(vector_of_strings) {
 #' - variable
 #' - scenario
 #' - region
-generate_code_to_plot_line <- function(input) {
+generate_code_to_plot_line <- function(input, name_of_iamc_data_variable = "D") {
     return(stringr::str_interp(
 "
-# don't forget to replace the name of input variable
-df %>%
+${name_of_iamc_data_variable} %>%
   dplyr::filter( model %in% ${get_string_expression_of_vector_of_strings(input$model)} ) %>%
   dplyr::filter(${input$period[1]} <= period) %>%
   dplyr::filter(period <= ${input$period[2]}) %>%
