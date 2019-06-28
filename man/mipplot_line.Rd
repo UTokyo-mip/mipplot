@@ -8,7 +8,7 @@ mipplot_line(D, region = levels(D$region),
   variable = levels(D$variable), colorby = "scenario",
   linetypeby = "model", shapeby = "model",
   scenario = levels(D$scenario), facet_x = NULL, facet_y = NULL,
-  PRINT_OUT = F, DEBUG = T)
+  legend = TRUE, PRINT_OUT = F, DEBUG = T)
 }
 \arguments{
 \item{D}{A dataframe of IAMC data in tibble format to produce plots.}
@@ -28,6 +28,8 @@ mipplot_line(D, region = levels(D$region),
 \item{facet_x}{facet_x}
 
 \item{facet_y}{facet_y}
+
+\item{legend}{set TRUE to plot legend. default is TRUE.}
 
 \item{PRINT_OUT}{set TRUE to generate PDF files.}
 

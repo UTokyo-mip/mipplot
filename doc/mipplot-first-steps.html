@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="U-Tokyo mipplot team" />
+
+<meta name="date" content="2019-06-28" />
+
+<title>First steps with the mipplot package</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+
+<style type="text/css">body {
+background-color: #fff;
+margin: 1em auto;
+max-width: 700px;
+overflow: visible;
+padding-left: 2em;
+padding-right: 2em;
+font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+font-size: 14px;
+line-height: 1.35;
+}
+#header {
+text-align: center;
+}
+#TOC {
+clear: both;
+margin: 0 0 10px 10px;
+padding: 4px;
+width: 400px;
+border: 1px solid #CCCCCC;
+border-radius: 5px;
+background-color: #f6f6f6;
+font-size: 13px;
+line-height: 1.3;
+}
+#TOC .toctitle {
+font-weight: bold;
+font-size: 15px;
+margin-left: 5px;
+}
+#TOC ul {
+padding-left: 40px;
+margin-left: -1.5em;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+#TOC ul ul {
+margin-left: -2em;
+}
+#TOC li {
+line-height: 16px;
+}
+table {
+margin: 1em auto;
+border-width: 1px;
+border-color: #DDDDDD;
+border-style: outset;
+border-collapse: collapse;
+}
+table th {
+border-width: 2px;
+padding: 5px;
+border-style: inset;
+}
+table td {
+border-width: 1px;
+border-style: inset;
+line-height: 18px;
+padding: 5px 5px;
+}
+table, table th, table td {
+border-left-style: none;
+border-right-style: none;
+}
+table thead, table tr.even {
+background-color: #f7f7f7;
+}
+p {
+margin: 0.5em 0;
+}
+blockquote {
+background-color: #f6f6f6;
+padding: 0.25em 0.75em;
+}
+hr {
+border-style: solid;
+border: none;
+border-top: 1px solid #777;
+margin: 28px 0;
+}
+dl {
+margin-left: 0;
+}
+dl dd {
+margin-bottom: 13px;
+margin-left: 13px;
+}
+dl dt {
+font-weight: bold;
+}
+ul {
+margin-top: 0;
+}
+ul li {
+list-style: circle outside;
+}
+ul ul {
+margin-bottom: 0;
+}
+pre, code {
+background-color: #f7f7f7;
+border-radius: 3px;
+color: #333;
+white-space: pre-wrap; 
+}
+pre {
+border-radius: 3px;
+margin: 5px 0px 10px 0px;
+padding: 10px;
+}
+pre:not([class]) {
+background-color: #f7f7f7;
+}
+code {
+font-family: Consolas, Monaco, 'Courier New', monospace;
+font-size: 85%;
+}
+p > code, li > code {
+padding: 2px 0px;
+}
+div.figure {
+text-align: center;
+}
+img {
+background-color: #FFFFFF;
+padding: 2px;
+border: 1px solid #DDDDDD;
+border-radius: 3px;
+border: 1px solid #CCCCCC;
+margin: 0 5px;
+}
+h1 {
+margin-top: 0;
+font-size: 35px;
+line-height: 40px;
+}
+h2 {
+border-bottom: 4px solid #f7f7f7;
+padding-top: 10px;
+padding-bottom: 2px;
+font-size: 145%;
+}
+h3 {
+border-bottom: 2px solid #f7f7f7;
+padding-top: 10px;
+font-size: 120%;
+}
+h4 {
+border-bottom: 1px solid #f7f7f7;
+margin-left: 8px;
+font-size: 105%;
+}
+h5, h6 {
+border-bottom: 1px solid #ccc;
+font-size: 105%;
+}
+a {
+color: #0033dd;
+text-decoration: none;
+}
+a:hover {
+color: #6666ff; }
+a:visited {
+color: #800080; }
+a:visited:hover {
+color: #BB00BB; }
+a[href^="http:"] {
+text-decoration: underline; }
+a[href^="https:"] {
+text-decoration: underline; }
+
+code > span.kw { color: #555; font-weight: bold; } 
+code > span.dt { color: #902000; } 
+code > span.dv { color: #40a070; } 
+code > span.bn { color: #d14; } 
+code > span.fl { color: #d14; } 
+code > span.ch { color: #d14; } 
+code > span.st { color: #d14; } 
+code > span.co { color: #888888; font-style: italic; } 
+code > span.ot { color: #007020; } 
+code > span.al { color: #ff0000; font-weight: bold; } 
+code > span.fu { color: #900; font-weight: bold; }  code > span.er { color: #a61717; background-color: #e3d2d2; } 
+</style>
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">First steps with the mipplot package</h1>
+<h4 class="author"><em>U-Tokyo mipplot team</em></h4>
+<h4 class="date"><em>2019-06-28</em></h4>
+
+
+
+<div id="section" class="section level2">
+<h2>概要</h2>
+<p><code>mipplot</code> パッケージは IAMC template format のデータを可視化するための <code>R</code> パッケージです。</p>
+<p>この vignette では <code>mipplot</code> パッケージの基本機能を紹介します。</p>
+</div>
+<div id="section-1" class="section level2">
+<h2>利用するデータ</h2>
+<p>この vignette では SR1.5 データのサブセットを使用します。 このデータは <code>mipplot</code> に含まれており、別途ダウンロードするは必要ありません。</p>
+</div>
+<div id="load-library" class="section level2">
+<h2>load library</h2>
+<p>load <code>mipplot</code> library.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw">library</span>(mipplot)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="co">#&gt;  要求されたパッケージ reshape2 をロード中です</span></a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co">#&gt;  要求されたパッケージ forcats をロード中です</span></a>
+<a class="sourceLine" id="cb1-4" title="4"><span class="co">#&gt;  要求されたパッケージ readr をロード中です</span></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="co">#&gt;  要求されたパッケージ shiny をロード中です</span></a></code></pre></div>
+</div>
+<div id="load-sample-data" class="section level2">
+<h2>load sample data</h2>
+<p>IAMC フォーマットのデータ ファイルを読み込みます。 もしあなたが IAMC フォーマットのデータ ファイルを持っていれば、それを使用しても構いません。</p>
+<p>この文書では、我々が <code>mipplot</code> パッケージに付属しているサンプル データを使う場合のコードを記載します。</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># mipplot パッケージ内のファイルを使うための特別なコードです。</span></a>
+<a class="sourceLine" id="cb2-2" title="2"><span class="co"># あなたがデータ ファイルをお持ちであれば、このコードは必要ありません。</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="co"># このコードは、mipplot パッケージ内のデータ ファイルのパスを取得します。</span></a>
+<a class="sourceLine" id="cb2-4" title="4">data_file_path &lt;-<span class="st"> </span><span class="kw">system.file</span>(<span class="st">&quot;mipplot&quot;</span>, <span class="st">&quot;iamc15_sample_data.csv&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;mipplot&quot;</span>) </a></code></pre></div>
+<p><code>iamc_data</code> という変数に IAMC 形式のデータを読み込みましょう。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1">iamc_data &lt;-<span class="st"> </span>mipplot<span class="op">::</span><span class="kw">mipplot_read_iamc</span>(data_file_path)</a></code></pre></div>
+<p>読み込んだ IAMC データ ファイルに含まれるモデルの一覧を確認します。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">iamc_data<span class="op">$</span>model <span class="op">%&gt;%</span><span class="st"> </span>levels</a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="co">#&gt; [1] &quot;AIM/CGE 2.0&quot;           &quot;GCAM 4.2&quot;              &quot;IMAGE 3.0.1&quot;          </span></a>
+<a class="sourceLine" id="cb4-3" title="3"><span class="co">#&gt; [4] &quot;MESSAGE-GLOBIOM 1.0&quot;   &quot;MESSAGEix-GLOBIOM 1.0&quot; &quot;REMIND-MAgPIE 1.5&quot;    </span></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co">#&gt; [7] &quot;WITCH-GLOBIOM 3.1&quot;</span></a></code></pre></div>
+<p>シナリオの一覧を確認します。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1">iamc_data<span class="op">$</span>scenario <span class="op">%&gt;%</span><span class="st"> </span>levels</a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="co">#&gt;  [1] &quot;SSP1-19&quot;         &quot;SSP1-26&quot;         &quot;SSP1-34&quot;        </span></a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="co">#&gt;  [4] &quot;SSP1-45&quot;         &quot;SSP1-Baseline&quot;   &quot;SSP2-19&quot;        </span></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="co">#&gt;  [7] &quot;SSP2-26&quot;         &quot;SSP2-34&quot;         &quot;SSP2-45&quot;        </span></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="co">#&gt; [10] &quot;SSP2-60&quot;         &quot;SSP2-Baseline&quot;   &quot;SSP3-34&quot;        </span></a>
+<a class="sourceLine" id="cb5-6" title="6"><span class="co">#&gt; [13] &quot;SSP3-45&quot;         &quot;SSP3-60&quot;         &quot;SSP3-Baseline&quot;  </span></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="co">#&gt; [16] &quot;SSP4-26&quot;         &quot;SSP4-34&quot;         &quot;SSP4-45&quot;        </span></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="co">#&gt; [19] &quot;SSP4-Baseline&quot;   &quot;SSP5-26&quot;         &quot;SSP5-34&quot;        </span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="co">#&gt; [22] &quot;SSP5-45&quot;         &quot;SSP5-60&quot;         &quot;SSP5-Baseline&quot;  </span></a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="co">#&gt; [25] &quot;SSP4-60&quot;         &quot;SSP5-19&quot;         &quot;LowEnergyDemand&quot;</span></a>
+<a class="sourceLine" id="cb5-11" title="11"><span class="co">#&gt; [28] &quot;SSP4-19&quot;</span></a></code></pre></div>
+<p>地域の一覧を確認します。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1">iamc_data<span class="op">$</span>region <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">levels</span>()</a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="co">#&gt; [1] &quot;World&quot;</span></a></code></pre></div>
+<p>変数の一覧を確認します。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">iamc_data <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">select</span>(variable, unit)  <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">distinct</span>()</a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="co">#&gt; # A tibble: 35 x 2</span></a>
+<a class="sourceLine" id="cb7-3" title="3"><span class="co">#&gt;    variable                  unit         </span></a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="co">#&gt;    &lt;fct&gt;                     &lt;fct&gt;        </span></a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="co">#&gt;  1 Emissions|CO2             Mt CO2/yr    </span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="co">#&gt;  2 Final Energy              EJ/yr        </span></a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="co">#&gt;  3 Population                million      </span></a>
+<a class="sourceLine" id="cb7-8" title="8"><span class="co">#&gt;  4 Price|Carbon              US$2010/t CO2</span></a>
+<a class="sourceLine" id="cb7-9" title="9"><span class="co">#&gt;  5 Primary Energy            EJ/yr        </span></a>
+<a class="sourceLine" id="cb7-10" title="10"><span class="co">#&gt;  6 Primary Energy|Biomass    EJ/yr        </span></a>
+<a class="sourceLine" id="cb7-11" title="11"><span class="co">#&gt;  7 Primary Energy|Coal       EJ/yr        </span></a>
+<a class="sourceLine" id="cb7-12" title="12"><span class="co">#&gt;  8 Primary Energy|Fossil     EJ/yr        </span></a>
+<a class="sourceLine" id="cb7-13" title="13"><span class="co">#&gt;  9 Primary Energy|Gas        EJ/yr        </span></a>
+<a class="sourceLine" id="cb7-14" title="14"><span class="co">#&gt; 10 Primary Energy|Geothermal EJ/yr        </span></a>
+<a class="sourceLine" id="cb7-15" title="15"><span class="co">#&gt; # ... with 25 more rows</span></a></code></pre></div>
+</div>
+<div id="section-2" class="section level2">
+<h2>フィルタリング</h2>
+<p><code>SSP2</code> のシナリオを含むモデルのみ抽出してみます。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">iamc_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-2" title="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(stringr<span class="op">::</span><span class="kw">str_detect</span>(scenario, <span class="st">&quot;^SSP2&quot;</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb8-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(model, scenario) <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">distinct</span>()</a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="co">#&gt; # A tibble: 34 x 2</span></a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="co">#&gt;    model       scenario     </span></a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="co">#&gt;    &lt;fct&gt;       &lt;fct&gt;        </span></a>
+<a class="sourceLine" id="cb8-7" title="7"><span class="co">#&gt;  1 AIM/CGE 2.0 SSP2-19      </span></a>
+<a class="sourceLine" id="cb8-8" title="8"><span class="co">#&gt;  2 AIM/CGE 2.0 SSP2-26      </span></a>
+<a class="sourceLine" id="cb8-9" title="9"><span class="co">#&gt;  3 AIM/CGE 2.0 SSP2-34      </span></a>
+<a class="sourceLine" id="cb8-10" title="10"><span class="co">#&gt;  4 AIM/CGE 2.0 SSP2-45      </span></a>
+<a class="sourceLine" id="cb8-11" title="11"><span class="co">#&gt;  5 AIM/CGE 2.0 SSP2-60      </span></a>
+<a class="sourceLine" id="cb8-12" title="12"><span class="co">#&gt;  6 AIM/CGE 2.0 SSP2-Baseline</span></a>
+<a class="sourceLine" id="cb8-13" title="13"><span class="co">#&gt;  7 GCAM 4.2    SSP2-19      </span></a>
+<a class="sourceLine" id="cb8-14" title="14"><span class="co">#&gt;  8 GCAM 4.2    SSP2-26      </span></a>
+<a class="sourceLine" id="cb8-15" title="15"><span class="co">#&gt;  9 GCAM 4.2    SSP2-34      </span></a>
+<a class="sourceLine" id="cb8-16" title="16"><span class="co">#&gt; 10 GCAM 4.2    SSP2-45      </span></a>
+<a class="sourceLine" id="cb8-17" title="17"><span class="co">#&gt; # ... with 24 more rows</span></a></code></pre></div>
+<p><strong>Final Energy|Industry|</strong> 以下の変数の一覧を抽出しましょう。</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1">iamc_data <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-2" title="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(stringr<span class="op">::</span><span class="kw">str_detect</span>(variable, <span class="st">&quot;Final Energy</span><span class="ch">\\</span><span class="st">|Industry</span><span class="ch">\\</span><span class="st">|&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb9-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(variable) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb9-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">distinct</span>()</a>
+<a class="sourceLine" id="cb9-5" title="5"><span class="co">#&gt; # A tibble: 0 x 1</span></a>
+<a class="sourceLine" id="cb9-6" title="6"><span class="co">#&gt; # ... with 1 variable: variable &lt;fct&gt;</span></a></code></pre></div>
+</div>
+<div id="visualization-of-timeseries" class="section level2">
+<h2>Visualization of Timeseries</h2>
+<p>モデルと期間を指定してデータをフィルタし、<code>mipplot_line</code> 関数でプロットします。</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">iamc_data <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-2" title="2"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>( model <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;AIM/CGE 2.0&quot;</span>, <span class="st">&quot;GCAM 4.2&quot;</span>) ) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(<span class="dv">2000</span> <span class="op">&lt;=</span><span class="st"> </span>period) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-4" title="4"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw">filter</span>(period <span class="op">&lt;=</span><span class="st"> </span><span class="dv">2100</span>) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb10-5" title="5"><span class="st">  </span><span class="kw">mipplot_line</span>(</a>
+<a class="sourceLine" id="cb10-6" title="6">    <span class="dt">variable =</span> <span class="kw">c</span>(<span class="st">&quot;Emissions|CO2&quot;</span>),</a>
+<a class="sourceLine" id="cb10-7" title="7">    <span class="dt">scenario =</span> <span class="kw">c</span>(<span class="st">&quot;SSP1-19&quot;</span>, <span class="st">&quot;SSP1-26&quot;</span>, <span class="st">&quot;SSP1-34&quot;</span>, <span class="st">&quot;SSP1-45&quot;</span>),</a>
+<a class="sourceLine" id="cb10-8" title="8">    <span class="dt">region =</span> <span class="kw">c</span>(<span class="st">&quot;World&quot;</span>),</a>
+<a class="sourceLine" id="cb10-9" title="9">    <span class="dt">legend =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb10-10" title="10"><span class="co">#&gt; [[1]]</span></a></code></pre></div>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
