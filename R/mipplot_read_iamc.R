@@ -50,7 +50,12 @@ read_iamc <- function(file_path, sep = ",") {
     SCENARIO = col_factor(NULL),
     REGION = col_factor(NULL),
     VARIABLE = col_factor(NULL),
-    UNIT = col_factor(NULL)
+    UNIT = col_factor(NULL),
+    Model = col_factor(NULL),
+    Scenario = col_factor(NULL),
+    Region = col_factor(NULL),
+    Variable = col_factor(NULL),
+    Unit = col_factor(NULL)
   ))
 
   colnames(content) <- tolower(colnames(content))
