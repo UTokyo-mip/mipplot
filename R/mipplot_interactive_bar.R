@@ -41,7 +41,7 @@ mipplot_interactive_bar <- function(D, R) {
         # selectInput("variable", "variable:",
         #             list(`variable` = var_list)
         #             ),
-        
+
         shinyWidgets::pickerInput("variable",
                     label = "variable:",
                     choices = var_list,
@@ -82,6 +82,11 @@ mipplot_interactive_bar <- function(D, R) {
           label = "print credit",
           value = TRUE),
 
+        checkboxInput(
+          inputId = "aHundredPercentStacked",
+          label = "100% stacked",
+          value = FALSE),
+
         # Show container which shows R code
         # to reproduce current plot.
         shiny::div(
@@ -97,7 +102,7 @@ mipplot_interactive_bar <- function(D, R) {
 
       ),
 
-      
+
 
 
       mainPanel(plotOutput("bar_plot"))
@@ -120,17 +125,17 @@ mipplot_interactive_bar <- function(D, R) {
       # So prior to calling mipplot_bar(),
       # we filter the data.
 
-      data_subset = D %>% 
+      data_subset = D %>%
         dplyr::filter(variable %in% input$variable) %>%
         dplyr::filter(model %in% input$model) %>%
         dplyr::filter(scenario %in% input$scenario)
 
       # Generates an image that does not contain a copyright notice.
       plotted_image <- mipplot_bar(
-        data_subset, R, region = input$region, 
-                  target_year = input$target_year
-                  )
-      
+        data_subset, R, region = input$region,
+                  target_year = input$target_year,
+        one_hundred_percent_stacked = input$aHundredPercentStacked)
+
       # If specified, a copyright notice will be added to the image.
       if (input$printCredit) {
         plotted_image <- add_credit_to_list_of_plot(plotted_image)
@@ -160,13 +165,14 @@ generate_code_to_plot_bar <- function(
   name_of_input_data_variable,
   name_of_input_rule_table_variable) {
     return(stringr::str_interp(
-      "data_subset <- ${name_of_input_data_variable} %>% 
+      "data_subset <- ${name_of_input_data_variable} %>%
   filter(variable %in% ${get_string_expression_of_vector_of_strings(input$variable)}) %>%
   filter(model %in% ${get_string_expression_of_vector_of_strings(input$model)}) %>%
   filter(scenario %in% ${get_string_expression_of_vector_of_strings(input$scenario)})
 
 mipplot_bar(data_subset, ${name_of_input_rule_table_variable},
   region = ${get_string_expression_of_vector_of_strings(input$region)},
-  target_year = ${input$target_year})"
+  target_year = ${input$target_year},
+      one_hundred_percent_stacked = ${input$aHundredPercentStacked})"
     ))
   }

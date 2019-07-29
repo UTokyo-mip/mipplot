@@ -23,6 +23,7 @@
 #' @param DEBUG set TRUE to show debug messages.
 #' @param fontsize size of font in the output plot.
 #' @param color_code_specify set FALSE if you apply default color palette.
+#' @param one_hundred_percent_stacked set TRUE if you want a graph of 100% stacked, set this to TRUE.
 #' @return A list of bar plots.
 #' @examples
 #' \donttest{
@@ -37,7 +38,7 @@ mipplot_bar <- function(
   D, R,region = levels(D$region), xby = "scenario",
   target_year = levels(as.factor(D$period)),
   facet_x = NULL, facet_y = NULL, PRINT_OUT = F, DEBUG = T, fontsize = 20,
-  color_code_specify = T) {
+  color_code_specify = T, one_hundred_percent_stacked = F) {
 
   # REPLACED THIS FUNCTION WITH 1-LINE CODE (SEE LINE 52).
   # wrap_text <- function(x, width=60){
@@ -92,11 +93,21 @@ mipplot_bar <- function(
         # Only generate plots if data is available for a region.
         if (nrow(na.omit(D_RHS[D_RHS$region == r, ]))) {
 
+          # Note: use if(){}else{} instead of ifelse(),
+          # because ifelse() may be not available in shiny context.
+          # https://github.com/rstudio/shiny/issues/2143
+          if (one_hundred_percent_stacked) {
+            position <- ggplot2::position_fill()
+          } else {
+            position <- "stack"
+          }
+
           ## Bar plots: using right-hand-side values of target rule.
           p_Out1 <- ggplot2::ggplot(
             na.omit(D_RHS),
             ggplot2::aes(y = value, fill = variable)) +
-            ggplot2::geom_bar(stat = "identity", ggplot2::aes_(x = as.name(xby))) +
+            ggplot2::geom_bar(stat = "identity", ggplot2::aes_(x = as.name(xby)),
+                              position = position) +
             ggplot2::labs(title = tt1, subtitle = tt2, y = tt3) +
             ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90))
 

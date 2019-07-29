@@ -85,7 +85,8 @@ mipplot_area <- function(
 
           ### FACET DOES NOT WORK IN NO DATA EXISTS.
 
-          # Note: ifelse() may be not available in shiny context.
+          # Note: use if(){}else{} instead of ifelse(),
+          # because ifelse() may be not available in shiny context.
           # https://github.com/rstudio/shiny/issues/2143
           if (one_hundred_percent_stacked) {
             position <- ggplot2::position_fill()
