@@ -32,7 +32,7 @@ mipplot_interactive_area <- function(D, R) {
       sidebarPanel(
 
         selectInput("region", "region:",
-                    list(`region` = region_list)
+                    choices = region_list
         ),
 
         shinyWidgets::pickerInput("variable",
