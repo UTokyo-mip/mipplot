@@ -11,16 +11,21 @@
 #' }
 #' @export
 
-mipplot_interactive_bar <- function(D,R) {
+mipplot_interactive_bar <- function(D, R) {
 
-  library(shiny)
+  # name_of_input_data_variable is a string such as "ar5_db_sample_data"
+  # this variable is used for generating R code to reproduce plot
+  name_of_input_data_variable <- as.character(substitute(D))
+  name_of_input_rule_table_variable <- as.character(substitute(R))
+
+  # check and correct data format if necessary
+  D <- correct_format_of_iamc_dataframe(D)
 
   region_list <- levels(D$region)
   var_list <- levels(D$variable)
   model_list <- levels(D$model)
   scenario_list <- levels(D$scenario)
   period_list <- levels(as.factor(D$period))
-
 
   ui <- fluidPage(
 
@@ -33,39 +38,66 @@ mipplot_interactive_bar <- function(D,R) {
                     list(`region` = region_list)
                     ),
 
-        selectInput("variable", "variable:",
-                    list(`variable` = var_list)
-                    ),
+        # selectInput("variable", "variable:",
+        #             list(`variable` = var_list)
+        #             ),
+        
+        shinyWidgets::pickerInput("variable",
+                    label = "variable:",
+                    choices = var_list,
+                    selected = var_list[1],
+                    multiple = TRUE,
+                    options = list(
+                      `actions-box` = TRUE
+                    )),
 
-        checkboxGroupInput("model", "model:",
-                           choices =
-                             list("AIM-Enduse 12.1" = "AIM-Enduse 12.1",
-                                  "GCAM 3.0" = "GCAM 3.0",
-                                  "IMAGE 2.4" = "IMAGE 2.4"
-                             ),
-                           selected = "AIM-Enduse 12.1"
-                           ),
+        shinyWidgets::pickerInput("model",
+                    label = "model:",
+                    choices = get_model_name_list(D),
+                    selected = get_model_name_list(D)[1],
+                    multiple = TRUE,
+                    options = list(
+                      `actions-box` = TRUE
+                    )),
 
+        shinyWidgets::pickerInput("scenario",
+                    label = "scenario:",
+                    choices = get_scenario_name_list(D),
+                    selected = get_scenario_name_list(D)[1],
+                    multiple = TRUE,
+                    options = list(
+                      `actions-box` = TRUE
+                    )),
 
-        checkboxGroupInput("scenario", "scenario:",
-                           choices =
-                             list("EMF27-450-Conv" = "EMF27-450-Conv",
-                                  "EMF27-450-FullTech" = "EMF27-450-FullTech",
-                                  "EMF27-450-NoCCS" = "EMF27-450-NoCCS",
-                                  "EMF27-450-NucOff" = "EMF27-450-NucOff",
-                                  "EMF27-Base-Conv" = "EMF27-Base-Conv",
-                                  "EMF27-Base-FullTech" = "EMF27-Base-FullTech",
-                                  "EMF27-Base-LimBio" = "EMF27-Base-LimBio",
-                                  "EMF27-Base-NucOff" = "EMF27-Base-NucOff"
-                             ),
-                           selected = "EMF27-450-Conv"
-                           ),
-
-        selectInput("target_year", "target_year:",
-                    list(`period` = period_list),
-                    selected = 2005
-                    )
+        shinyWidgets::sliderTextInput(
+          inputId = "target_year",
+          label = "target_year:",
+          choices = period_list,
+          # selected = c(head(period_list, n = 1),
+          #              tail(period_list, n = 1))
         ),
+
+        shiny::checkboxInput(
+          inputId = "printCredit",
+          label = "print credit",
+          value = TRUE),
+
+        # Show container which shows R code
+        # to reproduce current plot.
+        shiny::div(
+          class = "form-group shiny-input-container",
+          shiny::tags$label(class="control-label", "code:"),
+          shiny::tags$pre(
+            style = "overflow: scroll; max-height: 10em;",
+            shiny::textOutput(
+              "code_to_reproduce_plot", inline = TRUE
+            )
+          )
+        )
+
+      ),
+
+      
 
 
       mainPanel(plotOutput("bar_plot"))
@@ -75,12 +107,37 @@ mipplot_interactive_bar <- function(D,R) {
 
   server <- function(input, output) {
 
+    output$code_to_reproduce_plot <- shiny::reactive({
+      generate_code_to_plot_bar(
+        input, name_of_input_data_variable,
+        name_of_input_rule_table_variable)
+    })
+
     output$bar_plot <- renderPlot({
-      mipplot_bar(D,R,region = input$region, variable = input$variable,
-                  model = input$model,
-                  scenario = input$scenario,
+
+      # We cannot filter the rows of the data
+      # with function mipplot_bar() alone.
+      # So prior to calling mipplot_bar(),
+      # we filter the data.
+
+      data_subset = D %>% 
+        dplyr::filter(variable %in% input$variable) %>%
+        dplyr::filter(model %in% input$model) %>%
+        dplyr::filter(scenario %in% input$scenario)
+
+      # Generates an image that does not contain a copyright notice.
+      plotted_image <- mipplot_bar(
+        data_subset, R, region = input$region, 
                   target_year = input$target_year
                   )
+      
+      # If specified, a copyright notice will be added to the image.
+      if (input$printCredit) {
+        plotted_image <- add_credit_to_list_of_plot(plotted_image)
+      }
+
+      # Output the image
+      plotted_image
     },
     height = 400, width = 600
     )
@@ -88,7 +145,28 @@ mipplot_interactive_bar <- function(D,R) {
 
   }
 
-
-
   shinyApp(ui, server);
 }
+
+#' @title generate code to reproduce bar plot
+#' @description This function is called in the mipplot_interactive_bar()
+#' and provides R code to reproduce the currently drawn plot.
+#' This function cannot be used out of reactive expression in Shiny.
+#' @param input This is the same as the input argument in the shiny:ui().
+#' @param name_of_input_data_variable A string such as "ar5_sample_data".
+#' @param name_of_input_rule_table_variable A string such as "ar5_sample_rule".
+generate_code_to_plot_bar <- function(
+  input,
+  name_of_input_data_variable,
+  name_of_input_rule_table_variable) {
+    return(stringr::str_interp(
+      "data_subset <- ${name_of_input_data_variable} %>% 
+  filter(variable %in% ${get_string_expression_of_vector_of_strings(input$variable)}) %>%
+  filter(model %in% ${get_string_expression_of_vector_of_strings(input$model)}) %>%
+  filter(scenario %in% ${get_string_expression_of_vector_of_strings(input$scenario)})
+
+mipplot_bar(data_subset, ${name_of_input_rule_table_variable},
+  region = ${get_string_expression_of_vector_of_strings(input$region)},
+  target_year = ${input$target_year})"
+    ))
+  }

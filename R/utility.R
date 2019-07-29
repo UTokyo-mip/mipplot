@@ -59,3 +59,40 @@ change_data_types_of_iamc_dataframe <- function(iamc_data) {
 
   return(iamc_data)
 }
+
+#' @title Add credit text to a list of ggplot2 plot object
+add_credit_to_list_of_plot <- function(list_of_plot) {
+  return(
+    lapply(list_of_plot, add_credit_to_plot)
+  )
+}
+
+#' @title Add credit text to a ggplot2 plot object
+add_credit_to_plot <- function(plot_object) {
+  return (
+    plot_object +
+
+      # credit text
+      ggplot2::labs(
+        caption = "copyright 2019 UTokyo-mip All Rights Reserved.") +
+
+      # formatting of the text
+      ggplot2::theme(
+        plot.caption = ggplot2::element_text(size=10, colour = "#666666"))
+  )
+}
+
+
+
+#' @title Get expression of vector of string in string format
+#' @description To evaluate expression, get string of expression
+#' @param vector_of_strings vector of strings, such as c("A", "B")
+#' @examples
+#' \donttest{
+#' noquote(
+#'   get_string_expression_of_vector_of_strings(c("A", "B"))
+#' )
+#' }
+get_string_expression_of_vector_of_strings <- function(vector_of_strings) {
+  return (paste("c(\"", stringr::str_c(vector_of_strings, collapse = "\", \""), "\")", sep=""))
+}
