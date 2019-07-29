@@ -35,7 +35,7 @@ mipplot_interactive_bar <- function(D, R) {
       sidebarPanel(
 
         selectInput("region", "region:",
-                    list(`region` = region_list)
+                    choices = region_list
                     ),
 
         # selectInput("variable", "variable:",
