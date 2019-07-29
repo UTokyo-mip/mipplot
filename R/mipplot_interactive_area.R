@@ -117,7 +117,8 @@ mipplot_interactive_area <- function(D, R) {
       # Generates an image that does not contain a copyright notice.
       plotted_image <- mipplot_area(data_subset, R,
                                     region = input$region,
-                                    scenario = input$scenario)
+                                    scenario = input$scenario,
+                                    one_hundred_percent_stacked = input$aHundredPercentStacked)
 
       # If specified, a copyright notice will be added to the image.
       if (input$printCredit) {
@@ -154,7 +155,8 @@ generate_code_to_plot_area <- function(
 
 mipplot_area(data_subset, ${name_of_input_rule_table_variable},
   region = ${get_string_expression_of_vector_of_strings(input$region)},
-  scenario = ${get_string_expression_of_vector_of_strings(input$scenario)}"
+  scenario = ${get_string_expression_of_vector_of_strings(input$scenario)},
+  one_hundred_percent_stacked = ${input$aHundredPercentStacked})"
   ))
 }
 

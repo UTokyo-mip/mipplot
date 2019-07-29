@@ -23,6 +23,7 @@
 #' @param DEBUG set TRUE to show debug messages.
 #' @param fontsize font size of text.
 #' @param color_code_specify set FALSE if you apply default color palette.
+#' @param one_hundred_percent_stacked set TRUE if you want a graph of 100% stacked, set this to TRUE.
 #' @return A list of area plots.
 #' @examples
 #' \donttest{
@@ -33,7 +34,7 @@
 mipplot_area <- function(
   D, R, region=levels(D$region), scenario=levels(D$scenario),
   facet_x=NULL, facet_y=NULL, PRINT_OUT=F, DEBUG=T, fontsize=20,
-  color_code_specify=T){
+  color_code_specify=T, one_hundred_percent_stacked=F){
 
   p_list1 <- list()
 
@@ -83,12 +84,21 @@ mipplot_area <- function(
         if (nrow(na.omit(D_RHS[D_RHS$scenario == s, ])) > 0) {
 
           ### FACET DOES NOT WORK IN NO DATA EXISTS.
+
+          # Note: ifelse() may be not available in shiny context.
+          # https://github.com/rstudio/shiny/issues/2143
+          if (one_hundred_percent_stacked) {
+            position <- ggplot2::position_fill()
+          } else {
+            position <- "stack"
+          }
+
           p_Out1 <-
             ggplot2::ggplot() +
             ggplot2::geom_area(
               data = na.omit(D_RHS),
               ggplot2::aes(x = period, y = value, fill = variable),
-              position = "stack")
+              position = position)
 
           p_Out1 <- p_Out1 +
             ggplot2::geom_line(
