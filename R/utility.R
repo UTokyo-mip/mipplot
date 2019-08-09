@@ -96,3 +96,107 @@ add_credit_to_plot <- function(plot_object) {
 get_string_expression_of_vector_of_strings <- function(vector_of_strings) {
   return (paste("c(\"", stringr::str_c(vector_of_strings, collapse = "\", \""), "\")", sep=""))
 }
+
+#' @title Get variable-group-name list
+#' @description variable-group is a combination of one LHS and one or more RHS.
+#' this function outputs the list of names of variable-group in given rule-table.
+#' the format of return value is "LHS|RHS1,RHS2,RHS3,...".
+#' @param R rule-table
+#' @examples
+#' \donttest{
+#' noquote(
+#'   get_variable_group_name_list(R)
+#' )
+#' }
+#' @export
+get_variable_group_name_list <- function(rule_table) {
+
+  # initialize result
+  group_name_list <- c()
+
+  # initialize temporary variables
+  current_group_name <- ""
+
+  # scan all rows in rule_table
+  for (i_row in 1:nrow(rule_table)) {
+
+    new_row <- rule_table[i_row, ]
+
+    # if find new LHS entry
+    if (new_row$Left_side != "") {
+
+      # add current_group_name to result
+      if (i_row > 1) {
+        group_name_list <- c(group_name_list, current_group_name)
+      }
+
+      # set current_group_name to "current_group_name|" (with separator |)
+      current_group_name <- paste(new_row$Left_side, "|", sep="")
+    }
+
+    # if find new RHS entry
+    if (new_row$Right_side != "") {
+
+      # remove parent part, then get base name
+      right_side_base_name <- stringr::str_replace(new_row$Right_side, "^.*\\|", "")
+
+      # add RHS entry to current_group_name with comma separator.
+      current_group_name <- paste(current_group_name, right_side_base_name, ",", sep="")
+    }
+  }
+
+  # add last entry to result
+  group_name_list <- c(group_name_list, current_group_name)
+
+  # remove "|" or "," if they are placed on the end of current_group_name
+  # ex. "Population|" or "Emissions|CO2,Land Use,"
+  group_name_list <- stringr::str_replace_all(group_name_list, "\\|$|,$", "")
+
+  return(group_name_list)
+}
+
+#' @title Get variable name list in given variable-group
+#' @description Scan rule-table and extract variable names in given variable-group.
+#' @param group_name variable-group-name
+#' @examples
+#' \donttest{
+#' noquote(
+#'   get_variable_name_list_in_variable_group(
+#'     ar5_db_sample_rule_table,
+#'     "Final Energy|Industry,Residential and Commercial,Transportation")
+#' )
+#' }
+#' @export
+get_variable_name_list_in_variable_group <- function(group_name) {
+
+  # trim parent level part and get child level part
+  # ex.
+  # input: "Emissions|CO2|Fossil Fuels and Industry|Energy Demand,Energy Supply"
+  # output: "Energy Demand,Energy Supply"
+  child_part <- str_replace_all(group_name, "^.*\\|", "")
+
+  # separate elements in child level part
+  # ex.
+  # input: "Energy Demand,Energy Supply"
+  # output: c("Energy Demand", "Energy Supply")
+  child_part_elements <- stringr::str_split(child_part, ",")[[1]]
+
+  # trim child level part and get parent level part
+  # ex.
+  # input: "Emissions|CO2|Fossil Fuels and Industry|Energy Demand,Energy Supply"
+  # output: "Energy Demand,Energy Supply"
+  parent_part <- stringr::str_extract(group_name, "^.*\\|")
+
+  if (is.na(parent_part)) {
+
+    return(child_part)
+
+  } else {
+
+    full_path_variable_name_list <- paste(parent_part, child_part_elements, sep="")
+
+    parent_part_without_last_vertical_line <- stringr::str_replace(parent_part, "\\|$", "")
+
+    return(c(parent_part_without_last_vertical_line, full_path_variable_name_list))
+  }
+}
