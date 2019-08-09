@@ -96,3 +96,61 @@ add_credit_to_plot <- function(plot_object) {
 get_string_expression_of_vector_of_strings <- function(vector_of_strings) {
   return (paste("c(\"", stringr::str_c(vector_of_strings, collapse = "\", \""), "\")", sep=""))
 }
+
+#' @title Get variable-group-name list
+#' @description variable-group is a combination of one LHS and one or more RHS.
+#' this function outputs the list of names of variable-group in given rule-table.
+#' the format of return value is "LHS|RHS1,RHS2,RHS3,...".
+#' @param R rule-table
+#' @examples
+#' \donttest{
+#' noquote(
+#'   get_variable_group_name_list(R)
+#' )
+#' }
+#' @export
+get_variable_group_name_list <- function(rule_table) {
+
+  # initialize result
+  group_name_list <- c()
+
+  # initialize temporary variables
+  current_group_name <- ""
+
+  # scan all rows in rule_table
+  for (i_row in 1:nrow(rule_table)) {
+
+    new_row <- rule_table[i_row, ]
+
+    # if find new LHS entry
+    if (new_row$Left_side != "") {
+
+      # add current_group_name to result
+      if (i_row > 1) {
+        group_name_list <- c(group_name_list, current_group_name)
+      }
+
+      # set current_group_name to "current_group_name|" (with separator |)
+      current_group_name <- paste(new_row$Left_side, "|", sep="")
+    }
+
+    # if find new RHS entry
+    if (new_row$Right_side != "") {
+
+      # remove parent part, then get base name
+      right_side_base_name <- stringr::str_replace(new_row$Right_side, "^.*\\|", "")
+
+      # add RHS entry to current_group_name with comma separator.
+      current_group_name <- paste(current_group_name, right_side_base_name, ",", sep="")
+    }
+  }
+
+  # add last entry to result
+  group_name_list <- c(group_name_list, current_group_name)
+
+  # remove "|" or "," if they are placed on the end of current_group_name
+  # ex. "Population|" or "Emissions|CO2,Land Use,"
+  group_name_list <- stringr::str_replace_all(group_name_list, "\\|$|,$", "")
+
+  return(group_name_list)
+}
