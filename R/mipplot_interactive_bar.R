@@ -27,6 +27,9 @@ mipplot_interactive_bar <- function(D, R) {
   scenario_list <- levels(D$scenario)
   period_list <- levels(as.factor(D$period))
 
+  # get variable-group-name list
+  variable_group_name_list <- get_variable_group_name_list(R)
+
   ui <- fluidPage(
 
     titlePanel("mipplot"),
@@ -38,18 +41,15 @@ mipplot_interactive_bar <- function(D, R) {
                     choices = region_list
                     ),
 
-        # selectInput("variable", "variable:",
-        #             list(`variable` = var_list)
-        #             ),
+        shinyWidgets::pickerInput("variable_group",
+                                  label = "variable:",
+                                  choices = variable_group_name_list,
+                                  selected = variable_group_name_list[1],
+                                  multiple = FALSE,
+                                  options = list(
+                                    `actions-box` = TRUE
+                                  )),
 
-        shinyWidgets::pickerInput("variable",
-                    label = "variable:",
-                    choices = var_list,
-                    selected = var_list[1],
-                    multiple = TRUE,
-                    options = list(
-                      `actions-box` = TRUE
-                    )),
 
         shinyWidgets::pickerInput("model",
                     label = "model:",
@@ -120,13 +120,16 @@ mipplot_interactive_bar <- function(D, R) {
 
     output$bar_plot <- renderPlot({
 
+      # get variable name list in specified variable group
+      input_variable_list <- get_variable_name_list_in_variable_group(input$variable_group)
+
       # We cannot filter the rows of the data
       # with function mipplot_bar() alone.
       # So prior to calling mipplot_bar(),
       # we filter the data.
 
       data_subset = D %>%
-        dplyr::filter(variable %in% input$variable) %>%
+        dplyr::filter(variable %in% input_variable_list) %>%
         dplyr::filter(model %in% input$model) %>%
         dplyr::filter(scenario %in% input$scenario)
 
@@ -164,9 +167,13 @@ generate_code_to_plot_bar <- function(
   input,
   name_of_input_data_variable,
   name_of_input_rule_table_variable) {
+
+  # get variable name list in specified variable group
+  input_variable_list <- get_variable_name_list_in_variable_group(input$variable_group)
+
     return(stringr::str_interp(
       "data_subset <- ${name_of_input_data_variable} %>%
-  filter(variable %in% ${get_string_expression_of_vector_of_strings(input$variable)}) %>%
+  filter(variable %in% ${get_string_expression_of_vector_of_strings(input_variable_list)}) %>%
   filter(model %in% ${get_string_expression_of_vector_of_strings(input$model)}) %>%
   filter(scenario %in% ${get_string_expression_of_vector_of_strings(input$scenario)})
 
