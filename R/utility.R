@@ -154,3 +154,49 @@ get_variable_group_name_list <- function(rule_table) {
 
   return(group_name_list)
 }
+
+#' @title Get variable name list in given variable-group
+#' @description Scan rule-table and extract variable names in given variable-group.
+#' @param group_name variable-group-name
+#' @examples
+#' \donttest{
+#' noquote(
+#'   get_variable_name_list_in_variable_group(
+#'     ar5_db_sample_rule_table,
+#'     "Final Energy|Industry,Residential and Commercial,Transportation")
+#' )
+#' }
+#' @export
+get_variable_name_list_in_variable_group <- function(group_name) {
+
+  # trim parent level part and get child level part
+  # ex.
+  # input: "Emissions|CO2|Fossil Fuels and Industry|Energy Demand,Energy Supply"
+  # output: "Energy Demand,Energy Supply"
+  child_part <- str_replace_all(group_name, "^.*\\|", "")
+
+  # separate elements in child level part
+  # ex.
+  # input: "Energy Demand,Energy Supply"
+  # output: c("Energy Demand", "Energy Supply")
+  child_part_elements <- stringr::str_split(child_part, ",")[[1]]
+
+  # trim child level part and get parent level part
+  # ex.
+  # input: "Emissions|CO2|Fossil Fuels and Industry|Energy Demand,Energy Supply"
+  # output: "Energy Demand,Energy Supply"
+  parent_part <- stringr::str_extract(group_name, "^.*\\|")
+
+  if (is.na(parent_part)) {
+
+    return(child_part)
+
+  } else {
+
+    full_path_variable_name_list <- paste(parent_part, child_part_elements, sep="")
+
+    parent_part_without_last_vertical_line <- stringr::str_replace(parent_part, "\\|$", "")
+
+    return(c(parent_part_without_last_vertical_line, full_path_variable_name_list))
+  }
+}
