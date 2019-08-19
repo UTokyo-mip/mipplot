@@ -84,7 +84,7 @@ mipplot_interactive_area <- function(D, R) {
           class = "form-group shiny-input-container",
           tags$label(class="control-label", "code:"),
           tags$pre(
-            style = "overflow: scroll; max-height: 10em;",
+            style = "overflow: scroll; max-height: 10em; white-space: pre-line;",
             textOutput(
               "code_to_reproduce_plot", inline = TRUE
             )

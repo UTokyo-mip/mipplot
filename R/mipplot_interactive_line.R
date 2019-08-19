@@ -91,7 +91,7 @@ mipplot_interactive_line <- function(D) {
           class = "form-group shiny-input-container",
           shiny::tags$label(class="control-label", "code:"),
           shiny::tags$pre(
-            style = "overflow: scroll; max-height: 10em;",
+            style = "overflow: scroll; max-height: 10em; white-space: pre-line;",
             shiny::textOutput(
               "code_to_reproduce_plot", inline = TRUE
             )
