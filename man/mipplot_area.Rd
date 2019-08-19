@@ -6,7 +6,8 @@
 \usage{
 mipplot_area(D, R, region = levels(D$region),
   scenario = levels(D$scenario), facet_x = NULL, facet_y = NULL,
-  PRINT_OUT = F, DEBUG = T, fontsize = 20, color_code_specify = T)
+  PRINT_OUT = F, DEBUG = T, fontsize = 20, color_code_specify = T,
+  language = "en")
 }
 \arguments{
 \item{D}{A dataframe of IAMC data in tibble format to produce area plots.}
@@ -28,6 +29,9 @@ mipplot_area(D, R, region = levels(D$region),
 \item{fontsize}{font size of text.}
 
 \item{color_code_specify}{set FALSE if you apply default color palette.}
+
+\item{language}{A string of language. Possible values are "en", "jp",
+"es", "zh-cn", "zh-tw". The default value is "en".}
 }
 \value{
 A list of area plots.

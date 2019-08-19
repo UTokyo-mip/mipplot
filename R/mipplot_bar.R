@@ -24,6 +24,8 @@
 #' @param fontsize size of font in the output plot.
 #' @param color_code_specify set FALSE if you apply default color palette.
 #' @param one_hundred_percent_stacked set TRUE if you want a graph of 100% stacked, set this to TRUE.
+#' @param language A string of language. Possible values are "en", "jp",
+#' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @return A list of bar plots.
 #' @examples
 #' \donttest{
@@ -38,12 +40,53 @@ mipplot_bar <- function(
   D, R,region = levels(D$region), xby = "scenario",
   target_year = levels(as.factor(D$period)),
   facet_x = NULL, facet_y = NULL, PRINT_OUT = F, DEBUG = T, fontsize = 20,
-  color_code_specify = T, one_hundred_percent_stacked = F) {
+  color_code_specify = T, one_hundred_percent_stacked = F, language="en") {
 
   # REPLACED THIS FUNCTION WITH 1-LINE CODE (SEE LINE 52).
   # wrap_text <- function(x, width=60){
   #   sapply(x,function(x) {paste(strwrap(x,width),collapse="\n")})
   # }
+
+  # load translations
+  i18n_header <- shiny.i18n::Translator(
+    translation_json_path =
+      system.file("mipplot", "translation_header.json", package="mipplot"))
+  i18n_header$set_translation_language(language)
+
+  i18n_region <- shiny.i18n::Translator(
+    translation_json_path =
+      system.file("mipplot", "translation_region.json", package="mipplot"))
+  i18n_region$set_translation_language(language)
+
+  i18n_variable <- shiny.i18n::Translator(
+    translation_json_path =
+      system.file("mipplot", "translation_variable.json", package="mipplot"))
+  i18n_variable$set_translation_language(language)
+
+  # if color palette isn't specified or color_code column isn't included,
+  # default color palette is applied.
+  # This color_map is used to sort variable names too.
+  R_original_english = R
+  if (color_code_specify == FALSE || !("Color_code" %in% colnames(R_original_english))) {
+    color_mapper <- mipplot::mipplot_default_color_palette
+  } else {
+    # otherwise, generate palette.
+    color_mapper <- mipplot_generate_color_mapper(R_original_english)
+  }
+
+  # apply internationalization
+  for (i_mapper in 1:length(color_mapper)) {
+    color_mapper[[i_mapper]] <- translate_color_mapper(color_mapper[[i_mapper]], i18n_variable)
+  }
+  color_mapper <- translate_color_mapper(color_mapper, i18n_variable)
+
+  D <- translate_data_table(D, i18n_variable)
+  R <- translate_rule_table(R, i18n_variable)
+
+  # font setting (for internationalization of Chinese and Japansese)
+  install_font_if_not_available(language = language)
+  theme_to_specify_font <- get_theme_to_change_font(language = language)
+
 
   p_list1 <- list()
 
@@ -80,8 +123,9 @@ mipplot_bar <- function(
         }
 
         # Title
-        tt1 <- paste("region:", r, ",  period:", ty, sep = "")
-        tt2 <- paste("variable:", as.character(Var_set[1, 2]), sep = "")
+        tt1 <- paste(i18n_header$t("region"), ":", i18n_region$t(r), ",  ",
+                     i18n_header$t("period"), ":", ty, sep = "")
+        tt2 <- paste(i18n_header$t("variable"), ":", as.character(Var_set[1, 2]), sep = "")
         tt3 <- paste(" [", D_RHS$unit[1], "]", sep = "")
 
         # Change name of variable by removing
@@ -151,7 +195,9 @@ mipplot_bar <- function(
             }
 
             p_Out1 <- p_Out1 +
-              ggplot2::facet_wrap(~eval(parse(text=facet_by)))
+              ggplot2::facet_wrap(~eval(parse(text=facet_by))) +
+              ggplot2::xlab(i18n_header$t(facet_by)) +
+              ggplot2::guides(fill=guide_legend(title=i18n_header$t("variable")))
           }
 
           p_Out1 <- p_Out1 + ggplot2::theme(
