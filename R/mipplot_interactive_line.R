@@ -32,30 +32,31 @@ mipplot_interactive_line <- function(D) {
       sidebarPanel(
 
         selectInput("region", "region:",
-                    choices = region_list
-                    ),
+                    choices = c("Choose region" = "", region_list)
+        ),
 
         selectInput("variable", "variable:",
-                    list(`variable` = var_list)
-                    ),
+                    choices = c("Choose variable" = "", var_list)
+        ),
 
         shinyWidgets::pickerInput("model",
-                    label = "model:",
-                    choices = get_model_name_list(D),
-                    selected = get_model_name_list(D)[1],
-                    multiple = TRUE,
-                    options = list(
-                      `actions-box` = TRUE
-                    )),
+                                  label = "model:",
+                                  choices = get_model_name_list(D),
+                                  multiple = TRUE,
+                                  options = list(
+                                    `actions-box` = TRUE,
+                                    `title` = "Choose model"
+                                  )),
 
         shinyWidgets::pickerInput("scenario",
-                    label = "scenario:",
-                    choices = get_scenario_name_list(D),
-                    selected = get_scenario_name_list(D)[1],
-                    multiple = TRUE,
-                    options = list(
-                      `actions-box` = TRUE
-                    )),
+                                  label = "scenario:",
+                                  choices = get_scenario_name_list(D),
+                                  # selected = get_scenario_name_list(D)[1],
+                                  multiple = TRUE,
+                                  options = list(
+                                    `actions-box` = TRUE,
+                                    `title` = "Choose scenario"
+                                  )),
 
         shinyWidgets::sliderTextInput(
           inputId = "period",
@@ -137,6 +138,21 @@ mipplot_interactive_line <- function(D) {
       if (input$printCredit) {
         subset_plot <- add_credit_to_list_of_plot(subset_plot)
       }
+
+      # print error message if condition is not given.
+      validate(
+        need(
+          length(input$variable) > 0 & input$variable != "" &
+            length(input$region) > 0 & input$region != "" &
+            length(input$model) > 0 & input$model != "" &
+            length(input$scenario) > 0 & input$scenario != "",
+          "please set condition")
+      )
+
+      # print error message if no plot is plotted.
+      validate(
+        need(length(subset_plot) > 0, "can't find any data in this condition")
+      )
 
       subset_plot
     },

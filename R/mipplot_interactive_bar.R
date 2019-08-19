@@ -38,35 +38,36 @@ mipplot_interactive_bar <- function(D, R) {
       sidebarPanel(
 
         selectInput("region", "region:",
-                    choices = region_list
-                    ),
+                    choices = c("Choose region" = "", region_list)
+        ),
 
         shinyWidgets::pickerInput("variable_group",
                                   label = "variable:",
                                   choices = variable_group_name_list,
-                                  selected = variable_group_name_list[1],
                                   multiple = FALSE,
                                   options = list(
-                                    `actions-box` = TRUE
+                                    `actions-box` = TRUE,
+                                    `title` = "Choose variable"
                                   )),
 
 
         shinyWidgets::pickerInput("model",
-                    label = "model:",
-                    choices = get_model_name_list(D),
-                    selected = get_model_name_list(D)[1],
-                    multiple = TRUE,
-                    options = list(
-                      `actions-box` = TRUE
-                    )),
+                                  label = "model:",
+                                  choices = get_model_name_list(D),
+                                  multiple = TRUE,
+                                  options = list(
+                                    `actions-box` = TRUE,
+                                    `title` = "Choose model"
+                                  )),
 
         shinyWidgets::pickerInput("scenario",
                     label = "scenario:",
                     choices = get_scenario_name_list(D),
-                    selected = get_scenario_name_list(D)[1],
+                    # selected = get_scenario_name_list(D)[1],
                     multiple = TRUE,
                     options = list(
-                      `actions-box` = TRUE
+                      `actions-box` = TRUE,
+                      `title` = "Choose scenario"
                     )),
 
         shinyWidgets::sliderTextInput(
@@ -143,6 +144,21 @@ mipplot_interactive_bar <- function(D, R) {
       if (input$printCredit) {
         plotted_image <- add_credit_to_list_of_plot(plotted_image)
       }
+
+      # print error message if condition is not given.
+      validate(
+        need(
+          length(input$variable_group) > 0 & input$variable_group != "" &
+            length(input$region) > 0 & input$region != "" &
+            length(input$model) > 0 & input$model != "" &
+            length(input$scenario) > 0 & input$scenario != "",
+          "please set condition")
+      )
+
+      # print error message if no plot is plotted.
+      validate(
+        need(length(plotted_image) > 0, "can't find any data in this condition")
+      )
 
       # Output the image
       plotted_image
