@@ -50,7 +50,9 @@ mipplot_line <- function(
   i18n_variable$set_translation_language(language)
 
   # apply internationalization
-  D <- translate_data_table(D, i18n_variable)
+  if (language != "en") {
+    D <- translate_data_table(D, i18n_variable)
+  }
 
   # font setting (for internationalization of Chinese and Japansese)
   install_font_if_not_available(language = language)
