@@ -4,4 +4,6 @@
 ^\.Rproj\.user$
 ^data-raw$
 ^release$
-^\.travis\.yml
+^\.travis\.yml$
+^images$
+\mipplot-Manual-v1.md$

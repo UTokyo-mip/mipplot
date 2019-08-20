@@ -8,7 +8,7 @@ mipplot_line(D, region = levels(D$region),
   variable = levels(D$variable), colorby = "scenario",
   linetypeby = "model", shapeby = "model",
   scenario = levels(D$scenario), facet_x = NULL, facet_y = NULL,
-  legend = TRUE, PRINT_OUT = F, DEBUG = T)
+  legend = TRUE, PRINT_OUT = F, DEBUG = T, language = "en")
 }
 \arguments{
 \item{D}{A dataframe of IAMC data in tibble format to produce plots.}
@@ -34,6 +34,9 @@ mipplot_line(D, region = levels(D$region),
 \item{PRINT_OUT}{set TRUE to generate PDF files.}
 
 \item{DEBUG}{set TRUE to show debug messages.}
+
+\item{language}{A string of language. Possible values are "en", "jp",
+"es", "zh-cn", "zh-tw". The default value is "en".}
 }
 \value{
 A list of line plots.

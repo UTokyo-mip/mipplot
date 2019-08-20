@@ -20,6 +20,8 @@ Imports:
     shinyWidgets,
     data.table,
     openxlsx,
+    readxl,
+    shiny,
     shiny.i18n,
     showtextdb    
 Depends: R (>= 2.10), reshape2, dplyr, forcats, readr, showtext
