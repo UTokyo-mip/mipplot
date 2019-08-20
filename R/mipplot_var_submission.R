@@ -5,16 +5,6 @@
 # List of revisions:
 
 #--------------------------------------------------------------------
-#IMPORT LIBRARIES
-#--------------------------------------------------------------------
-
-library(ggplot2)
-library(data.table)
-library(openxlsx)
-library(stringr)
-library(reshape2)
-
-#--------------------------------------------------------------------
 # variable SUBMISSION CHECK
 #====================================================================
 # Verify whether data of variables included in list template have been

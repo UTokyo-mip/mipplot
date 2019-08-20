@@ -10,9 +10,6 @@
 
 mipplot_interactive_plot_line <- function(D, R) {
 
-  library(ggplot2)
-  library(shiny)
-
   var_list <- levels(D$variable)
   region_list <- levels(D$region)
 
