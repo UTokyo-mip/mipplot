@@ -90,6 +90,14 @@ mipplot_interactive_area <- function(D, R, language = "en") {
                       "Spanish" = "es"),
                     selected = language),
 
+
+        # To disable automatic re-draw,
+        # we only have to includes submitButton.
+        shiny::div(
+          class = "form-group shiny-input-container",
+          submitButton(text = "Apply Changes", icon = NULL, width = NULL)
+        ),
+
         # Show container which shows R code
         # to reproduce current plot.
         div(
@@ -144,6 +152,8 @@ mipplot_interactive_area <- function(D, R, language = "en") {
       if (input$printCredit) {
         plotted_image <- add_credit_to_list_of_plot(plotted_image)
       }
+
+
 
       # print error message if condition is not given.
       validate(
