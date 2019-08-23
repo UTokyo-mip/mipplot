@@ -161,10 +161,10 @@ mipplot_interactive_bar <- function(D, R, language = "en") {
       # print error message if condition is not given.
       validate(
         need(
-          length(input$variable_group) > 0 & input$variable_group != "" &
-            length(input$region) > 0 & input$region != "" &
-            length(input$model) > 0 & input$model != "" &
-            length(input$scenario) > 0 & input$scenario != "",
+          length(input$variable_group) > 0 && input$variable_group != "" &&
+            length(input$region) > 0 && input$region != "" &&
+            length(input$model) > 0 && input$model != "" &&
+            length(input$scenario) > 0 && input$scenario != "",
           "please set condition")
       )
 
