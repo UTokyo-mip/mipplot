@@ -115,7 +115,8 @@ get_variable_group_name_list <- function(rule_table) {
   group_name_list <- c()
 
   # initialize temporary variables
-  current_group_name <- ""
+  current_left_side_name <- ""
+  current_right_side_name_list <- c()
 
   # scan all rows in rule_table
   for (i_row in 1:nrow(rule_table)) {
@@ -127,32 +128,55 @@ get_variable_group_name_list <- function(rule_table) {
 
       # add current_group_name to result
       if (i_row > 1) {
-        group_name_list <- c(group_name_list, current_group_name)
+
+        # formatting such as
+        # current_left_side_name = current_right_side_name_list[1] + current_...[2] + ...
+        new_group_name <- generate_variable_group_name_from_lhs_and_rhs_list(
+          current_left_side_name, current_right_side_name_list)
+
+        # add new variable group name
+        group_name_list <- c(group_name_list, new_group_name)
       }
 
-      # set current_group_name to "current_group_name|" (with separator |)
-      current_group_name <- paste(new_row$Left_side, "|", sep="")
+      # re-set temporary variables
+      current_left_side_name <- new_row$Left_side  #paste(, " = ", sep="")
+      current_right_side_name_list <- c()
     }
 
     # if find new RHS entry
     if (new_row$Right_side != "") {
 
       # remove parent part, then get base name
-      right_side_base_name <- stringr::str_replace(new_row$Right_side, "^.*\\|", "")
+      new_right_side_name <- stringr::str_replace(new_row$Right_side, "^.*\\|", "")
 
-      # add RHS entry to current_group_name with comma separator.
-      current_group_name <- paste(current_group_name, right_side_base_name, ",", sep="")
+      # add RHS entry to current_group_name with " + " separator.
+      current_right_side_name_list <- c(current_right_side_name_list, new_right_side_name)
     }
   }
 
   # add last entry to result
-  group_name_list <- c(group_name_list, current_group_name)
+  ## TODO:
+  group_name_list <- c(group_name_list, generate_variable_group_name_from_lhs_and_rhs_list(
+    current_left_side_name, current_right_side_name_list))
 
   # remove "|" or "," if they are placed on the end of current_group_name
   # ex. "Population|" or "Emissions|CO2,Land Use,"
-  group_name_list <- stringr::str_replace_all(group_name_list, "\\|$|,$", "")
+  # group_name_list <- stringr::str_replace_all(group_name_list, "\\|$|,$", "")
 
   return(group_name_list)
+}
+
+generate_variable_group_name_from_lhs_and_rhs_list <- function(lhs, rhs_list) {
+
+  if (length(rhs_list) > 0) {
+
+    return(paste(lhs, stringr::str_flatten(rhs_list, collapse = " + "), sep = " = "))
+  } else {
+    # if rhs is empty (ex. Population in AR5 rule table)
+    # output lhs only.
+    return(lhs)
+  }
+
 }
 
 #' @title Get variable name list in given variable-group
@@ -169,34 +193,47 @@ get_variable_group_name_list <- function(rule_table) {
 #' @export
 get_variable_name_list_in_variable_group <- function(group_name) {
 
-  # trim parent level part and get child level part
-  # ex.
-  # input: "Emissions|CO2|Fossil Fuels and Industry|Energy Demand,Energy Supply"
-  # output: "Energy Demand,Energy Supply"
-  child_part <- str_replace_all(group_name, "^.*\\|", "")
+  # CASE: includes both of LHS and RHS.
 
-  # separate elements in child level part
-  # ex.
-  # input: "Energy Demand,Energy Supply"
-  # output: c("Energy Demand", "Energy Supply")
-  child_part_elements <- stringr::str_split(child_part, ",")[[1]]
+  # check if group_name includes "="
+  if (stringr::str_detect(group_name, "\\=")) {
 
-  # trim child level part and get parent level part
-  # ex.
-  # input: "Emissions|CO2|Fossil Fuels and Industry|Energy Demand,Energy Supply"
-  # output: "Energy Demand,Energy Supply"
-  parent_part <- stringr::str_extract(group_name, "^.*\\|")
+    # trim parent level part and get child level part
+    # ex.
+    # input: "Emissions|CO2|Fossil Fuels and Industry = Energy Demand + Energy Supply"
+    # output: "Energy Demand,Energy Supply"
+    child_part <- stringr::str_replace_all(group_name, "^.* \\= ", "")
 
-  if (is.na(parent_part)) {
+    # separate elements in child level part
+    # ex.
+    # input: "Energy Demand + Energy Supply"
+    # output: c("Energy Demand", "Energy Supply")
+    child_part_elements <- stringr::str_split(child_part, " \\+ ")[[1]]
 
-    return(child_part)
+    # trim child level part and get parent level part
+    # ex.
+    # input: "Emissions|CO2|Fossil Fuels and Industry = Energy Demand + Energy Supply"
+    # output: "Energy Demand,Energy Supply"
+    parent_part <- gsub("^| \\=.*$", "", group_name)
+
+    if (is.na(parent_part)) {
+
+      return(child_part)
+
+    } else {
+
+      full_path_variable_name_list <- paste(parent_part, child_part_elements, sep="|")
+
+      parent_part_without_last_vertical_line <- stringr::str_replace(parent_part, "\\|$", "")
+
+      return(c(parent_part_without_last_vertical_line, full_path_variable_name_list))
+    }
 
   } else {
 
-    full_path_variable_name_list <- paste(parent_part, child_part_elements, sep="")
+    return(group_name)
 
-    parent_part_without_last_vertical_line <- stringr::str_replace(parent_part, "\\|$", "")
-
-    return(c(parent_part_without_last_vertical_line, full_path_variable_name_list))
   }
+
+
 }
