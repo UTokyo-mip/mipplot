@@ -64,6 +64,11 @@ mipplot_line <- function(
 
     for (v in levels(as.factor(variable))) {
 
+        if(language != "en") {
+          v <- i18n_variable$t(v)
+        }
+
+
         D_sub <- D[
           D$region == r &
             D$variable == v &
@@ -80,7 +85,7 @@ mipplot_line <- function(
 
         ## Title
         tt1 <- paste(i18n_header$t("region"), ":", i18n_region$t(r), sep = "")
-        tt2 <- paste(i18n_header$t("variable"), ":", i18n_variable$t(as.character(v)), sep = "")
+        tt2 <- paste(i18n_header$t("variable"), ":", v, sep = "")
         tt3 <- paste(" [", D_sub$unit[1], "]", sep = "")
 
         ## Line plots: using values name

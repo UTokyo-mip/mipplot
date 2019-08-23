@@ -3,13 +3,16 @@
 #'              The function arguments include the input dataframe,
 #'              labels for the plot/axes/legend, and faceting dimensions
 #' @param D A quitte format dataframe of IAMC data to produce garph.
+#' @param language A string of language for initial plot.
+#' Possible values are "en", "jp",
+#' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @examples
 #' \donttest{
 #' mipplot_interactive_line(ar5_db_sample_data)
 #' }
 #' @export
 
-mipplot_interactive_line <- function(D) {
+mipplot_interactive_line <- function(D, language = "en") {
 
   # name_of_input_df is a string such as "ar5_db_sample_data"
   # this variable is used for generating R code to reproduce plot
@@ -78,6 +81,15 @@ mipplot_interactive_line <- function(D) {
           value = TRUE
         ),
 
+        selectInput("language", "language:",
+                    choices = c(
+                      "Chinese(Simplified)" = "zh-cn",
+                      "Chinese(Traditional)" = "zh-tw",
+                      "English" = "en",
+                      "Japanese" = "jp",
+                      "Spanish" = "es"),
+                    selected = language),
+
         # To disable automatic re-draw,
         # we only have to includes submitButton.
         shiny::div(
@@ -133,7 +145,8 @@ mipplot_interactive_line <- function(D) {
                    variable = input$variable,
                    scenario = input$scenario,
                    region = input$region,
-                   legend = input$showLegend)
+                   legend = input$showLegend,
+                   language = input$language)
 
       if (input$printCredit) {
         subset_plot <- add_credit_to_list_of_plot(subset_plot)
@@ -142,10 +155,10 @@ mipplot_interactive_line <- function(D) {
       # print error message if condition is not given.
       validate(
         need(
-          length(input$variable) > 0 & input$variable != "" &
-            length(input$region) > 0 & input$region != "" &
-            length(input$model) > 0 & input$model != "" &
-            length(input$scenario) > 0 & input$scenario != "",
+          length(input$variable) > 0 && input$variable != "" &&
+            length(input$region) > 0 && input$region != "" &&
+            length(input$model) > 0 && input$model != "" &&
+            length(input$scenario) > 0 && input$scenario != "",
           "please set condition")
       )
 
@@ -209,14 +222,17 @@ get_scenario_name_list <- function(D) {
 #' - region
 generate_code_to_plot_line <- function(input, name_of_iamc_data_variable = "D") {
     return(stringr::str_interp(
-"${name_of_iamc_data_variable} %>%
+"data_subset <- ${name_of_iamc_data_variable} %>%
   filter( model %in% ${get_string_expression_of_vector_of_strings(input$model)} ) %>%
   filter(${input$period[1]} <= period) %>%
-  filter(period <= ${input$period[2]}) %>%
+  filter(period <= ${input$period[2]})
+
   mipplot_line(
+    data_subset,
     variable = ${get_string_expression_of_vector_of_strings(input$variable)},
     scenario = ${get_string_expression_of_vector_of_strings(input$scenario)},
     region = ${get_string_expression_of_vector_of_strings(input$region)},
-    legend = ${as.character(input$showLegend)})
+    legend = ${as.character(input$showLegend)},
+    language = '${input$language}')
 "))
 }
