@@ -100,6 +100,13 @@ mipplot_interactive_bar <- function(D, R, language = "en") {
                       "Spanish" = "es"),
                     selected = language),
 
+        # To disable automatic re-draw,
+        # we only have to includes submitButton.
+        shiny::div(
+          class = "form-group shiny-input-container",
+          submitButton(text = "Apply Changes", icon = NULL, width = NULL)
+        ),
+
         # Show container which shows R code
         # to reproduce current plot.
         shiny::div(
