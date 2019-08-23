@@ -2,13 +2,16 @@
 #' @description Provides gui to set plotting parameter for area plot.
 #' @param D A dataframe of IAMC data in tibble format to produce area plots.
 #' @param R A dataframe of data aggregation rules (meta data).
+#' @param language A string of language for initial plot.
+#' Possible values are "en", "jp",
+#' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @examples
 #' \donttest{
 #' mipplot_interactive_area(ar5_db_sample_data, ar5_db_sample_rule_table)
 #' }
 #' @export
 
-mipplot_interactive_area <- function(D, R) {
+mipplot_interactive_area <- function(D, R, language = "en") {
 
   # name_of_input_data_variable is a string such as "ar5_db_sample_data"
   # this variable is used for generating R code to reproduce plot
@@ -78,6 +81,15 @@ mipplot_interactive_area <- function(D, R) {
           label = "100% stacked",
           value = FALSE),
 
+        selectInput("language", "language:",
+                    choices = c(
+                      "Chinese(Simplified)" = "zh-cn",
+                      "Chinese(Traditional)" = "zh-tw",
+                      "English" = "en",
+                      "Japanese" = "jp",
+                      "Spanish" = "es"),
+                    selected = language),
+
         # Show container which shows R code
         # to reproduce current plot.
         div(
@@ -125,7 +137,8 @@ mipplot_interactive_area <- function(D, R) {
       plotted_image <- mipplot_area(data_subset, R,
                                     region = input$region,
                                     scenario = input$scenario,
-                                    one_hundred_percent_stacked = input$aHundredPercentStacked)
+                                    one_hundred_percent_stacked = input$aHundredPercentStacked,
+                                    language = input$language)
 
       # If specified, a copyright notice will be added to the image.
       if (input$printCredit) {
@@ -182,7 +195,7 @@ generate_code_to_plot_area <- function(
 mipplot_area(data_subset, ${name_of_input_rule_table_variable},
   region = ${get_string_expression_of_vector_of_strings(input$region)},
   scenario = ${get_string_expression_of_vector_of_strings(input$scenario)},
-  one_hundred_percent_stacked = ${input$aHundredPercentStacked})"
-  ))
+  one_hundred_percent_stacked = ${input$aHundredPercentStacked},
+  language = '${input$language}')"))
 }
 
