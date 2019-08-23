@@ -74,7 +74,7 @@ add_credit_to_plot <- function(plot_object) {
 
       # credit text
       ggplot2::labs(
-        caption = "copyright 2019 UTokyo-mip All Rights Reserved.") +
+        caption = "Created with https://github.com/UTokyo-mip/mipplot") +
 
       # formatting of the text
       ggplot2::theme(
