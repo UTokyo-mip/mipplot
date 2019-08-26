@@ -127,6 +127,16 @@ mipplot_interactive_area <- function(D, R, language = "en") {
 
     output$area_plot <- renderPlot({
 
+      # print error message if condition is not given.
+      validate(
+        need(
+          length(input$variable_group) > 0 && input$variable_group != "" &&
+            length(input$region) > 0 && input$region != "" &&
+            length(input$model) > 0 && input$model != "" &&
+            length(input$scenario) > 0 && input$scenario != "",
+          "please set condition")
+      )
+
       # get variable name list in specified variable group
       input_variable_list <- get_variable_name_list_in_variable_group(input$variable_group)
 
@@ -152,18 +162,6 @@ mipplot_interactive_area <- function(D, R, language = "en") {
       if (input$printCredit) {
         plotted_image <- add_credit_to_list_of_plot(plotted_image)
       }
-
-
-
-      # print error message if condition is not given.
-      validate(
-        need(
-          length(input$variable_group) > 0 && input$variable_group != "" &&
-            length(input$region) > 0 && input$region != "" &&
-            length(input$model) > 0 && input$model != "" &&
-            length(input$scenario) > 0 && input$scenario != "",
-          "please set condition")
-      )
 
       # print error message if no plot is plotted.
       validate(
