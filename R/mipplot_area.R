@@ -134,10 +134,15 @@ mipplot_area <- function(
               ggplot2::aes(x = period, y = value, fill = variable),
               position = position)
 
-          p_Out1 <- p_Out1 +
-            ggplot2::geom_line(
-              data = na.omit(D_LHS),
-              ggplot2::aes(x = period, y = value), size = 2)
+          # Plot line plot if one_hundred_percent_stacked is FALSE
+          # because the maximum values of y-axes of 100% stacked graph
+          # and ordinal graph are not same.
+          if (!one_hundred_percent_stacked) {
+            p_Out1 <- p_Out1 +
+              ggplot2::geom_line(
+                data = na.omit(D_LHS),
+                ggplot2::aes(x = period, y = value), size = 2)
+          }
 
           # Define plot titles and axes labels.
           p_Out1 <- p_Out1 +
