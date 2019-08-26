@@ -134,7 +134,7 @@ mipplot_interactive_area <- function(D, R, language = "en") {
             length(input$region) > 0 && input$region != "" &&
             length(input$model) > 0 && input$model != "" &&
             length(input$scenario) > 0 && input$scenario != "",
-          "please set condition")
+          "Please specify plotting options.")
       )
 
       # get variable name list in specified variable group

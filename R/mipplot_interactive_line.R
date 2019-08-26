@@ -159,7 +159,7 @@ mipplot_interactive_line <- function(D, language = "en") {
             length(input$region) > 0 && input$region != "" &&
             length(input$model) > 0 && input$model != "" &&
             length(input$scenario) > 0 && input$scenario != "",
-          "please set condition")
+          "Please specify plotting options.")
       )
 
       # print error message if no plot is plotted.
