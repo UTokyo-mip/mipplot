@@ -4,12 +4,16 @@
 \alias{mipplot_interactive_area}
 \title{A function to launch interactive plotting session on Shniy}
 \usage{
-mipplot_interactive_area(D, R)
+mipplot_interactive_area(D, R, language = "en")
 }
 \arguments{
 \item{D}{A dataframe of IAMC data in tibble format to produce area plots.}
 
 \item{R}{A dataframe of data aggregation rules (meta data).}
+
+\item{language}{A string of language for initial plot.
+Possible values are "en", "jp",
+"es", "zh-cn", "zh-tw". The default value is "en".}
 }
 \description{
 Provides gui to set plotting parameter for area plot.

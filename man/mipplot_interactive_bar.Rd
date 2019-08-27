@@ -4,12 +4,16 @@
 \alias{mipplot_interactive_bar}
 \title{A function to launch interactive plot using Shiny}
 \usage{
-mipplot_interactive_bar(D, R)
+mipplot_interactive_bar(D, R, language = "en")
 }
 \arguments{
 \item{D}{A quitte format dataframe of IAMC data to produce garph.}
 
 \item{R}{A table with additivity rules.}
+
+\item{language}{A string of language for initial plot.
+Possible values are "en", "jp",
+"es", "zh-cn", "zh-tw". The default value is "en".}
 }
 \description{
 A function to launch interactive bar plot using

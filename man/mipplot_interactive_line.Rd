@@ -4,10 +4,14 @@
 \alias{mipplot_interactive_line}
 \title{A function to launch interactive plot using Shiny}
 \usage{
-mipplot_interactive_line(D)
+mipplot_interactive_line(D, language = "en")
 }
 \arguments{
 \item{D}{A quitte format dataframe of IAMC data to produce garph.}
+
+\item{language}{A string of language for initial plot.
+Possible values are "en", "jp",
+"es", "zh-cn", "zh-tw". The default value is "en".}
 }
 \description{
 A function to launch interactive line plot.

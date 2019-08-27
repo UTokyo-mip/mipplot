@@ -2,9 +2,7 @@
 title: "First steps with the mipplot package"
 author: "U-Tokyo mipplot team"
 date: "`r Sys.Date()`"
-output: 
-  rmarkdown::html_vignette:
-    df_print: tibble
+output: rmarkdown::html_document
 vignette: >
   %\VignetteIndexEntry{Vignette Title}
   %\VignetteEngine{knitr::rmarkdown}
