@@ -249,7 +249,10 @@ get_variable_name_list_in_variable_group <- function(group_name) {
 #' @return modified data frame
 #' @export
 split_variable_into_positive_and_negative_parts <- function(
-  df, domain_column_name, variable_column_name, value_column_name, variable_name_converter = function(x){paste(x, '_negative', sep="")}) {
+  df, domain_column_name, variable_column_name,
+    value_column_name,
+    variable_name_converter = function(x){paste(x, '_negative', sep="")},
+    increment_of_domain_in_interpolation = 0.1) {
 
   # data frame to be returned
   df_new <- df[0,]
@@ -278,6 +281,40 @@ split_variable_into_positive_and_negative_parts <- function(
     # 3 2075   0        coal
     #
     partial_df <- df %>% filter((!!rlang::sym(variable_column_name)) == original_variable_name)
+
+    #
+    # performs linear interpolation to get following dataframe
+    #
+    # (example)
+    # > partial_df
+    #   y       val variable
+    # 1 2000   +100     coal
+    # 2 2025   0        coal
+    # 3 2050   -100     coal
+    # 4 2075   0        coal
+    #
+    new_domain_for_interpolation <- seq(
+      from=min(partial_df[domain_column_name]),
+      to=max(partial_df[domain_column_name]),
+      by=increment_of_domain_in_interpolation)
+
+        new_domain_for_interpolation <- setdiff(
+        new_domain_for_interpolation,
+          unlist(partial_df[domain_column_name]))
+
+    func_get_value_at_given_domain <- approxfun(
+        unlist(partial_df[domain_column_name]),
+        y=unlist(partial_df[value_column_name]))
+
+    command <-
+      paste("add_row(",
+      ".data", "=", "partial_df", ",",
+      domain_column_name, "=", "unlist(new_domain_for_interpolation)", ",",
+      value_column_name, "=", "func_get_value_at_given_domain(new_domain_for_interpolation)", ",",
+      variable_column_name, "=", paste('"', original_variable_name,'"', sep=""),
+      ")", sep=" ")
+
+    partial_df <- eval(parse(text=command))
 
     # get positive part
     positive_partial_df <- partial_df %>% filter(0 <= (!!rlang::sym(value_column_name)))
