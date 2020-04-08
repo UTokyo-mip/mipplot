@@ -296,7 +296,6 @@ split_variable_into_positive_and_negative_parts <- function(
       # 3 2075   0        coal
       #
       partial_df <- df %>% filter((!!rlang::sym(variable_column_name)) == original_variable_name)
-      print(partial_df)
 
       #
       # performs linear interpolation to get following dataframe
