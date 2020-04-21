@@ -141,12 +141,29 @@ mipplot_interactive_line <- function(D, language = "en") {
         # dplyr::filter(period <= input$period_end)
 
       # plot D_subset instead of D.
-      subset_plot <- mipplot_line(D_subset,
-                   variable = input$variable,
-                   scenario = input$scenario,
-                   region = input$region,
-                   legend = input$showLegend,
-                   language = input$language)
+      withCallingHandlers({
+         subset_plot <- mipplot_line(D_subset,
+                     variable = input$variable,
+                     scenario = input$scenario,
+                     region = input$region,
+                     legend = input$showLegend,
+                     language = input$language)
+      }, warning = function(e) {
+
+        showModal(modalDialog(
+          title = "Warning",
+          e$message,
+          easyClose = TRUE
+        ))
+
+      })
+      # subset_plot <- mipplot_line(D_subset,
+      #              variable = input$variable,
+      #              scenario = input$scenario,
+      #              region = input$region,
+      #              legend = input$showLegend,
+      #              language = input$language)
+
 
       if (input$printCredit) {
         subset_plot <- add_credit_to_list_of_plot(subset_plot)
