@@ -29,6 +29,8 @@ mipplot_interactive_line <- function(D, language = "en") {
 
   ui <- fluidPage(
 
+    shinyalert::useShinyalert(),
+
     titlePanel("mipplot"),
 
     sidebarLayout(
@@ -141,12 +143,32 @@ mipplot_interactive_line <- function(D, language = "en") {
         # dplyr::filter(period <= input$period_end)
 
       # plot D_subset instead of D.
-      subset_plot <- mipplot_line(D_subset,
-                   variable = input$variable,
-                   scenario = input$scenario,
-                   region = input$region,
-                   legend = input$showLegend,
-                   language = input$language)
+      withCallingHandlers({
+         subset_plot <- mipplot_line(D_subset,
+                     variable = input$variable,
+                     scenario = input$scenario,
+                     region = input$region,
+                     legend = input$showLegend,
+                     language = input$language)
+      }, warning = function(e) {
+
+        if(grepl("too many scenarios", e$message, fixed=TRUE)) {
+          shinyalert::shinyalert(
+            title = "Info",
+            text = e$message,
+            closeOnEsc = TRUE,
+            closeOnClickOutside = TRUE,
+            html = FALSE,
+            type = "info",
+            showConfirmButton = FALSE,
+            showCancelButton = FALSE,
+            timer = 2000,
+            imageUrl = "",
+            animation = TRUE
+          )
+        }
+
+      })
 
       if (input$printCredit) {
         subset_plot <- add_credit_to_list_of_plot(subset_plot)
@@ -171,11 +193,7 @@ mipplot_interactive_line <- function(D, language = "en") {
     },
     height = 400, width = 600
     )
-
-
   }
-
-
 
   shinyApp(ui, server);
 }

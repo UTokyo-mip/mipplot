@@ -20,6 +20,8 @@
 #' @param DEBUG set TRUE to show debug messages.
 #' @param language A string of language. Possible values are "en", "jp",
 #' "es", "zh-cn", "zh-tw". The default value is "en".
+#' @param max_scenarios Maximum number of scenarios to be shown. If legend is FALSE, this option is .
+#' @param max_models Maximum number of models to be shown. If legend is FALSE, this option is
 #' @return A list of line plots.
 #' @examples
 #' \donttest{
@@ -31,7 +33,8 @@ mipplot_line <- function(
   D, region = levels(D$region), variable = levels(D$variable),
   colorby = "scenario", linetypeby = "model", shapeby = "model",
   scenario = levels(D$scenario), facet_x = NULL,
-  facet_y = NULL, legend = TRUE, PRINT_OUT = F, DEBUG = T, language="en") {
+  facet_y = NULL, legend = TRUE, PRINT_OUT = F, DEBUG = T, language="en",
+  max_scenarios = 15, max_models = 15) {
 
   # load translations
   i18n_header <- shiny.i18n::Translator(
@@ -81,6 +84,30 @@ mipplot_line <- function(
         # the selected scope (scenario/region/variable).
         if (nrow(D_sub) == 0) {
           next()
+        }
+
+        ## Limit number of lines to be plotted
+
+        # get all scenarios
+        D_sub %>% select(scenario) %>% unique %>%
+          unlist %>% as.character -> scenario_list
+
+        # get all models
+        D_sub %>% select(model) %>% unique %>%
+          unlist %>% as.character -> model_list
+
+        # reduce data
+        if (legend) {
+          if (max_scenarios < length(scenario_list)) {
+            warning(paste("too many scenarios. first", max_scenarios, "are shown."))
+            scenario_list %>% head(max_scenarios) -> scenario_list_part
+            D_sub %>% filter(scenario %in% scenario_list_part) -> D_sub
+          }
+          if (max_models < length(model_list)) {
+            warning(paste("too many models. first", max_models, "are shown."))
+            model_list %>% head(max_models) -> model_list_part
+            D_sub %>% filter(model %in% model_list_part) -> D_sub
+          }
         }
 
         ## Title

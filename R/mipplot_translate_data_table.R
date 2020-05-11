@@ -26,10 +26,11 @@ translate_data_table <- function(english_data_table, i18n_variable) {
 
     if (nrow(english_data_table) == 0) return(english_data_table)
 
-    for (i_row in 1:nrow(english_data_table)) {
-      translated_data_table[[i_row, 'variable']] <-
-        i18n_variable$t(as.character(english_data_table[[i_row, 'variable']]))
+    variable_list <- unique(english_data_table$variable)
+    for (variable in variable_list) {
+      translated_data_table[translated_data_table$variable == variable, "variable"] <- i18n_variable$t(variable)
     }
+
     translated_data_table$variable <- as.factor(translated_data_table$variable)
   }
 
@@ -54,7 +55,7 @@ translate_color_mapper <- function(english_color_mapper, i18n_variable) {
   return(translated_color_mapper[!dup_indices])
 }
 
-convert_language_specifier_flavor_from_mipplot_to_showtext <- 
+convert_language_specifier_flavor_from_mipplot_to_showtext <-
     function (language_in_mipplot) {
   if (language_in_mipplot == "zh-cn") {
     return("CN")
@@ -95,7 +96,7 @@ install_font_if_not_available <- function(language) {
     if (!get_font_name(language) %in% showtextdb::font_installed()) {
       print("Installing fonts for internationalization (not system wide)")
       print("It takes some time only the first call with each language settings.")
-      language_specifier_for_showtext <- 
+      language_specifier_for_showtext <-
         convert_language_specifier_flavor_from_mipplot_to_showtext(language)
       showtextdb::font_install(
         showtextdb::source_han_sans(lang = language_specifier_for_showtext))
@@ -113,6 +114,6 @@ get_theme_to_change_font <- function(language) {
   } else {
     return(theme())
   }
-  
-  
+
+
 }
