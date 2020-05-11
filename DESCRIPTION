@@ -23,7 +23,8 @@ Imports:
     readxl,
     shiny.i18n,
     showtextdb,
-    shinyalert
+    shinyalert,
+    tidyverse
 Depends: R (>= 2.10), reshape2, dplyr, forcats, readr, showtext, shiny
 License: MIT + file LICENSE
 Suggests:
