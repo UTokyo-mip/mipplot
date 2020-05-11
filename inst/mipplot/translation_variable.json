@@ -1,0 +1,557 @@
+{
+    "languages": [
+        "en",
+        "jp",
+        "zh-cn",
+        "zh-tw",
+        "es"
+    ],
+    "translation": [
+        {
+            "en": "Emissions|CO2",
+            "es": "Emisiones|CO2",
+            "jp": "排出|CO2",
+            "zh-cn": "排放|CO2",
+            "zh-tw": "排放|CO2"
+        },
+        {
+            "en": "Emissions",
+            "es": "Emisiones",
+            "jp": "排出",
+            "zh-cn": "排放",
+            "zh-tw": "排放"
+        },
+        {
+            "en": "CO2",
+            "es": "CO2",
+            "jp": "CO2",
+            "zh-cn": "CO2",
+            "zh-tw": "CO2"
+        },
+        {
+            "en": "Emissions|CO2|Carbon Capture and Storage",
+            "es": "Emisiones|CO2|Captura y Almacenamiento de Carbón",
+            "jp": "排出|CO2|二酸化炭素の貯留",
+            "zh-cn": "排放|CO2|碳捕捉和储存",
+            "zh-tw": "排放|CO2|碳捕捉和儲存"
+        },
+        {
+            "en": "Carbon Capture and Storage",
+            "es": "Captura y Almacenamiento de Carbón",
+            "jp": "二酸化炭素の貯留",
+            "zh-cn": "碳捕捉和储存",
+            "zh-tw": "碳捕捉和儲存"
+        },
+        {
+            "en": "Emissions|CO2|Fossil Fuels and Industry",
+            "es": "Emisiones|CO2|Combustibles Fósiles e Industria",
+            "jp": "排出|CO2|化石燃料と工業",
+            "zh-cn": "排放|CO2|化石能源和工业",
+            "zh-tw": "排放|CO2|化石能源和工業"
+        },
+        {
+            "en": "Fossil Fuels and Industry",
+            "es": "Combustibles Fósiles e Industria",
+            "jp": "化石燃料と工業",
+            "zh-cn": "化石能源和工业",
+            "zh-tw": "化石能源和工業"
+        },
+        {
+            "en": "Emissions|CO2|Fossil Fuels and Industry|Energy Demand",
+            "es": "Emisiones|CO2|Combustibles Fósiles e Industria|Demanda de Energía",
+            "jp": "排出|CO2|化石燃料と工業|エネルギー需要",
+            "zh-cn": "排放|CO2|化石能源和工业|能源需求",
+            "zh-tw": "排放|CO2|化石能源和工業|能源需求"
+        },
+        {
+            "en": "Energy Demand",
+            "es": "Demanda de Energía",
+            "jp": "エネルギー需要",
+            "zh-cn": "能源需求",
+            "zh-tw": "能源需求"
+        },
+        {
+            "en": "Emissions|CO2|Fossil Fuels and Industry|Energy Demand|Industry",
+            "es": "Emisiones|CO2|Combustibles Fósiles e Industria|Demanda de Energía|Industria",
+            "jp": "排出|CO2|化石燃料と工業|エネルギー需要|工業",
+            "zh-cn": "排放|CO2|化石能源和工业|能源需求|工业",
+            "zh-tw": "排放|CO2|化石能源和工業|能源需求|工業"
+        },
+        {
+            "en": "Industry",
+            "es": "Industria",
+            "jp": "工業",
+            "zh-cn": "工业",
+            "zh-tw": "工業"
+        },
+        {
+            "en": "Emissions|CO2|Fossil Fuels and Industry|Energy Demand|Residential and Commercial",
+            "es": "Emisiones|CO2|Combustibles Fósiles e Industria|Demanda de Energía|Residencial y Comercial",
+            "jp": "排出|CO2|化石燃料と工業|エネルギー需要|住民と商業",
+            "zh-cn": "排放|CO2|化石能源和工业|能源需求|居民和商业",
+            "zh-tw": "排放|CO2|化石能源和工業|能源需求|居民和商業"
+        },
+        {
+            "en": "Residential and Commercial",
+            "es": "Residencial y Comercial",
+            "jp": "住民と商業",
+            "zh-cn": "居民和商业",
+            "zh-tw": "居民和商業"
+        },
+        {
+            "en": "Emissions|CO2|Fossil Fuels and Industry|Energy Demand|Transportation",
+            "es": "Emisiones|CO2|Combustibles Fósiles e Industria|Demanda de Energía|Transporte",
+            "jp": "排出|CO2|化石燃料と工業|エネルギー需要|運送業",
+            "zh-cn": "排放|CO2|化石能源和工业|能源需求|交通运输业",
+            "zh-tw": "排放|CO2|化石能源和工業|能源需求|交通運輸業"
+        },
+        {
+            "en": "Transportation",
+            "es": "Transporte",
+            "jp": "運送業",
+            "zh-cn": "交通运输业",
+            "zh-tw": "交通運輸業"
+        },
+        {
+            "en": "Emissions|CO2|Fossil Fuels and Industry|Energy Supply",
+            "es": "Emisiones|CO2|Combustibles Fósiles e Industria|Suministro de Energía",
+            "jp": "排出|CO2|化石燃料と工業|エネルギー供給",
+            "zh-cn": "排放|CO2|化石能源和工业|能源供应",
+            "zh-tw": "排放|CO2|化石能源和工業|能源供應"
+        },
+        {
+            "en": "Energy Supply",
+            "es": "Suministro de Energía",
+            "jp": "エネルギー供給",
+            "zh-cn": "能源供应",
+            "zh-tw": "能源供應"
+        },
+        {
+            "en": "Emissions|CO2|Land Use",
+            "es": "Emisiones|CO2|Uso de la Tierra",
+            "jp": "排出|CO2|土地利用",
+            "zh-cn": "排放|CO2|土地使用",
+            "zh-tw": "排放|CO2|土地使用"
+        },
+        {
+            "en": "Land Use",
+            "es": "Uso de la Tierra",
+            "jp": "土地利用",
+            "zh-cn": "土地使用",
+            "zh-tw": "土地使用"
+        },
+        {
+            "en": "Final Energy",
+            "es": "Energía Final",
+            "jp": "最終エネルギー",
+            "zh-cn": "最终能源",
+            "zh-tw": "最終能源"
+        },
+        {
+            "en": "Final Energy|Electricity",
+            "es": "Energía Final|Electricidad",
+            "jp": "最終エネルギー|電力",
+            "zh-cn": "最终能源|电力",
+            "zh-tw": "最終能源|電力"
+        },
+        {
+            "en": "Electricity",
+            "es": "Electricidad",
+            "jp": "電力",
+            "zh-cn": "电力",
+            "zh-tw": "電力"
+        },
+        {
+            "en": "Final Energy|Gases",
+            "es": "Energía Final|Gases",
+            "jp": "最終エネルギー|ガス",
+            "zh-cn": "最终能源|燃气",
+            "zh-tw": "最終能源|燃氣"
+        },
+        {
+            "en": "Gases",
+            "es": "Gases",
+            "jp": "ガス",
+            "zh-cn": "燃气",
+            "zh-tw": "燃氣"
+        },
+        {
+            "en": "Final Energy|Geothermal",
+            "es": "Energía Final|Geotérmica",
+            "jp": "最終エネルギー|地熱",
+            "zh-cn": "最终能源|地热",
+            "zh-tw": "最終能源|地熱"
+        },
+        {
+            "en": "Geothermal",
+            "es": "Geotérmica",
+            "jp": "地熱",
+            "zh-cn": "地热",
+            "zh-tw": "地熱"
+        },
+        {
+            "en": "Final Energy|Heat",
+            "es": "Energía Final|Calor",
+            "jp": "最終エネルギー|熱量",
+            "zh-cn": "最终能源|热能",
+            "zh-tw": "最終能源|熱能"
+        },
+        {
+            "en": "Heat",
+            "es": "Calor",
+            "jp": "熱量",
+            "zh-cn": "热能",
+            "zh-tw": "熱能"
+        },
+        {
+            "en": "Final Energy|Hydrogen",
+            "es": "Energía Final|Hidrógeno",
+            "jp": "最終エネルギー|水力",
+            "zh-cn": "最终能源|水能",
+            "zh-tw": "最終能源|水能"
+        },
+        {
+            "en": "Hydrogen",
+            "es": "Hidrógeno",
+            "jp": "水力",
+            "zh-cn": "水能",
+            "zh-tw": "水能"
+        },
+        {
+            "en": "Final Energy|Industry",
+            "es": "Energía Final|Industria",
+            "jp": "最終エネルギー|工業",
+            "zh-cn": "最终能源|工业",
+            "zh-tw": "最終能源|工業"
+        },
+        {
+            "en": "Final Energy|Liquids",
+            "es": "Energía Final|Líquidos",
+            "jp": "最終エネルギー|液体燃料",
+            "zh-cn": "最终能源|液体能源",
+            "zh-tw": "最終能源|液體能源"
+        },
+        {
+            "en": "Liquids",
+            "es": "Líquidos",
+            "jp": "液体燃料",
+            "zh-cn": "液体能源",
+            "zh-tw": "液體能源"
+        },
+        {
+            "en": "Final Energy|Residential and Commercial",
+            "es": "Energía Final|Residencial y Comercial",
+            "jp": "最終エネルギー|住民と商業",
+            "zh-cn": "最终能源|居民和商业",
+            "zh-tw": "最終能源|居民和商業"
+        },
+        {
+            "en": "Final Energy|Solar",
+            "es": "Energía Final|Solar",
+            "jp": "最終エネルギー|太陽光",
+            "zh-cn": "最终能源|太阳能",
+            "zh-tw": "最終能源|太陽能"
+        },
+        {
+            "en": "Solar",
+            "es": "Solar",
+            "jp": "太陽光",
+            "zh-cn": "太阳能",
+            "zh-tw": "太陽能"
+        },
+        {
+            "en": "Final Energy|Solids",
+            "es": "Energía Final|Sólidos",
+            "jp": "最終エネルギー|個体燃料",
+            "zh-cn": "最终能源|固体能源",
+            "zh-tw": "最終能源|固體能源"
+        },
+        {
+            "en": "Solids",
+            "es": "Sólidos",
+            "jp": "個体燃料",
+            "zh-cn": "固体能源",
+            "zh-tw": "固體能源"
+        },
+        {
+            "en": "Final Energy|Transportation",
+            "es": "Energía Final|Transporte",
+            "jp": "最終エネルギー|運送業",
+            "zh-cn": "最终能源|交通运输业",
+            "zh-tw": "最終能源|交通運輸業"
+        },
+        {
+            "en": "Population",
+            "es": "Población",
+            "jp": "人口",
+            "zh-cn": "人口",
+            "zh-tw": "人口"
+        },
+        {
+            "en": "Price|Carbon",
+            "es": "Precio|Carbón",
+            "jp": "価格|炭素",
+            "zh-cn": "价格|碳素",
+            "zh-tw": "價格|碳素"
+        },
+        {
+            "en": "Price",
+            "es": "Precio",
+            "jp": "価格",
+            "zh-cn": "价格",
+            "zh-tw": "價格"
+        },
+        {
+            "en": "Carbon",
+            "es": "Carbón",
+            "jp": "炭素",
+            "zh-cn": "碳素",
+            "zh-tw": "碳素"
+        },
+        {
+            "en": "Primary Energy",
+            "es": "Energía Primaria",
+            "jp": "一次エネルギー",
+            "zh-cn": "一次能源",
+            "zh-tw": "壹次能源"
+        },
+        {
+            "en": "Primary Energy|Biomass",
+            "es": "Energía Primaria|Biomasa",
+            "jp": "一次エネルギー|バイオマス",
+            "zh-cn": "一次能源|生物质能",
+            "zh-tw": "壹次能源|生物質能"
+        },
+        {
+            "en": "Biomass",
+            "es": "Biomasa",
+            "jp": "バイオマス",
+            "zh-cn": "生物质能",
+            "zh-tw": "生物質能"
+        },
+        {
+            "en": "Primary Energy|Coal",
+            "es": "Energía Primaria|Carbón",
+            "jp": "一次エネルギー|石炭",
+            "zh-cn": "一次能源|煤炭",
+            "zh-tw": "壹次能源|煤炭"
+        },
+        {
+            "en": "Coal",
+            "es": "Carbón",
+            "jp": "石炭",
+            "zh-cn": "煤炭",
+            "zh-tw": "煤炭"
+        },
+        {
+            "en": "Primary Energy|Fossil",
+            "es": "Energía Primaria|Fósil",
+            "jp": "一次エネルギー|化石燃料",
+            "zh-cn": "一次能源|化石能源",
+            "zh-tw": "壹次能源|化石能源"
+        },
+        {
+            "en": "Fossil",
+            "es": "Fósil",
+            "jp": "化石燃料",
+            "zh-cn": "化石能源",
+            "zh-tw": "化石能源"
+        },
+        {
+            "en": "Primary Energy|Gas",
+            "es": "Energía Primaria|Gas",
+            "jp": "一次エネルギー|ガス",
+            "zh-cn": "一次能源|燃气",
+            "zh-tw": "壹次能源|燃氣"
+        },
+        {
+            "en": "Gas",
+            "es": "Gas",
+            "jp": "ガス",
+            "zh-cn": "燃气",
+            "zh-tw": "燃氣"
+        },
+        {
+            "en": "Primary Energy|Geothermal",
+            "es": "Energía Primaria|Geotérmica",
+            "jp": "一次エネルギー|地熱",
+            "zh-cn": "一次能源|地热",
+            "zh-tw": "壹次能源|地熱"
+        },
+        {
+            "en": "Primary Energy|Hydro",
+            "es": "Energía Primaria|Hidráulica",
+            "jp": "一次エネルギー|水力",
+            "zh-cn": "一次能源|水能",
+            "zh-tw": "壹次能源|水能"
+        },
+        {
+            "en": "Hydro",
+            "es": "Hidráulica",
+            "jp": "水力",
+            "zh-cn": "水能",
+            "zh-tw": "水能"
+        },
+        {
+            "en": "Primary Energy|Non-Biomass Renewables",
+            "es": "Energía Primaria|Renovables No-Biomasa",
+            "jp": "一次エネルギー|非化石燃料",
+            "zh-cn": "一次能源|非化石能源",
+            "zh-tw": "壹次能源|非化石能源"
+        },
+        {
+            "en": "Non-Biomass Renewables",
+            "es": "Renovables No-Biomasa",
+            "jp": "非化石燃料",
+            "zh-cn": "非化石能源",
+            "zh-tw": "非化石能源"
+        },
+        {
+            "en": "Primary Energy|Nuclear",
+            "es": "Energía Primaria|Nuclear",
+            "jp": "一次エネルギー|原子力",
+            "zh-cn": "一次能源|核能",
+            "zh-tw": "壹次能源|核能"
+        },
+        {
+            "en": "Nuclear",
+            "es": "Nuclear",
+            "jp": "原子力",
+            "zh-cn": "核能",
+            "zh-tw": "核能"
+        },
+        {
+            "en": "Primary Energy|Ocean",
+            "es": "Energía Primaria|Oceánica",
+            "jp": "一次エネルギー|海洋エネルギー",
+            "zh-cn": "一次能源|海洋能源",
+            "zh-tw": "壹次能源|海洋能源"
+        },
+        {
+            "en": "Ocean",
+            "es": "Oceánica",
+            "jp": "海洋エネルギー",
+            "zh-cn": "海洋能源",
+            "zh-tw": "海洋能源"
+        },
+        {
+            "en": "Primary Energy|Oil",
+            "es": "Energía Primaria|Petróleo",
+            "jp": "一次エネルギー|石油",
+            "zh-cn": "一次能源|石油",
+            "zh-tw": "壹次能源|石油"
+        },
+        {
+            "en": "Oil",
+            "es": "Petróleo",
+            "jp": "石油",
+            "zh-cn": "石油",
+            "zh-tw": "石油"
+        },
+        {
+            "en": "Primary Energy|Solar",
+            "es": "Energía Primaria|Solar",
+            "jp": "一次エネルギー|太陽光",
+            "zh-cn": "一次能源|太阳能",
+            "zh-tw": "壹次能源|太陽能"
+        },
+        {
+            "en": "Primary Energy|Wind",
+            "es": "Energía Primaria|Eólica",
+            "jp": "一次エネルギー|風力",
+            "zh-cn": "一次能源|风能",
+            "zh-tw": "壹次能源|風能"
+        },
+        {
+            "en": "Wind",
+            "es": "Eólica",
+            "jp": "風力",
+            "zh-cn": "风能",
+            "zh-tw": "風能"
+        },
+        {
+            "en": "Secondary Energy|Electricity",
+            "es": "Energía Secundaria|Electricidad",
+            "jp": "二次エネルギー|電力",
+            "zh-cn": "二次能源|电力",
+            "zh-tw": "二次能源|電力"
+        },
+        {
+            "en": "Secondary Energy",
+            "es": "Energía Secundaria",
+            "jp": "二次エネルギー",
+            "zh-cn": "二次能源",
+            "zh-tw": "二次能源"
+        },
+        {
+            "en": "Secondary Energy|Electricity|Biomass",
+            "es": "Energía Secundaria|Electricidad|Biomasa",
+            "jp": "二次エネルギー|電力|バイオマス",
+            "zh-cn": "二次能源|电力|生物质能",
+            "zh-tw": "二次能源|電力|生物質能"
+        },
+        {
+            "en": "Secondary Energy|Electricity|Coal",
+            "es": "Energía Secundaria|Electricidad|Carbón",
+            "jp": "二次エネルギー|電力|石炭",
+            "zh-cn": "二次能源|电力|煤炭",
+            "zh-tw": "二次能源|電力|煤炭"
+        },
+        {
+            "en": "Secondary Energy|Electricity|Gas",
+            "es": "Energía Secundaria|Electricidad|Gas",
+            "jp": "二次エネルギー|電力|ガス",
+            "zh-cn": "二次能源|电力|燃气",
+            "zh-tw": "二次能源|電力|燃氣"
+        },
+        {
+            "en": "Secondary Energy|Electricity|Geothermal",
+            "es": "Energía Secundaria|Electricidad|Geotérmica",
+            "jp": "二次エネルギー|電力|地熱",
+            "zh-cn": "二次能源|电力|地热",
+            "zh-tw": "二次能源|電力|地熱"
+        },
+        {
+            "en": "Secondary Energy|Electricity|Hydro",
+            "es": "Energía Secundaria|Electricidad|Hidráulica",
+            "jp": "二次エネルギー|電力|水力",
+            "zh-cn": "二次能源|电力|水能",
+            "zh-tw": "二次能源|電力|水能"
+        },
+        {
+            "en": "Secondary Energy|Electricity|Nuclear",
+            "es": "Energía Secundaria|Electricidad|Nuclear",
+            "jp": "二次エネルギー|電力|原子力",
+            "zh-cn": "二次能源|电力|核能",
+            "zh-tw": "二次能源|電力|核能"
+        },
+        {
+            "en": "Secondary Energy|Electricity|Ocean",
+            "es": "Energía Secundaria|Electricidad|Oceánica",
+            "jp": "二次エネルギー|電力|海洋エネルギー",
+            "zh-cn": "二次能源|电力|海洋能源",
+            "zh-tw": "二次能源|電力|海洋能源"
+        },
+        {
+            "en": "Secondary Energy|Electricity|Oil",
+            "es": "Energía Secundaria|Electricidad|Petróleo",
+            "jp": "二次エネルギー|電力|石油",
+            "zh-cn": "二次能源|电力|石油",
+            "zh-tw": "二次能源|電力|石油"
+        },
+        {
+            "en": "Secondary Energy|Electricity|Solar",
+            "es": "Energía Secundaria|Electricidad|Solar",
+            "jp": "二次エネルギー|電力|太陽光",
+            "zh-cn": "二次能源|电力|太阳能",
+            "zh-tw": "二次能源|電力|太陽能"
+        },
+        {
+            "en": "Secondary Energy|Electricity|Wind",
+            "es": "Energía Secundaria|Electricidad|Eólica",
+            "jp": "二次エネルギー|電力|風力",
+            "zh-cn": "二次能源|电力|风能",
+            "zh-tw": "二次能源|電力|風能"
+        }
+    ]
+}

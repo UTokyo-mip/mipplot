@@ -56,11 +56,9 @@ mipplot_generate_color_mapper <- function(raw_table, category_separator = "\\|")
         color_code <- raw_table[i, COLUMN_OF_COLOR_CODE]
       }
 
-      # split category names like "a|b|c" to c("a", "b", "c")
-      splitted_categories <- strsplit(full_variable_name_part, split = category_separator)[[1]]
-
-      # get deepest_category_part
-      deepest_category_part <- tail(splitted_categories, n = 1)
+      # Change name of variable by removing
+      # common part from aggregated vairable (LHS).
+      deepest_category_part <- gsub(paste(common_part, "|", sep = ""),"", full_variable_name_part, fixed = T)
 
       # store color_code
       mapper[[common_part]][deepest_category_part] <- color_code

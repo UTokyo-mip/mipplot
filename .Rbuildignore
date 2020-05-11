@@ -1,4 +1,10 @@
+^Meta$
+^doc$
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^data-raw$
 ^release$
+^\.travis\.yml$
+^images$
+^vignettes/images/.*$
+\mipplot-Manual-v1.md$

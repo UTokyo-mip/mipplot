@@ -4,10 +4,21 @@
 \alias{mipplot_bar}
 \title{Bar plot from IAMC data}
 \usage{
-mipplot_bar(D, R, region = levels(D$region), xby = "scenario",
-  target_year = levels(as.factor(D$period)), facet_x = NULL,
-  facet_y = NULL, PRINT_OUT = F, DEBUG = T, fontsize = 20,
-  color_code_specify = T)
+mipplot_bar(
+  D,
+  R,
+  region = levels(D$region),
+  xby = "scenario",
+  target_year = levels(as.factor(D$period)),
+  facet_x = NULL,
+  facet_y = NULL,
+  PRINT_OUT = F,
+  DEBUG = T,
+  fontsize = 20,
+  color_code_specify = T,
+  one_hundred_percent_stacked = F,
+  language = "en"
+)
 }
 \arguments{
 \item{D}{A dataframe of IAMC data in tibble format to produce plots.}
@@ -31,6 +42,11 @@ mipplot_bar(D, R, region = levels(D$region), xby = "scenario",
 \item{fontsize}{size of font in the output plot.}
 
 \item{color_code_specify}{set FALSE if you apply default color palette.}
+
+\item{one_hundred_percent_stacked}{set TRUE if you want a graph of 100% stacked, set this to TRUE.}
+
+\item{language}{A string of language. Possible values are "en", "jp",
+"es", "zh-cn", "zh-tw". The default value is "en".}
 }
 \value{
 A list of bar plots.

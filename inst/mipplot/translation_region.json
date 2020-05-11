@@ -1,0 +1,32 @@
+{
+    "languages": [
+        "en",
+        "jp",
+        "zh-cn",
+        "zh-tw",
+        "es"
+    ],
+    "translation": [
+        {
+            "en": "World",
+            "es": "Mundo",
+            "jp": "全世界",
+            "zh-cn": "全世界",
+            "zh-tw": "全世界"
+        },
+        {
+            "en": "OECD90",
+            "es": "OECD",
+            "jp": "OECD90",
+            "zh-cn": "OECD90",
+            "zh-tw": "OECD91"
+        },
+        {
+            "en": "ASIA",
+            "es": "ASIA",
+            "jp": "アジア",
+            "zh-cn": "亚洲",
+            "zh-tw": "亞洲"
+        }
+    ]
+}

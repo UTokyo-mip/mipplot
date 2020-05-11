@@ -31,7 +31,7 @@ The latest release of `mipplot` can be installed from a binary package.
 5. Run following commands.
 ```r
 install.packages("tidyverse")
-install.packages("mipplot_0.1.0.zip", repos = NULL)
+install.packages("mipplot_0.2.0.zip", repos = NULL)
 ```
 
 Or via `devtools`:
@@ -57,7 +57,7 @@ The latest release of `mipplot` can be installed from a binary package.
 5. Run following commands.
 ```r
 install.packages("tidyverse")
-install.packages("mipplot_0.1.0.tar.gz", repos = NULL)
+install.packages("mipplot_0.2.0.tar.gz", repos = NULL)
 ```
 
 Or via `devtools`:
@@ -90,7 +90,7 @@ The latest release of `mipplot` can be installed from a tarball.
 5. Run following commands.
 ```r
 install.packages("tidyverse")
-install.packages("mipplot_0.1.0.tar.gz", repos = NULL)
+install.packages("mipplot_0.2.0.tar.gz", repos = NULL)
 ```
 
 Or via `devtools`:

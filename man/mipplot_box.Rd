@@ -4,10 +4,15 @@
 \alias{mipplot_box}
 \title{Box plot from IAMC data}
 \usage{
-mipplot_box(D, region = levels(D$region),
+mipplot_box(
+  D,
+  region = levels(D$region),
   variable = levels(D$variable),
-  target_year = levels(as.factor(D$period)), PRINT_OUT = F,
-  DEBUG = T)
+  target_year = levels(as.factor(D$period)),
+  PRINT_OUT = F,
+  DEBUG = T,
+  language = "en"
+)
 }
 \arguments{
 \item{D}{A dataframe of IAMC data in tibble format to produce plots.}
@@ -21,6 +26,9 @@ mipplot_box(D, region = levels(D$region),
 \item{PRINT_OUT}{set TRUE to generate PDF file.}
 
 \item{DEBUG}{set TRUE to show debug messages.}
+
+\item{language}{A string of language. Possible values are "en", "jp",
+"es", "zh-cn", "zh-tw". The default value is "en".}
 }
 \value{
 A list of box plots.

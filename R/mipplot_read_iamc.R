@@ -50,7 +50,12 @@ read_iamc <- function(file_path, sep = ",") {
     SCENARIO = col_factor(NULL),
     REGION = col_factor(NULL),
     VARIABLE = col_factor(NULL),
-    UNIT = col_factor(NULL)
+    UNIT = col_factor(NULL),
+    Model = col_factor(NULL),
+    Scenario = col_factor(NULL),
+    Region = col_factor(NULL),
+    Variable = col_factor(NULL),
+    Unit = col_factor(NULL)
   ))
 
   colnames(content) <- tolower(colnames(content))
@@ -65,5 +70,41 @@ extract_year_columns <- function(columns) {
   return(columns[grep("^[0-9].*?$", columns)])
 }
 
+#' @title Read IAMC scenario input data in Excel format
+#' @description Read scenario input data (in IAMC format) as tibble format dataframe from Excel
+#' @param filename Path to a file containing scenario data in IAMC format.
+#' @param sheet the index of sheet which contains records.
+#' @return A dataframe in tibble format ("model, scenario, variable, unit, period, value")
+#' @examples
+#' \donttest{
+#' read_iamc_xlsx("c:\\...\\...", sheet = 2)
+#' }
+#' @export
+read_iamc_xlsx <- function(file_path, sheet = 2) {
+
+  # load a sheet from xlsx file
+  df <- readxl::read_xlsx(file_path, sheet = sheet)
+
+  # strings of header must be in lower case
+  names(df) <- tolower(names(df))
+
+  # select columns which start with numbers
+  # (for example, excludes "abcd", includes "2019-abcd")
+  col_names <- names(df)
+  year_col_names <- col_names[grep("^[0-9].*?$", col_names)]
+
+  # convert contents to tidy data
+  df <- tidyr::gather_(df, "period", "value", year_col_names)
+
+  # convert data type
+  df$model <- as.factor(df$model)
+  df$scenario <- as.factor(df$scenario)
+  df$region <- as.factor(df$region)
+  df$variable <- as.factor(df$variable)
+  df$period <- as.integer(df$period)
+  df$unit <- as.factor(df$unit)
+
+  return(df)
+}
 
 #END
