@@ -15,7 +15,7 @@ output is character vector such as,
 c("AIM-Enduse 12.1", "GCAM 3.0", "IMAGE 2.4" )
 }
 \examples{
-\donttest{
+\dontrun{
 get_model_name_list(ar5_db_sample_data)
 }
 }

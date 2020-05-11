@@ -25,7 +25,7 @@ showing the divergence between the left-side variable and
 the sum of the right-side variables.
 }
 \examples{
-\donttest{
+\dontrun{
 mipplot_print_pdf(mipplot_additivity_check(
     ar5_db_sample_data, ar5_db_sample_rule_table, max_n_plots = 10))
 }

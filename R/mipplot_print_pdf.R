@@ -9,7 +9,7 @@
 #' @param filename A string of filename. If it is given,
 #' filelabel is ignored.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' p <- mipplot_area(ar5_db_sample_data, ar5_db_sample_rule_table,
 #'              region = "World", scenario = "EMF27-450-FullTech")
 #' mipplot_print_pdf(p)

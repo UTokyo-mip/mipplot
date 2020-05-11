@@ -62,7 +62,7 @@ The function arguments include the input dataframe,
              labels for the plot/axes/legend, and faceting dimensions
 }
 \examples{
-\donttest{
+\dontrun{
 mipplot_line(ar5_db_sample_data)
 }
 }

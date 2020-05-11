@@ -10,7 +10,7 @@
 #' @param DEBUG experimental.
 #' @return A dataframe in tibble format ("model, scenario, variable, unit, period, value")
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' mipplot_read_iamc("filename")
 #' }
 #' @export
@@ -76,7 +76,7 @@ extract_year_columns <- function(columns) {
 #' @param sheet the index of sheet which contains records.
 #' @return A dataframe in tibble format ("model, scenario, variable, unit, period, value")
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' read_iamc_xlsx("c:\\...\\...", sheet = 2)
 #' }
 #' @export

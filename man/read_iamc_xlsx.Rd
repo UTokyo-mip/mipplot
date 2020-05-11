@@ -18,7 +18,7 @@ A dataframe in tibble format ("model, scenario, variable, unit, period, value")
 Read scenario input data (in IAMC format) as tibble format dataframe from Excel
 }
 \examples{
-\donttest{
+\dontrun{
 read_iamc_xlsx("c:\\\\...\\\\...", sheet = 2)
 }
 }

@@ -28,7 +28,7 @@
 #' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @return A list of area plots.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' mipplot_area(ar5_db_sample_data, ar5_db_sample_rule_table)
 #' }
 #' @export
