@@ -15,7 +15,7 @@
 #' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @return A list of box plots.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' mipplot_box(ar5_db_sample_data)
 #' }
 #' @export

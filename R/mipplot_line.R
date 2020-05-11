@@ -24,7 +24,7 @@
 #' @param max_models Maximum number of models to be shown. If legend is FALSE, this option is
 #' @return A list of line plots.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' mipplot_line(ar5_db_sample_data)
 #' }
 #' @export

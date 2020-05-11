@@ -55,7 +55,7 @@ Area plots using right-hand-side values of target
              (two in this version).
 }
 \examples{
-\donttest{
+\dontrun{
 mipplot_area(ar5_db_sample_data, ar5_db_sample_rule_table)
 }
 }

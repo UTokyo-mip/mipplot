@@ -19,7 +19,7 @@ A function to launch interactive line plot.
              labels for the plot/axes/legend, and faceting dimensions
 }
 \examples{
-\donttest{
+\dontrun{
 mipplot_interactive_line(ar5_db_sample_data)
 }
 }

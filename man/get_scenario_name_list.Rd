@@ -15,7 +15,7 @@ output is character vector such as,
 c("EMF27-450-Conv", "EMF27-450-FullTech", "EMF27-450-NoCCS", "EMF27-450-NucOff")
 }
 \examples{
-\donttest{
+\dontrun{
 get_scenario_name_list(ar5_db_sample_data)
 }
 }

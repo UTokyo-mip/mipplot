@@ -22,7 +22,7 @@ A dataframe in tibble format ("model, scenario, variable, unit, period, value")
 Read scenario input data (in IAMC format) as tibble format dataframe.
 }
 \examples{
-\donttest{
+\dontrun{
 mipplot_read_iamc("filename")
 }
 }

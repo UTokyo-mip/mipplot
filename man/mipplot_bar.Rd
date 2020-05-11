@@ -58,7 +58,7 @@ Bar plots using right-hand-side values of
              faceting dimensions.
 }
 \examples{
-\donttest{
+\dontrun{
 mipplot_bar(ar5_db_sample_data, ar5_db_sample_rule_table)
 }
 }
