@@ -3,3 +3,26 @@
 language: R
 sudo: false
 cache: packages
+r_binary_packages:
+  - reshape2
+  - dplyr
+  - forcats
+  - readr
+  - showtext
+  - shiny
+  - grDevices
+  - graphics
+  - utils
+  - stats
+  - ggplot2
+  - stringr
+  - tibble
+  - tidyr
+  - shinyWidgets
+  - data.table
+  - openxlsx
+  - readxl
+  - shiny.i18n
+  - showtextdb
+  - shinyalert
+  - tidyverse

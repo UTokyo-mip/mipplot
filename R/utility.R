@@ -103,7 +103,7 @@ get_string_expression_of_vector_of_strings <- function(vector_of_strings) {
 #' the format of return value is "LHS|RHS1,RHS2,RHS3,...".
 #' @param R rule-table
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' noquote(
 #'   get_variable_group_name_list(R)
 #' )
@@ -184,7 +184,7 @@ generate_variable_group_name_from_lhs_and_rhs_list <- function(lhs, rhs_list) {
 #' @description Scan rule-table and extract variable names in given variable-group.
 #' @param group_name variable-group-name
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' noquote(
 #'   get_variable_name_list_in_variable_group(
 #'     ar5_db_sample_rule_table,

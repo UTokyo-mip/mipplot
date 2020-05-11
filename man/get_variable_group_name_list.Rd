@@ -15,7 +15,7 @@ this function outputs the list of names of variable-group in given rule-table.
 the format of return value is "LHS|RHS1,RHS2,RHS3,...".
 }
 \examples{
-\donttest{
+\dontrun{
 noquote(
   get_variable_group_name_list(R)
 )

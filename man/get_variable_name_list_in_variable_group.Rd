@@ -13,7 +13,7 @@ get_variable_name_list_in_variable_group(group_name)
 Scan rule-table and extract variable names in given variable-group.
 }
 \examples{
-\donttest{
+\dontrun{
 noquote(
   get_variable_name_list_in_variable_group(
     ar5_db_sample_rule_table,
