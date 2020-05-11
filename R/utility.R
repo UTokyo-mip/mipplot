@@ -238,3 +238,196 @@ get_variable_name_list_in_variable_group <- function(group_name) {
 
 
 }
+
+#' @title Split variable into positive and negative parts
+#' @description
+#' @param df
+#' @param domain_column_name
+#' @param variable_column_name
+#' @param value_column_name
+#' @param variable_name_converter
+#' @return modified data frame
+#' @export
+split_variable_into_positive_and_negative_parts <- function(
+  df_all, domain_column_name, variable_column_name,
+    value_column_name,
+    variable_name_converter = function(x){paste(x, '_negative', sep="")},
+    increment_of_domain_in_interpolation = 0.1) {
+
+  # data frame to be returned
+  df_new <- df_all[0,]
+
+  conditions <- expand.grid(
+    unique(df_all[['model']]),
+    unique(df_all[['scenario']]),
+    unique(df_all[['region']]))
+  colnames(conditions) <- c("model", "scenario", "region")
+
+  for (i_condition in 1:nrow(conditions)) {
+
+    current_model <- conditions[['model']][i_condition]
+    current_scenario <- conditions[['scenario']][i_condition]
+    current_region <- conditions[['region']][i_condition]
+
+    df_all %>% filter(model == current_model) %>%
+      filter(scenario == current_scenario) %>% filter(region == current_region) -> df
+
+    # extract the values of domain axis in df
+    # (example) values_of_domain == c(2000, 2050, 2075, 2100)
+    values_of_domain <- df[domain_column_name] %>% unique %>% unlist %>% as.vector
+
+    # extract the original variable name list
+    # (example) original_variable_name_list == c("coal", "solar")
+    original_variable_name_list <- df[variable_column_name] %>% unique %>% unlist %>% as.vector
+
+    # the loop of original variable name
+    # (example) original_variable_name == "coal"
+    for (original_variable_name in original_variable_name_list) {
+
+      # partial_df is df which includes only `original_variable_name`
+      # notes: `!!rlang::sym` is used to get symbol from character
+      #         because filter() couldn't accept string expression as a search query
+      #
+      # (example)
+      # > partial_df
+      #   y       val variable
+      # 1 2000   +100     coal
+      # 2 2050   -100     coal
+      # 3 2075   0        coal
+      #
+      partial_df <- df %>% filter((!!rlang::sym(variable_column_name)) == original_variable_name)
+
+      #
+      # performs linear interpolation to get following dataframe
+      #
+      # (example)
+      # > partial_df
+      #   y       val variable
+      # 1 2000   +100     coal
+      # 2 2025   0        coal
+      # 3 2050   -100     coal
+      # 4 2075   0        coal
+      #
+      new_domain_for_interpolation <- seq(
+        from=min(partial_df[domain_column_name]),
+        to=max(partial_df[domain_column_name]),
+        by=increment_of_domain_in_interpolation)
+
+          # new_domain_for_interpolation <- setdiff(
+          # new_domain_for_interpolation,
+          #   unlist(partial_df[domain_column_name]))
+
+      func_get_value_at_given_domain <- approxfun(
+          unlist(partial_df[domain_column_name]),
+          y=unlist(partial_df[value_column_name]))
+
+      # initialize empty dataframe
+      new_partial_df <- partial_df[0, ]
+
+      # use first row as a template.
+      # we will copy it then modify domain_column, value_column and variable_column.
+      template_row <- partial_df[1, ]
+
+      for (new_domain_value in new_domain_for_interpolation) {
+
+        # copy template
+        new_row <- template_row
+
+        # replace values of row
+        new_row[domain_column_name] <- new_domain_value
+        new_row[value_column_name] <- func_get_value_at_given_domain(new_domain_value)
+        new_row[variable_column_name] <- original_variable_name
+        new_row['model'] <- current_model
+        new_row['scenario'] <- current_scenario
+        new_row['region'] <- current_region
+
+        # add the row to new_partial_df
+        new_partial_df <- rbind(new_partial_df, new_row)
+      }
+
+      partial_df <- new_partial_df
+
+      # command <-
+      #   paste("add_row(",
+      #   ".data", "=", "partial_df", ",",
+      #   domain_column_name, "=", "unlist(new_domain_for_interpolation)", ",",
+      #   value_column_name, "=", "func_get_value_at_given_domain(new_domain_for_interpolation)", ",",
+      #   variable_column_name, "=", paste('"', original_variable_name,'"', sep=""),
+      #   ")", sep=" ")
+
+      # partial_df <- eval(parse(text=command))
+
+      # get positive part
+      positive_partial_df <- partial_df %>% filter(0 <= (!!rlang::sym(value_column_name)))
+      # positive_partial_df <- interpolate_missing_values(
+      #     positive_partial_df, domain_column_name, values_of_domain, value_column_name, 0)
+
+      # append new positive part
+      if (0 < nrow(positive_partial_df)) {
+        df_new <- rbind(df_new, positive_partial_df)
+      }
+
+      # get negative part
+      negative_partial_df <- partial_df %>% filter((!!rlang::sym(value_column_name)) < 0)
+      # negative_partial_df <- interpolate_missing_values(
+      #   negative_partial_df, domain_column_name, values_of_domain, value_column_name, 0)
+
+
+      # append new negative part
+      # append new positive part
+      if (0 < nrow(negative_partial_df)) {
+        # modify column name of negative part
+        negative_partial_df[variable_column_name] <- variable_name_converter(original_variable_name)
+        df_new <- rbind(df_new, negative_partial_df)
+      }
+    }
+
+  }
+
+  return(df_new)
+}
+
+
+interpolate_missing_values <- function(
+    df, domain_column_name, domain_values, value_column_name, default_value) {
+
+  # domain values not observed
+  # (example)
+  # domain_values ................ c(2000, 2100, 2200)
+  # domain_values_observed ....... c(2000,       2200)
+  # domain_values_not_observed ... c(      2100      )
+  domain_values_observed <- df[domain_column_name] %>% unique %>% unlist %>% as.vector
+  domain_values_not_observed <- setdiff(domain_values, domain_values_observed)
+
+  # initialize empty dataframe
+  additional_df <- df[0, ]
+
+  # use first row as a template.
+  # we will copy it then modify its value column with specified constant value,
+  # and modify its domain column with unobserved domain value.
+  template_row <- df[1, ]
+
+  for (new_domain_value in domain_values_not_observed) {
+
+    # copy template
+    new_row <- template_row
+
+    # replace domain and value
+    new_row[domain_column_name] <- new_domain_value
+    new_row[value_column_name] <- default_value
+
+    # add the row to additoinal_df
+    additional_df <- rbind(additional_df, new_row)
+  }
+
+  # add additional_df to df then return
+  return(rbind(df, additional_df))
+}
+
+add_negative_only_variable_support_to_color_mapper <- function(original_color_mapper) {
+
+  additional_color_mapper <- original_color_mapper
+  names(additional_color_mapper) <- paste(names(additional_color_mapper), '_negative', sep='')
+
+  return(c(original_color_mapper, additional_color_mapper))
+}
