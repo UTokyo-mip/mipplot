@@ -13,7 +13,7 @@ get_string_expression_of_vector_of_strings(vector_of_strings)
 To evaluate expression, get string of expression
 }
 \examples{
-\donttest{
+\dontrun{
 noquote(
   get_string_expression_of_vector_of_strings(c("A", "B"))
 )
