@@ -3,6 +3,16 @@
 language: R
 sudo: false
 cache: packages
+latex: false
+pandoc: false
+addons:
+  apt:
+    packages:
+      - gfortran
+      - g++
+      - libcurl4-openssl-dev
+      - libxml2-dev
+      - libssl-dev
 r_binary_packages:
   - reshape2
   - dplyr
