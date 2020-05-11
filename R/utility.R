@@ -88,7 +88,7 @@ add_credit_to_plot <- function(plot_object) {
 #' @description To evaluate expression, get string of expression
 #' @param vector_of_strings vector of strings, such as c("A", "B")
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' noquote(
 #'   get_string_expression_of_vector_of_strings(c("A", "B"))
 #' )
