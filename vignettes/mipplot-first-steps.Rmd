@@ -118,7 +118,7 @@ mipplot_interactive_line(sr15_sample_data)
 すると、以下のような画面が表示されます。
 
 ```{r, echo=FALSE, out.width="100%"}
-knitr::include_graphics("./images/screenshot_mipplot_interactive_line.png")
+knitr::include_graphics("screenshot_mipplot_interactive_line.png")
 ```
 
 各種の条件を選択して、グラフをプロットしてください。
@@ -152,7 +152,7 @@ mipplot_interactive_bar(sr15_sample_data, ar5_db_sample_rule_table)
 ```
 
 ```{r, echo=FALSE, out.width="100%"}
-knitr::include_graphics("./images/screenshot_mipplot_interactive_bar.png")
+knitr::include_graphics("screenshot_mipplot_interactive_bar.png")
 ```
 
 画面にはプロットを再現するための R のコードが表示されます。
@@ -183,7 +183,7 @@ mipplot_interactive_area(sr15_sample_data, ar5_db_sample_rule_table)
 ```
 
 ```{r, echo=FALSE, out.width="100%"}
-knitr::include_graphics("./images/screenshot_mipplot_interactive_area.png")
+knitr::include_graphics("screenshot_mipplot_interactive_area.png")
 ```
 
 画面にはプロットを再現するための R のコードが表示されます。

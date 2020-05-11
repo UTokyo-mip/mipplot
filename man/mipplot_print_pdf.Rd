@@ -4,9 +4,11 @@
 \alias{mipplot_print_pdf}
 \title{Print list of plots to pdf file}
 \usage{
-mipplot_print_pdf(p_list1, filelabel = "",
-  filename = tryCatch(file.choose(new = TRUE), error = function(e) {    
-  NA }))
+mipplot_print_pdf(
+  p_list1,
+  filelabel = "",
+  filename = tryCatch(file.choose(new = TRUE), error = function(e) {     NA })
+)
 }
 \arguments{
 \item{p_list1}{A list of ggplot plot.}
