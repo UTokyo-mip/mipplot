@@ -12,3 +12,4 @@ addons:
       - libxml2-dev
       - libssl-dev
 warnings_are_errors: false
+latex: false
