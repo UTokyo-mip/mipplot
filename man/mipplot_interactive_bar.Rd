@@ -22,7 +22,7 @@ A function to launch interactive bar plot using
              labels for the plot/axes/legend, and faceting dimensions
 }
 \examples{
-\donttest{
+\dontrun{
 mipplot_interactive_bar(ar5_db_sample_data, ar5_db_sample_rule_table)
 }
 }

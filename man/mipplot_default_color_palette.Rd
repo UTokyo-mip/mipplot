@@ -4,7 +4,9 @@
 \name{mipplot_default_color_palette}
 \alias{mipplot_default_color_palette}
 \title{Default color palette.}
-\format{An object of class \code{list} of length 6.}
+\format{
+An object of class \code{list} of length 6.
+}
 \usage{
 mipplot_default_color_palette
 }

@@ -4,8 +4,11 @@
 \alias{generate_code_to_plot_area}
 \title{generate code to reproduce area plot}
 \usage{
-generate_code_to_plot_area(input, name_of_input_data_variable,
-  name_of_input_rule_table_variable)
+generate_code_to_plot_area(
+  input,
+  name_of_input_data_variable,
+  name_of_input_rule_table_variable
+)
 }
 \arguments{
 \item{input}{This is the same as the input argument in the shiny:ui().}

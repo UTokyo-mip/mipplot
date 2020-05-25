@@ -4,7 +4,8 @@
 \name{ar5_db_sample_data}
 \alias{ar5_db_sample_data}
 \title{Sample Dataset}
-\format{A tibble data.table with 25240 rows and 7 variables:
+\format{
+A tibble data.table with 25240 rows and 7 variables:
 \describe{
   \item{model}{model, categorical}
   \item{scenario}{scenario, categorical}
@@ -13,7 +14,8 @@
   \item{unit}{unit of a variable}
   \item{period}{year}
   \item{value}{the value of a variable}
-}}
+}
+}
 \source{
 \url{https://tntcat.iiasa.ac.at/AR5DB/dsd?Action=htmlpage&page=about}
 }

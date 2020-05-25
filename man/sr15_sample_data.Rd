@@ -4,7 +4,8 @@
 \name{sr15_sample_data}
 \alias{sr15_sample_data}
 \title{Sample Dataset}
-\format{A tibble data.table with 396425 rows and 7 variables:
+\format{
+A tibble data.table with 396425 rows and 7 variables:
 \describe{
   \item{model}{model, categorical}
   \item{scenario}{scenario, categorical}
@@ -13,7 +14,11 @@
   \item{unit}{unit of a variable}
   \item{period}{year}
   \item{value}{the value of a variable}
-}}
+}
+}
+\source{
+
+}
 \usage{
 sr15_sample_data
 }

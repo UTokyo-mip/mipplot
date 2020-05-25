@@ -4,11 +4,23 @@
 \alias{mipplot_line}
 \title{Line plot from IAMC data}
 \usage{
-mipplot_line(D, region = levels(D$region),
-  variable = levels(D$variable), colorby = "scenario",
-  linetypeby = "model", shapeby = "model",
-  scenario = levels(D$scenario), facet_x = NULL, facet_y = NULL,
-  legend = TRUE, PRINT_OUT = F, DEBUG = T, language = "en")
+mipplot_line(
+  D,
+  region = levels(D$region),
+  variable = levels(D$variable),
+  colorby = "scenario",
+  linetypeby = "model",
+  shapeby = "model",
+  scenario = levels(D$scenario),
+  facet_x = NULL,
+  facet_y = NULL,
+  legend = TRUE,
+  PRINT_OUT = F,
+  DEBUG = T,
+  language = "en",
+  max_scenarios = 15,
+  max_models = 15
+)
 }
 \arguments{
 \item{D}{A dataframe of IAMC data in tibble format to produce plots.}
@@ -37,6 +49,10 @@ mipplot_line(D, region = levels(D$region),
 
 \item{language}{A string of language. Possible values are "en", "jp",
 "es", "zh-cn", "zh-tw". The default value is "en".}
+
+\item{max_scenarios}{Maximum number of scenarios to be shown. If legend is FALSE, this option is .}
+
+\item{max_models}{Maximum number of models to be shown. If legend is FALSE, this option is}
 }
 \value{
 A list of line plots.
@@ -46,7 +62,7 @@ The function arguments include the input dataframe,
              labels for the plot/axes/legend, and faceting dimensions
 }
 \examples{
-\donttest{
+\dontrun{
 mipplot_line(ar5_db_sample_data)
 }
 }

@@ -4,10 +4,15 @@
 \alias{mipplot_box}
 \title{Box plot from IAMC data}
 \usage{
-mipplot_box(D, region = levels(D$region),
+mipplot_box(
+  D,
+  region = levels(D$region),
   variable = levels(D$variable),
-  target_year = levels(as.factor(D$period)), PRINT_OUT = F,
-  DEBUG = T, language = "en")
+  target_year = levels(as.factor(D$period)),
+  PRINT_OUT = F,
+  DEBUG = T,
+  language = "en"
+)
 }
 \arguments{
 \item{D}{A dataframe of IAMC data in tibble format to produce plots.}
@@ -33,7 +38,7 @@ The function arguments include the input dataframe,
              labels for the plot/axes/legend, and faceting dimensions
 }
 \examples{
-\donttest{
+\dontrun{
 mipplot_box(ar5_db_sample_data)
 }
 }

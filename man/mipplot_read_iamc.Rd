@@ -4,8 +4,7 @@
 \alias{mipplot_read_iamc}
 \title{Read IAMC scenario input data.}
 \usage{
-mipplot_read_iamc(filename = NULL, sep = ",", interactive = FALSE,
-  DEBUG = T)
+mipplot_read_iamc(filename = NULL, sep = ",", interactive = FALSE, DEBUG = T)
 }
 \arguments{
 \item{filename}{Path to a file containing scenario data in IAMC format.}
@@ -23,7 +22,7 @@ A dataframe in tibble format ("model, scenario, variable, unit, period, value")
 Read scenario input data (in IAMC format) as tibble format dataframe.
 }
 \examples{
-\donttest{
+\dontrun{
 mipplot_read_iamc("filename")
 }
 }

@@ -4,12 +4,21 @@
 \alias{mipplot_point}
 \title{Point plot from IAMC data}
 \usage{
-mipplot_point(D, region = levels(D$region),
+mipplot_point(
+  D,
+  region = levels(D$region),
   variable = levels(D$variable),
-  target_year = levels(as.factor(D$period)), colorby = "model",
-  shapeby = "model", xby = "scenario", facetby = NULL,
-  facet_x = NULL, facet_y = NULL, fontsize = 20, PRINT_OUT = F,
-  DEBUG = T)
+  target_year = levels(as.factor(D$period)),
+  colorby = "model",
+  shapeby = "model",
+  xby = "scenario",
+  facetby = NULL,
+  facet_x = NULL,
+  facet_y = NULL,
+  fontsize = 20,
+  PRINT_OUT = F,
+  DEBUG = T
+)
 }
 \arguments{
 \item{D}{A dataframe of IAMC data in tibble format to produce plots.}
@@ -46,7 +55,7 @@ The function arguments include the input dataframe,
              labels for the plot/axes/legend, and faceting dimensions
 }
 \examples{
-\donttest{
+\dontrun{
 mipplot_point(ar5_db_sample_data)
 }
 }

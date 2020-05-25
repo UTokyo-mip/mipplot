@@ -7,7 +7,7 @@
 #' Possible values are "en", "jp",
 #' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' mipplot_interactive_line(ar5_db_sample_data)
 #' }
 #' @export
@@ -206,7 +206,7 @@ mipplot_interactive_line <- function(D, language = "en") {
 #' c("AIM-Enduse 12.1", "GCAM 3.0", "IMAGE 2.4" )
 #' @param D A quitte format dataframe of IAMC data to produce garph.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' get_model_name_list(ar5_db_sample_data)
 #' }
 get_model_name_list <- function(D) {
@@ -219,7 +219,7 @@ get_model_name_list <- function(D) {
 #' c("EMF27-450-Conv", "EMF27-450-FullTech", "EMF27-450-NoCCS", "EMF27-450-NucOff")
 #' @param D A quitte format dataframe of IAMC data to produce garph.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' get_scenario_name_list(ar5_db_sample_data)
 #' }
 get_scenario_name_list <- function(D) {

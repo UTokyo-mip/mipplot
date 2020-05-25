@@ -4,13 +4,15 @@
 \name{ar5_db_sample_rule_table}
 \alias{ar5_db_sample_rule_table}
 \title{Sample Rule Table}
-\format{A data frame of additivity rule.
+\format{
+A data frame of additivity rule.
 \describe{
   \item{Rule_ID}{rule id}
   \item{Left_side}{name of left-side variable}
   \item{Right_side}{name of right-side variable}
   \item{Color_code}{hex color code}
-}}
+}
+}
 \usage{
 ar5_db_sample_rule_table
 }

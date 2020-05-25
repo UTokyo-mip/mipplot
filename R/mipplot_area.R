@@ -28,7 +28,7 @@
 #' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @return A list of area plots.
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' mipplot_area(ar5_db_sample_data, ar5_db_sample_rule_table)
 #' }
 #' @export
@@ -127,10 +127,14 @@ mipplot_area <- function(
             position <- "stack"
           }
 
+          D_RHS_negative_values_splitted <-
+              split_variable_into_positive_and_negative_parts(
+                na.omit(D_RHS), 'period', 'variable', 'value')
+
           p_Out1 <-
             ggplot2::ggplot() +
             ggplot2::geom_area(
-              data = na.omit(D_RHS),
+              data = D_RHS_negative_values_splitted,
               ggplot2::aes(x = period, y = value, fill = variable),
               position = position)
 
@@ -167,7 +171,8 @@ mipplot_area <- function(
           # apply color palette.
           if (!is.null(color_mapper[[var_common_name]])) {
             new_mapper <- color_mapper[[var_common_name]]
-            p_Out1 <- p_Out1 + ggplot2::scale_fill_manual(values=new_mapper)
+            new_mapper_with_negative_value_support <- add_negative_only_variable_support_to_color_mapper(new_mapper)
+            p_Out1 <- p_Out1 + ggplot2::scale_fill_manual(values=new_mapper_with_negative_value_support, breaks=names(new_mapper))
           }
 
           # internationalization font setting

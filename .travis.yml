@@ -3,3 +3,13 @@
 language: R
 sudo: false
 cache: packages
+addons:
+  apt:
+    packages:
+      - gfortran
+      - g++
+      - libcurl4-openssl-dev
+      - libxml2-dev
+      - libssl-dev
+warnings_are_errors: false
+latex: false

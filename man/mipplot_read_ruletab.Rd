@@ -16,7 +16,7 @@ A dataframe of additivity rule ("ID, Left_side, Right_side")
 Read table of additivity rule and adds column with id number.
 }
 \examples{
-\donttest{
+\dontrun{
 mipplot_read_ruletab("filename")
 }
 }

@@ -6,7 +6,7 @@
 #' Possible values are "en", "jp",
 #' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' mipplot_interactive_area(ar5_db_sample_data, ar5_db_sample_rule_table)
 #' }
 #' @export
