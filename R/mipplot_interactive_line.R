@@ -83,6 +83,11 @@ mipplot_interactive_line <- function(D, language = "en") {
           value = TRUE
         ),
 
+        checkboxInput(
+          inputId = "rotateYearLabel45Degrees",
+          label = "roate year label 45 degrees",
+          value = FALSE),
+
         selectInput("language", "language:",
                     choices = c(
                       "Chinese(Simplified)" = "zh-cn",
@@ -99,6 +104,12 @@ mipplot_interactive_line <- function(D, language = "en") {
           submitButton(text = "Apply Changes", icon = NULL, width = NULL)
         ),
 
+        shiny::div(
+          class = "form-group shiny-input-container",
+          style = "color:red;",
+          shiny::textOutput("warning_message_label")
+        ),
+
         # Show container which shows R code
         # to reproduce current plot.
         shiny::div(
@@ -107,8 +118,7 @@ mipplot_interactive_line <- function(D, language = "en") {
           shiny::tags$pre(
             style = "overflow: scroll; max-height: 10em; white-space: pre-line;",
             shiny::textOutput(
-              "code_to_reproduce_plot", inline = TRUE
-            )
+              "code_to_reproduce_plot", inline = TRUE)
           )
         )
       ),
@@ -126,6 +136,9 @@ mipplot_interactive_line <- function(D, language = "en") {
     })
 
     output$line_plot <- renderPlot({
+
+      # clear warning message in side panel
+      output$warning_message_label <- shiny::reactive("")
 
       # Since mipplot_line() function has no arguments to filter
       # models and periods to be plotted,
@@ -149,6 +162,7 @@ mipplot_interactive_line <- function(D, language = "en") {
                      scenario = input$scenario,
                      region = input$region,
                      legend = input$showLegend,
+                     axis_year_text_angle = ifelse(input$rotateYearLabel45Degrees, 45, 0),
                      language = input$language)
       }, warning = function(e) {
 
@@ -166,6 +180,10 @@ mipplot_interactive_line <- function(D, language = "en") {
             imageUrl = "",
             animation = TRUE
           )
+
+          output$warning_message_label <- shiny::reactive({
+            e$message
+          })
         }
 
       })
@@ -251,6 +269,7 @@ generate_code_to_plot_line <- function(input, name_of_iamc_data_variable = "D") 
     scenario = ${get_string_expression_of_vector_of_strings(input$scenario)},
     region = ${get_string_expression_of_vector_of_strings(input$region)},
     legend = ${as.character(input$showLegend)},
+    axis_year_text_angle = ${ifelse(input$rotateYearLabel45Degrees, 45, 0)},
     language = '${input$language}')
 "))
 }

@@ -18,6 +18,7 @@
 #' @param legend set TRUE to plot legend. default is TRUE.
 #' @param PRINT_OUT set TRUE to generate PDF files.
 #' @param DEBUG set TRUE to show debug messages.
+#' @param axis_year_text_angle text angle of x axis
 #' @param language A string of language. Possible values are "en", "jp",
 #' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @param max_scenarios Maximum number of scenarios to be shown. If legend is FALSE, this option is .
@@ -33,7 +34,8 @@ mipplot_line <- function(
   D, region = levels(D$region), variable = levels(D$variable),
   colorby = "scenario", linetypeby = "model", shapeby = "model",
   scenario = levels(D$scenario), facet_x = NULL,
-  facet_y = NULL, legend = TRUE, PRINT_OUT = F, DEBUG = T, language="en",
+  facet_y = NULL, legend = TRUE, PRINT_OUT = F, DEBUG = T,
+  axis_year_text_angle=0, language="en",
   max_scenarios = 15, max_models = 15) {
 
   # load translations
@@ -150,6 +152,10 @@ mipplot_line <- function(
         p_Out1 <- p_Out1 +
           ggplot2::theme(text = ggplot2::element_text(size = 20)) +
           ggplot2::labs(color=i18n_header$t(colorby), linetype=i18n_header$t(linetypeby), shape=i18n_header$t(linetypeby))
+
+        # set angle of x axis
+        p_Out1 <- p_Out1 + ggplot2::theme(
+          axis.text.x=element_text(angle=axis_year_text_angle, hjust=1))
 
         # Remove the legend if legend option is FALSE
         if (!legend) {

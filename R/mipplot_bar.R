@@ -24,6 +24,7 @@
 #' @param fontsize size of font in the output plot.
 #' @param color_code_specify set FALSE if you apply default color palette.
 #' @param one_hundred_percent_stacked set TRUE if you want a graph of 100% stacked, set this to TRUE.
+#' @param axis_scenario_text_angle text angle of x axis
 #' @param language A string of language. Possible values are "en", "jp",
 #' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @return A list of bar plots.
@@ -40,7 +41,8 @@ mipplot_bar <- function(
   D, R,region = levels(D$region), xby = "scenario",
   target_year = levels(as.factor(D$period)),
   facet_x = NULL, facet_y = NULL, PRINT_OUT = F, DEBUG = T, fontsize = 20,
-  color_code_specify = T, one_hundred_percent_stacked = F, language="en") {
+  color_code_specify = T, one_hundred_percent_stacked = F,
+  axis_scenario_text_angle = 0, language="en") {
 
   # REPLACED THIS FUNCTION WITH 1-LINE CODE (SEE LINE 52).
   # wrap_text <- function(x, width=60){
@@ -202,6 +204,15 @@ mipplot_bar <- function(
 
           p_Out1 <- p_Out1 + ggplot2::theme(
             text = ggplot2::element_text(size = fontsize))
+
+          # set angle of x axis
+          if (axis_scenario_text_angle != 0) {
+
+            # not to set `hjust`` to 1 when label angle is 0
+            # to avoid label to be trimmed
+            p_Out1 <- p_Out1 + ggplot2::theme(
+              axis.text.x=element_text(angle=axis_scenario_text_angle, hjust=1))
+          }
 
           # apply color palette.
           if (!is.null(color_mapper[[var_common_name]])) {
