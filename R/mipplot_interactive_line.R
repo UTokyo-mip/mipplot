@@ -83,6 +83,11 @@ mipplot_interactive_line <- function(D, language = "en") {
           value = TRUE
         ),
 
+        checkboxInput(
+          inputId = "rotateYearLabel45Degrees",
+          label = "roate year label 45 degrees",
+          value = FALSE),
+
         selectInput("language", "language:",
                     choices = c(
                       "Chinese(Simplified)" = "zh-cn",
@@ -149,6 +154,7 @@ mipplot_interactive_line <- function(D, language = "en") {
                      scenario = input$scenario,
                      region = input$region,
                      legend = input$showLegend,
+                     axis_year_text_angle = ifelse(input$rotateYearLabel45Degrees, 45, 0),
                      language = input$language)
       }, warning = function(e) {
 
@@ -251,6 +257,7 @@ generate_code_to_plot_line <- function(input, name_of_iamc_data_variable = "D") 
     scenario = ${get_string_expression_of_vector_of_strings(input$scenario)},
     region = ${get_string_expression_of_vector_of_strings(input$region)},
     legend = ${as.character(input$showLegend)},
+    axis_year_text_angle = ${ifelse(input$rotateYearLabel45Degrees, 45, 0)},
     language = '${input$language}')
 "))
 }
