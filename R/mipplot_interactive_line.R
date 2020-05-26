@@ -104,6 +104,12 @@ mipplot_interactive_line <- function(D, language = "en") {
           submitButton(text = "Apply Changes", icon = NULL, width = NULL)
         ),
 
+        shiny::div(
+          class = "form-group shiny-input-container",
+          style = "color:red;",
+          shiny::textOutput("warning_message_label")
+        ),
+
         # Show container which shows R code
         # to reproduce current plot.
         shiny::div(
@@ -112,8 +118,7 @@ mipplot_interactive_line <- function(D, language = "en") {
           shiny::tags$pre(
             style = "overflow: scroll; max-height: 10em; white-space: pre-line;",
             shiny::textOutput(
-              "code_to_reproduce_plot", inline = TRUE
-            )
+              "code_to_reproduce_plot", inline = TRUE)
           )
         )
       ),
@@ -131,6 +136,9 @@ mipplot_interactive_line <- function(D, language = "en") {
     })
 
     output$line_plot <- renderPlot({
+
+      # clear warning message in side panel
+      output$warning_message_label <- shiny::reactive("")
 
       # Since mipplot_line() function has no arguments to filter
       # models and periods to be plotted,
@@ -172,6 +180,10 @@ mipplot_interactive_line <- function(D, language = "en") {
             imageUrl = "",
             animation = TRUE
           )
+
+          output$warning_message_label <- shiny::reactive({
+            e$message
+          })
         }
 
       })
