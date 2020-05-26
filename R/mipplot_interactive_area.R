@@ -81,6 +81,11 @@ mipplot_interactive_area <- function(D, R, language = "en") {
           label = "100% stacked",
           value = FALSE),
 
+        checkboxInput(
+          inputId = "rotateYearLabel45Degrees",
+          label = "roate year label 45 degrees",
+          value = FALSE),
+
         selectInput("language", "language:",
                     choices = c(
                       "Chinese(Simplified)" = "zh-cn",
@@ -156,6 +161,7 @@ mipplot_interactive_area <- function(D, R, language = "en") {
                                     region = input$region,
                                     scenario = input$scenario,
                                     one_hundred_percent_stacked = input$aHundredPercentStacked,
+                                    axis_year_text_angle = ifelse(input$rotateYearLabel45Degrees, 45, 0),
                                     language = input$language)
 
       # If specified, a copyright notice will be added to the image.
@@ -204,6 +210,7 @@ mipplot_area(data_subset, ${name_of_input_rule_table_variable},
   region = ${get_string_expression_of_vector_of_strings(input$region)},
   scenario = ${get_string_expression_of_vector_of_strings(input$scenario)},
   one_hundred_percent_stacked = ${input$aHundredPercentStacked},
+  axis_year_text_angle = ${ifelse(input$rotateYearLabel45Degrees, 45, 0)},
   language = '${input$language}')"))
 }
 

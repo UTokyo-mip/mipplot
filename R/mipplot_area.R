@@ -24,6 +24,7 @@
 #' @param fontsize font size of text.
 #' @param color_code_specify set FALSE if you apply default color palette.
 #' @param one_hundred_percent_stacked set TRUE if you want a graph of 100% stacked, set this to TRUE.
+#' @param axis_year_text_angle text angle of x axis
 #' @param language A string of language. Possible values are "en", "jp",
 #' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @return A list of area plots.
@@ -36,7 +37,8 @@
 mipplot_area <- function(
   D, R, region=levels(D$region), scenario=levels(D$scenario),
   facet_x=NULL, facet_y=NULL, PRINT_OUT=F, DEBUG=T, fontsize=20,
-  color_code_specify=T, one_hundred_percent_stacked=F, language="en"){
+  color_code_specify=T, one_hundred_percent_stacked=F,
+  axis_year_text_angle=0, language="en"){
 
   # load translations
   i18n_header <- shiny.i18n::Translator(
@@ -167,6 +169,10 @@ mipplot_area <- function(
 
           p_Out1 <- p_Out1 + ggplot2::theme(
             text = ggplot2::element_text(size = fontsize))
+
+          # set angle of x axis
+          p_Out1 <- p_Out1 + ggplot2::theme(
+            axis.text.x=element_text(angle=axis_year_text_angle, hjust=1))
 
           # apply color palette.
           if (!is.null(color_mapper[[var_common_name]])) {

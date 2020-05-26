@@ -91,6 +91,11 @@ mipplot_interactive_bar <- function(D, R, language = "en") {
           label = "100% stacked",
           value = FALSE),
 
+        checkboxInput(
+          inputId = "rotateScenarioLabel45Degrees",
+          label = "roate scenario label 45 degrees",
+          value = FALSE),
+
         selectInput("language", "language:",
                     choices = c(
                       "Chinese(Simplified)" = "zh-cn",
@@ -168,6 +173,7 @@ mipplot_interactive_bar <- function(D, R, language = "en") {
         data_subset, R, region = input$region,
                   target_year = input$target_year,
         one_hundred_percent_stacked = input$aHundredPercentStacked,
+        axis_scenario_text_angle = ifelse(input$rotateScenarioLabel45Degrees, 45, 0),
         language = input$language)
 
       # If specified, a copyright notice will be added to the image.
@@ -216,7 +222,8 @@ generate_code_to_plot_bar <- function(
 mipplot_bar(data_subset, ${name_of_input_rule_table_variable},
   region = ${get_string_expression_of_vector_of_strings(input$region)},
   target_year = ${input$target_year},
-      one_hundred_percent_stacked = ${input$aHundredPercentStacked},
+  one_hundred_percent_stacked = ${input$aHundredPercentStacked},
+  axis_scenario_text_angle = ${ifelse(input$rotateScenarioLabel45Degrees, 45, 0)},
   language = '${input$language}')"
     ))
   }
