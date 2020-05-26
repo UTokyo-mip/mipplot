@@ -87,7 +87,12 @@ The latest release of `mipplot` can be installed from a tarball.
 install.packages("tidyverse")
 install.packages("showtext")
 install.packages("shiny")
-install.packages("mipplot_0.2.0.tar.gz", repos = NULL)
+install.packages("shinyWidgets")
+install.packages("data.table")
+install.packages("openxlsx")
+install.packages("shiny.i18n")
+install.packages("shinyalert")
+nstall.packages("mipplot_0.2.0.tar.gz", repos = NULL)
 ```
 
 Or via `devtools`:
