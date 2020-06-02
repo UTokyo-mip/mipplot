@@ -20,7 +20,7 @@ See the [extended manual](https://github.com/UTokyo-mip/mipplot/tree/master/mipp
 
 The latest release of `mipplot` can be installed from a binary package.
 
-1. Visit the [release page on GitHub](https://github.com/UTokyo-mip/mipplot/tree/master/release).
+1. Visit the [release page on GitHub](https://github.com/UTokyo-mip/mipplot/releases).
 
 2. Download the latest **zip** file (binary package).
 
@@ -30,7 +30,14 @@ The latest release of `mipplot` can be installed from a binary package.
 
 5. Run following commands.
 ```r
-install.packages("tidyverse")
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("showtext")) install.packages("showtext")
+if (!require("shiny")) install.packages("shiny")
+if (!require("shinyWidgets")) install.packages("shinyWidgets")
+if (!require("data.table")) install.packages("data.table")
+if (!require("openxlsx")) install.packages("openxlsx")
+if (!require("shiny.i18n")) install.packages("shiny.i18n")
+if (!require("shinyalert")) install.packages("shinyalert")
 install.packages("mipplot_0.2.0.zip", repos = NULL)
 ```
 
@@ -46,7 +53,7 @@ devtools::install_github("UTokyo-mip/mipplot", dependencies = TRUE)
 
 The latest release of `mipplot` can be installed from a binary package.
 
-1. Visit the [release page on GitHub](https://github.com/UTokyo-mip/mipplot/tree/master/release).
+1. Visit the [release page on GitHub](https://github.com/UTokyo-mip/mipplot/releases).
 
 2. Download the latest **tar.gz** file (source package).
 
@@ -56,7 +63,14 @@ The latest release of `mipplot` can be installed from a binary package.
 
 5. Run following commands.
 ```r
-install.packages("tidyverse")
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("showtext")) install.packages("showtext")
+if (!require("shiny")) install.packages("shiny")
+if (!require("shinyWidgets")) install.packages("shinyWidgets")
+if (!require("data.table")) install.packages("data.table")
+if (!require("openxlsx")) install.packages("openxlsx")
+if (!require("shiny.i18n")) install.packages("shiny.i18n")
+if (!require("shinyalert")) install.packages("shinyalert")
 install.packages("mipplot_0.2.0.tar.gz", repos = NULL)
 ```
 
@@ -79,7 +93,7 @@ sudo apt install build-essential gfortran g++ libcurl4-openssl-dev libxml2-dev l
 
 The latest release of `mipplot` can be installed from a tarball.
 
-1. Visit the [release page on GitHub](https://github.com/UTokyo-mip/mipplot/tree/master/release).
+1. Visit the [release page on GitHub](https://github.com/UTokyo-mip/mipplot/releases).
 
 2. Download the latest **tar.gz** file (source package).
 
@@ -89,7 +103,14 @@ The latest release of `mipplot` can be installed from a tarball.
 
 5. Run following commands.
 ```r
-install.packages("tidyverse")
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("showtext")) install.packages("showtext")
+if (!require("shiny")) install.packages("shiny")
+if (!require("shinyWidgets")) install.packages("shinyWidgets")
+if (!require("data.table")) install.packages("data.table")
+if (!require("openxlsx")) install.packages("openxlsx")
+if (!require("shiny.i18n")) install.packages("shiny.i18n")
+if (!require("shinyalert")) install.packages("shinyalert")
 install.packages("mipplot_0.2.0.tar.gz", repos = NULL)
 ```
 

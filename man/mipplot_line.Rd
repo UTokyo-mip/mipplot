@@ -17,6 +17,7 @@ mipplot_line(
   legend = TRUE,
   PRINT_OUT = F,
   DEBUG = T,
+  axis_year_text_angle = 0,
   language = "en",
   max_scenarios = 15,
   max_models = 15
@@ -46,6 +47,8 @@ mipplot_line(
 \item{PRINT_OUT}{set TRUE to generate PDF files.}
 
 \item{DEBUG}{set TRUE to show debug messages.}
+
+\item{axis_year_text_angle}{text angle of x axis}
 
 \item{language}{A string of language. Possible values are "en", "jp",
 "es", "zh-cn", "zh-tw". The default value is "en".}
