@@ -7,4 +7,4 @@
 ^\.travis\.yml$
 ^images$
 ^vignettes/images/.*$
-\mipplot-Manual-v1.md$
+^mipplot-Manual-v1\.md$

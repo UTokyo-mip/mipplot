@@ -17,6 +17,7 @@ mipplot_bar(
   fontsize = 20,
   color_code_specify = T,
   one_hundred_percent_stacked = F,
+  axis_scenario_text_angle = 0,
   language = "en"
 )
 }
@@ -44,6 +45,8 @@ mipplot_bar(
 \item{color_code_specify}{set FALSE if you apply default color palette.}
 
 \item{one_hundred_percent_stacked}{set TRUE if you want a graph of 100% stacked, set this to TRUE.}
+
+\item{axis_scenario_text_angle}{text angle of x axis}
 
 \item{language}{A string of language. Possible values are "en", "jp",
 "es", "zh-cn", "zh-tw". The default value is "en".}
