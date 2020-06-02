@@ -25,7 +25,14 @@ The latest release of `mipplot` can be installed from a binary package.
 
 5. Run following commands.
 ```r
-install.packages("tidyverse")
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("showtext")) install.packages("showtext")
+if (!require("shiny")) install.packages("shiny")
+if (!require("shinyWidgets")) install.packages("shinyWidgets")
+if (!require("data.table")) install.packages("data.table")
+if (!require("openxlsx")) install.packages("openxlsx")
+if (!require("shiny.i18n")) install.packages("shiny.i18n")
+if (!require("shinyalert")) install.packages("shinyalert")
 install.packages("mipplot_0.2.0.zip", repos = NULL)
 ```
 
@@ -51,7 +58,14 @@ The latest release of `mipplot` can be installed from a binary package.
 
 5. Run following commands.
 ```r
-install.packages("tidyverse")
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("showtext")) install.packages("showtext")
+if (!require("shiny")) install.packages("shiny")
+if (!require("shinyWidgets")) install.packages("shinyWidgets")
+if (!require("data.table")) install.packages("data.table")
+if (!require("openxlsx")) install.packages("openxlsx")
+if (!require("shiny.i18n")) install.packages("shiny.i18n")
+if (!require("shinyalert")) install.packages("shinyalert")
 install.packages("mipplot_0.2.0.tar.gz", repos = NULL)
 ```
 
@@ -84,15 +98,15 @@ The latest release of `mipplot` can be installed from a tarball.
 
 5. Run following commands.
 ```r
-install.packages("tidyverse")
-install.packages("showtext")
-install.packages("shiny")
-install.packages("shinyWidgets")
-install.packages("data.table")
-install.packages("openxlsx")
-install.packages("shiny.i18n")
-install.packages("shinyalert")
-nstall.packages("mipplot_0.2.0.tar.gz", repos = NULL)
+if (!require("tidyverse")) install.packages("tidyverse")
+if (!require("showtext")) install.packages("showtext")
+if (!require("shiny")) install.packages("shiny")
+if (!require("shinyWidgets")) install.packages("shinyWidgets")
+if (!require("data.table")) install.packages("data.table")
+if (!require("openxlsx")) install.packages("openxlsx")
+if (!require("shiny.i18n")) install.packages("shiny.i18n")
+if (!require("shinyalert")) install.packages("shinyalert")
+install.packages("mipplot_0.2.0.tar.gz", repos = NULL)
 ```
 
 Or via `devtools`:
