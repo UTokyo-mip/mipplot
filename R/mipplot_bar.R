@@ -50,17 +50,17 @@ mipplot_bar <- function(
   # }
 
   # load translations
-  i18n_header <- shiny.i18n::Translator(
+  i18n_header <- shiny.i18n::Translator$new(
     translation_json_path =
       system.file("mipplot", "translation_header.json", package="mipplot"))
   i18n_header$set_translation_language(language)
 
-  i18n_region <- shiny.i18n::Translator(
+  i18n_region <- shiny.i18n::Translator$new(
     translation_json_path =
       system.file("mipplot", "translation_region.json", package="mipplot"))
   i18n_region$set_translation_language(language)
 
-  i18n_variable <- shiny.i18n::Translator(
+  i18n_variable <- shiny.i18n::Translator$new(
     translation_json_path =
       system.file("mipplot", "translation_variable.json", package="mipplot"))
   i18n_variable$set_translation_language(language)
