@@ -12,5 +12,7 @@
 #'   \item{period}{year}
 #'   \item{value}{the value of a variable}
 #' }
-#' @source \url{https://data.ene.iiasa.ac.at/iamc-1.5c-explorer/#/login?redirect=%2Fworkspaces}
+#' @source
+#' \url{https://data.ene.iiasa.ac.at/iamc-1.5c-explorer/}
+#'
 "sr15_sample_data"
