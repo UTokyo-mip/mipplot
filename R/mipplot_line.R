@@ -39,17 +39,17 @@ mipplot_line <- function(
   max_scenarios = 15, max_models = 15) {
 
   # load translations
-  i18n_header <- shiny.i18n::Translator(
+  i18n_header <- shiny.i18n::Translator$new(
     translation_json_path =
       system.file("mipplot", "translation_header.json", package="mipplot"))
   i18n_header$set_translation_language(language)
 
-  i18n_region <- shiny.i18n::Translator(
+  i18n_region <- shiny.i18n::Translator$new(
     translation_json_path =
       system.file("mipplot", "translation_region.json", package="mipplot"))
   i18n_region$set_translation_language(language)
 
-  i18n_variable <- shiny.i18n::Translator(
+  i18n_variable <- shiny.i18n::Translator$new(
     translation_json_path =
       system.file("mipplot", "translation_variable.json", package="mipplot"))
   i18n_variable$set_translation_language(language)
@@ -59,7 +59,7 @@ mipplot_line <- function(
     D <- translate_data_table(D, i18n_variable)
   }
 
-  # font setting (for internationalization of Chinese and Japansese)
+  # font setting (for internationalization of Chinese and Japanese)
   install_font_if_not_available(language = language)
   theme_to_specify_font <- get_theme_to_change_font(language = language)
 
