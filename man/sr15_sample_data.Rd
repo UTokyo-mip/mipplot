@@ -17,7 +17,7 @@ A tibble data.table with 396425 rows and 7 variables:
 }
 }
 \source{
-
+\url{https://data.ene.iiasa.ac.at/iamc-1.5c-explorer/}
 }
 \usage{
 sr15_sample_data
