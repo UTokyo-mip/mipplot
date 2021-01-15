@@ -33,7 +33,7 @@ if (!require("data.table")) install.packages("data.table")
 if (!require("openxlsx")) install.packages("openxlsx")
 if (!require("shiny.i18n")) install.packages("shiny.i18n")
 if (!require("shinyalert")) install.packages("shinyalert")
-install.packages("mipplot_0.2.0.zip", repos = NULL)
+install.packages("mipplot_0.3.0.zip", repos = NULL)
 ```
 
 Or via `devtools`:
@@ -66,7 +66,7 @@ if (!require("data.table")) install.packages("data.table")
 if (!require("openxlsx")) install.packages("openxlsx")
 if (!require("shiny.i18n")) install.packages("shiny.i18n")
 if (!require("shinyalert")) install.packages("shinyalert")
-install.packages("mipplot_0.2.0.tar.gz", repos = NULL)
+install.packages("mipplot_0.3.0.tar.gz", repos = NULL)
 ```
 
 Or via `devtools`:
@@ -106,7 +106,7 @@ if (!require("data.table")) install.packages("data.table")
 if (!require("openxlsx")) install.packages("openxlsx")
 if (!require("shiny.i18n")) install.packages("shiny.i18n")
 if (!require("shinyalert")) install.packages("shinyalert")
-install.packages("mipplot_0.2.0.tar.gz", repos = NULL)
+install.packages("mipplot_0.3.0.tar.gz", repos = NULL)
 ```
 
 Or via `devtools`:
