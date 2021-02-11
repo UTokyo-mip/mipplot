@@ -52,7 +52,7 @@ mipplot_return_table <- function(D, R) {
       dplyr::group_by(model, period, region, scenario) %>% #group to keep columns in table
       dplyr::mutate(unit = paste(unit.x, unit.y, sep = "/")) %>%
       dplyr::mutate(value = value.x / value.y) %>%
-      rename(
+      reshape::rename(
         variable = new_variable
       )
     #Assigns final table to results
