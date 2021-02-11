@@ -240,12 +240,13 @@ get_variable_name_list_in_variable_group <- function(group_name) {
 }
 
 #' @title Split variable into positive and negative parts
-#' @description
-#' @param df
-#' @param domain_column_name
-#' @param variable_column_name
-#' @param value_column_name
-#' @param variable_name_converter
+#' @description Generally, the range of the input value of stacked chart is greater than or equal to zero.
+#' This function splits variable into positive and negative parts in order to include negative values to stacked chart.
+#' @param df_all input data frame
+#' @param domain_column_name domain column name, such as year
+#' @param variable_column_name variable column name, such as 'coal'
+#' @param value_column_name value column name, such as 'val'
+#' @param variable_name_converter function which convert original variable name into its negative part name
 #' @return modified data frame
 #' @export
 split_variable_into_positive_and_negative_parts <- function(
