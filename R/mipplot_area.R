@@ -23,7 +23,7 @@
 #' @param DEBUG set TRUE to show debug messages.
 #' @param fontsize font size of text.
 #' @param color_code_specify set FALSE if you apply default color palette.
-#' @param one_hundred_percent_stacked set TRUE if you want a graph of 100% stacked, set this to TRUE.
+#' @param one_hundred_percent_stacked set TRUE if you want a graph of 100\% stacked, set this to TRUE.
 #' @param axis_year_text_angle text angle of x axis
 #' @param language A string of language. Possible values are "en", "jp",
 #' "es", "zh-cn", "zh-tw". The default value is "en".
