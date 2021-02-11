@@ -21,11 +21,11 @@ Imports:
     data.table,
     openxlsx,
     readxl,
-    shiny.i18n,
+    shiny.i18n (>= 0.2.0),
     showtextdb,
     shinyalert,
     tidyverse
-Depends: R (>= 2.10), reshape2, dplyr, forcats, readr, showtext, shiny
+Depends: R, reshape2, dplyr, forcats, readr, showtext, shiny (>= 1.5.0)
 License: MIT + file LICENSE
 Suggests:
     testthat,
