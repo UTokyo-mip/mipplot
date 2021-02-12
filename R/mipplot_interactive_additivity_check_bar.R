@@ -3,6 +3,7 @@
 #' @param D A quitte format dataframe of IAMC data to produce graph.
 #' @param R A table with additivity rules.
 #' @param debug Set TRUE if table view is required.
+#' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel mainPanel plotOutput renderPlot validate need shinyApp
 #' @examples
 #' \dontrun{
 #' mipplot_interactive_additivity_check_bar(ar5_db_sample_data, ar5_db_sample_rule_table)

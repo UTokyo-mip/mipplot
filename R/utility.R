@@ -13,6 +13,8 @@
 #'   unit:     factor
 #'   period:   double
 #'   value:    double
+#' @param iamc_data IAMC dataset described above
+#' @return modified dataframe
 #' @export
 correct_format_of_iamc_dataframe <- function(iamc_data) {
 
@@ -24,6 +26,8 @@ correct_format_of_iamc_dataframe <- function(iamc_data) {
 
 #' @title check if the format of given data is valid
 #' as an IAMC dataset.
+#' @param iamc_data IAMC dataset in dataframe format
+#' @return TRUE if it is valid
 check_format_of_iamc_dataframe <- function(iamc_data) {
 
   check_column_availability(iamc_data)
@@ -31,6 +35,9 @@ check_format_of_iamc_dataframe <- function(iamc_data) {
 }
 
 #' @title check if the dataset has required fields of IAMC dataset
+#' @description if dataset has all required fields, then returns TRUE
+#' @param iamc_data IAMC data frame
+#' @return boolean flag
 check_column_availability <- function(iamc_data) {
 
   # list of required field of IAMC data.
@@ -45,8 +52,11 @@ check_column_availability <- function(iamc_data) {
   }
 }
 
-#' @title change column data type in dataset to be able to
-#' be treated as an IAMC dataset.
+#' @title change column data type in data-set
+#' @description change column data type in data-set to be able to
+#' be treated as an IAMC data-set.
+#' @param iamc_data data frame which has columns `model`, `scenario`, `region`, `variable`, `period`, `unit`
+#' @return converted data-frame.
 change_data_types_of_iamc_dataframe <- function(iamc_data) {
 
   # convert data type
@@ -60,14 +70,20 @@ change_data_types_of_iamc_dataframe <- function(iamc_data) {
   return(iamc_data)
 }
 
-#' @title Add credit text to a list of ggplot2 plot object
+#' @title Add credit text to plots
+#' @description Add credit text to a list of ggplot2 plot objects
+#' @param list_of_plot list of ggplot2 plot objects
+#' @return list of modified ggplot2 plot objects
 add_credit_to_list_of_plot <- function(list_of_plot) {
   return(
     lapply(list_of_plot, add_credit_to_plot)
   )
 }
 
-#' @title Add credit text to a ggplot2 plot object
+#' @title Add credit text to a plot
+#' @description Add credit text and project URL to a ggplot2 plot object
+#' @param plot_object ggplot2 plot object
+#' @return modified ggplot2 plot object
 add_credit_to_plot <- function(plot_object) {
   return (
     plot_object +
@@ -101,7 +117,8 @@ get_string_expression_of_vector_of_strings <- function(vector_of_strings) {
 #' @description variable-group is a combination of one LHS and one or more RHS.
 #' this function outputs the list of names of variable-group in given rule-table.
 #' the format of return value is "LHS|RHS1,RHS2,RHS3,...".
-#' @param R rule-table
+#' @param rule_table A rule table
+#' @return variable group name
 #' @examples
 #' \dontrun{
 #' noquote(
@@ -247,13 +264,18 @@ get_variable_name_list_in_variable_group <- function(group_name) {
 #' @param variable_column_name variable column name, such as 'coal'
 #' @param value_column_name value column name, such as 'val'
 #' @param variable_name_converter function which convert original variable name into its negative part name
+#' @param increment_of_domain_in_interpolation step size for interpolation
 #' @return modified data frame
+#' @importFrom stats approxfun
+#' @importFrom dplyr filter
 #' @export
 split_variable_into_positive_and_negative_parts <- function(
   df_all, domain_column_name, variable_column_name,
     value_column_name,
     variable_name_converter = function(x){paste(x, '_negative', sep="")},
     increment_of_domain_in_interpolation = 0.1) {
+
+  model <- scenario <- region <-
 
   # data frame to be returned
   df_new <- df_all[0,]

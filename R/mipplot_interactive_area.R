@@ -5,6 +5,8 @@
 #' @param language A string of language for initial plot.
 #' Possible values are "en", "jp",
 #' "es", "zh-cn", "zh-tw". The default value is "en".
+#' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel selectInput checkboxInput submitButton div tags textOutput mainPanel plotOutput reactive renderPlot validate need shinyApp
+#' @importFrom utils head tail
 #' @examples
 #' \dontrun{
 #' mipplot_interactive_area(ar5_db_sample_data, ar5_db_sample_rule_table)
@@ -12,6 +14,9 @@
 #' @export
 
 mipplot_interactive_area <- function(D, R, language = "en") {
+
+  variable <- model <- period <- NULL
+
 
   # name_of_input_data_variable is a string such as "ar5_db_sample_data"
   # this variable is used for generating R code to reproduce plot

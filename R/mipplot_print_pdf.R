@@ -14,6 +14,7 @@
 #'              region = "World", scenario = "EMF27-450-FullTech")
 #' mipplot_print_pdf(p)
 #' }
+#' @importFrom  grDevices dev.off pdf
 #' @export
 
 mipplot_print_pdf <- function(p_list1, filelabel = "", filename=tryCatch(file.choose(new = TRUE), error=function(e) {NA})){

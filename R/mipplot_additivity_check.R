@@ -14,6 +14,7 @@
 #'     ar5_db_sample_data, ar5_db_sample_rule_table, max_n_plots = 10))
 #' }
 #' @export
+#' @importFrom rlang .data
 mipplot_additivity_check <- function(
   D, R, max_n_plots = Inf, plot_all = FALSE) {
 
@@ -26,7 +27,7 @@ mipplot_additivity_check <- function(
 
   # Sort combinations in descending order of maximum of absolute relative deviation.
   sorted_max_abs_relative_deviation_table <-
-    max_abs_relative_deviation_table %>% dplyr::arrange(desc(max_abs_relative_deviation))
+    max_abs_relative_deviation_table %>% dplyr::arrange(dplyr::desc(.data$max_abs_relative_deviation))
 
   # Limited conditions will be plotted.
   n_plots <- min(max_n_plots, nrow(sorted_max_abs_relative_deviation_table))
@@ -79,7 +80,11 @@ print_condition <- function(condition) {
     sep="\t"), "\n", sep=""))
 }
 
+
 get_max_abs_relative_deviation_table <- function(D, R) {
+
+  model <- period <- value <- rhs_sum_value <-
+    rule_id <- variable <- region <- scenario <- abs_relative_deviation <- NULL
 
   result <- NULL
 
@@ -139,6 +144,8 @@ get_max_abs_relative_deviation_table <- function(D, R) {
       dplyr::ungroup())
 }
 
+#' @importFrom rlang .data
+#' @importFrom stats na.omit
 area_plot_of_specific_rule_id <- function(
   D, R, region=levels(D$region), scenario=levels(D$scenario),
   facet_x=NULL, facet_y=NULL, PRINT_OUT=F, DEBUG=T, fontsize=20,
@@ -171,7 +178,7 @@ area_plot_of_specific_rule_id <- function(
         # default color palette is applied.
         # This color_map is used to sort variable names too.
         if (color_code_specify == FALSE || !("Color_code" %in% colnames(R))) {
-          color_mapper <- mipplot_default_color_palette
+          color_mapper <- mipplot::mipplot_default_color_palette
         } else {
           # otherwise, generate palette.
           color_mapper <- mipplot_generate_color_mapper(R)
@@ -196,13 +203,13 @@ area_plot_of_specific_rule_id <- function(
             ggplot2::ggplot() +
             ggplot2::geom_area(
               data = na.omit(D_RHS),
-              ggplot2::aes(x = period, y = value, fill = variable),
+              ggplot2::aes(x = .data$period, y = .data$value, fill = .data$variable),
               position = "stack")
 
           p_Out1 <- p_Out1 +
             ggplot2::geom_line(
               data = na.omit(D_LHS),
-              ggplot2::aes(x = period, y = value), size = 2)
+              ggplot2::aes(x = .data$period, y = .data$value), size = 2)
 
           # Define plot titles and axes labels.
           p_Out1 <- p_Out1 +

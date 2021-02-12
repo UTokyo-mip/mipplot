@@ -35,6 +35,7 @@ mipplot_read_iamc <- function(filename=NULL, sep=",", interactive=FALSE, DEBUG=T
   return(loaded_iamc)
 }
 
+#' @importFrom readr cols col_factor col_double
 read_iamc <- function(file_path, sep = ",") {
 
   # read column names from data file
@@ -72,7 +73,7 @@ extract_year_columns <- function(columns) {
 
 #' @title Read IAMC scenario input data in Excel format
 #' @description Read scenario input data (in IAMC format) as tibble format dataframe from Excel
-#' @param filename Path to a file containing scenario data in IAMC format.
+#' @param file_path Path to a file containing scenario data in IAMC format.
 #' @param sheet the index of sheet which contains records.
 #' @return A dataframe in tibble format ("model, scenario, variable, unit, period, value")
 #' @examples

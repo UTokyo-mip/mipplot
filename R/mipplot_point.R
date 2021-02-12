@@ -33,6 +33,8 @@ mipplot_point <- function(
   facetby = NULL, facet_x = NULL, facet_y=NULL,
   fontsize=20, PRINT_OUT = F, DEBUG = T) {
 
+  value <- NULL
+
   p_list1 <- list()
 
   for (r in levels(as.factor(region))) {

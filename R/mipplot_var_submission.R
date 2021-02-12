@@ -14,6 +14,11 @@
 #' @title variable SUBMISSION CHECK
 #' @description Verify whether data of variables included
 #'  in list template have been submitted.
+#' @param D input data table
+#' @param V list of variables
+#' @param na_name string for N/A
+#' @importFrom stats aggregate complete.cases na.omit
+#' @importFrom utils write.csv
 #' @export
 #'
 mipplot_var_submission <- function(D, V, na_name = "N/A") {

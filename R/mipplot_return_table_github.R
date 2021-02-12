@@ -17,6 +17,7 @@
 #' @param D A dataframe of IAMC data in tibble format to produce mutated table
 #' @param R A dataframe of data aggregation rules
 #' @return Mutated Table of model,scenario,region,variable,unit,period,value
+#' @importFrom dplyr select
 #' @examples
 #' \dontrun{
 #' mipplot_return_table(sr15_sample_data, sr15_sample_conversion_rule_table)
@@ -24,6 +25,8 @@
 #' @export
 
 mipplot_return_table <- function(D, R) {
+
+  variable <- model <- period <- region <- scenario <- unit <- unit.x <- unit.y <- value.x  <- value.y <- value <- new_variable <- NULL
 
   #Assign value NULL to results
   results <- NULL

@@ -24,6 +24,8 @@
 #' @param max_scenarios Maximum number of scenarios to be shown. If legend is FALSE, this option is .
 #' @param max_models Maximum number of models to be shown. If legend is FALSE, this option is
 #' @return A list of line plots.
+#' @importFrom dplyr select filter
+#' @importFrom utils head
 #' @examples
 #' \dontrun{
 #' mipplot_line(ar5_db_sample_data)
@@ -37,6 +39,8 @@ mipplot_line <- function(
   facet_y = NULL, legend = TRUE, PRINT_OUT = F, DEBUG = T,
   axis_year_text_angle=0, language="en",
   max_scenarios = 15, max_models = 15) {
+
+  model <- period <- value <- NULL
 
   # load translations
   i18n_header <- shiny.i18n::Translator$new(

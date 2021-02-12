@@ -6,6 +6,12 @@
 \usage{
 correct_format_of_iamc_dataframe(iamc_data)
 }
+\arguments{
+\item{iamc_data}{IAMC dataset described above}
+}
+\value{
+modified dataframe
+}
 \description{
 Dataset in IAMC format rule is not rigid.
 This function corrects data types of columns in the dataset.

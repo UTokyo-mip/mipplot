@@ -6,6 +6,12 @@
 \usage{
 check_column_availability(iamc_data)
 }
+\arguments{
+\item{iamc_data}{IAMC data frame}
+}
+\value{
+boolean flag
+}
 \description{
-check if the dataset has required fields of IAMC dataset
+if dataset has all required fields, then returns TRUE
 }

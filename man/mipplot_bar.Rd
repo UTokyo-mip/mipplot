@@ -44,7 +44,7 @@ mipplot_bar(
 
 \item{color_code_specify}{set FALSE if you apply default color palette.}
 
-\item{one_hundred_percent_stacked}{set TRUE if you want a graph of 100% stacked, set this to TRUE.}
+\item{one_hundred_percent_stacked}{set TRUE if you want a graph of 100\% stacked, set this to TRUE.}
 
 \item{axis_scenario_text_angle}{text angle of x axis}
 

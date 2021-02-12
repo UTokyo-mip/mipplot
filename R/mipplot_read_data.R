@@ -14,13 +14,13 @@ mipplot_read_data <- function(filename = NULL, rule_table_filename=NULL,
 
 
 
-  # Install and import libraries.
-  mipplot_setup("ggplot2")
-  mipplot_setup("data.table")
-  mipplot_setup("openxlsx")
-  mipplot_setup("stringr")
-  mipplot_setup("reshape2")
-  mipplot_setup("dplyr")
+  # # Install and import libraries.
+  # mipplot_setup("ggplot2")
+  # mipplot_setup("data.table")
+  # mipplot_setup("openxlsx")
+  # mipplot_setup("stringr")
+  # mipplot_setup("reshape2")
+  # mipplot_setup("dplyr")
 
 
   # Select and read input file.

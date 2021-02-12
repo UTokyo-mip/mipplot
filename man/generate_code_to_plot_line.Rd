@@ -14,6 +14,11 @@ this function accesses following attributes:
 - variable
 - scenario
 - region}
+
+\item{name_of_iamc_data_variable}{name of IAMC data variable}
+}
+\value{
+R code
 }
 \description{
 from `input` argument generally used in

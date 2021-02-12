@@ -2,6 +2,7 @@
 #' @description A function to launch interactive plot using Shiny
 #' @param D A quitte format dataframe of IAMC data to produce garph.
 #' @param R A table with additivity rules.
+#' @importFrom shiny fluidPage selectInput textOutput mainPanel plotOutput renderPlot shinyApp
 #' @examples
 #' \dontrun{
 #' mipplot_interactive_plot_line(ar5_db_sample_data, ar5_db_sample_rule_table)
@@ -9,6 +10,8 @@
 #' @export
 
 mipplot_interactive_plot_line <- function(D, R) {
+
+  variable <- region <- NULL
 
   var_list <- levels(D$variable)
   region_list <- levels(D$region)

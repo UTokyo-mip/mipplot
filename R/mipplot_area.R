@@ -28,6 +28,7 @@
 #' @param language A string of language. Possible values are "en", "jp",
 #' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @return A list of area plots.
+#' @importFrom stats na.omit
 #' @examples
 #' \dontrun{
 #' mipplot_area(ar5_db_sample_data, ar5_db_sample_rule_table)
@@ -39,6 +40,8 @@ mipplot_area <- function(
   facet_x=NULL, facet_y=NULL, PRINT_OUT=F, DEBUG=T, fontsize=20,
   color_code_specify=T, one_hundred_percent_stacked=F,
   axis_year_text_angle=0, language="en"){
+
+  period <- value <- variable <- NULL
 
   # load translations
   i18n_header <- shiny.i18n::Translator$new(

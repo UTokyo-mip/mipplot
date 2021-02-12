@@ -26,6 +26,8 @@ mipplot_box <- function(
   target_year=levels(as.factor(D$period)), PRINT_OUT=F, DEBUG=T,
   language="en") {
 
+  scenario <- value <- NULL
+
   # load translations
   i18n_header <- shiny.i18n::Translator(
     translation_json_path =

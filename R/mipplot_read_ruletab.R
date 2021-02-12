@@ -6,6 +6,7 @@
 #' @description Read table of additivity rule and adds column with id number.
 #' @param R_without_id Path to a file containing data of additivity rule.
 #' @return A dataframe of additivity rule ("ID, Left_side, Right_side")
+#' @importFrom utils read.csv
 #' @examples
 #' \dontrun{
 #' mipplot_read_ruletab("filename")

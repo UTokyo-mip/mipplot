@@ -7,7 +7,10 @@
 get_variable_group_name_list(rule_table)
 }
 \arguments{
-\item{R}{rule-table}
+\item{rule_table}{A rule table}
+}
+\value{
+variable group name
 }
 \description{
 variable-group is a combination of one LHS and one or more RHS.

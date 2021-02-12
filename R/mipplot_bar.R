@@ -28,6 +28,7 @@
 #' @param language A string of language. Possible values are "en", "jp",
 #' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @return A list of bar plots.
+#' @importFrom stats na.omit
 #' @examples
 #' \dontrun{
 #' mipplot_bar(ar5_db_sample_data, ar5_db_sample_rule_table)
@@ -43,6 +44,8 @@ mipplot_bar <- function(
   facet_x = NULL, facet_y = NULL, PRINT_OUT = F, DEBUG = T, fontsize = 20,
   color_code_specify = T, one_hundred_percent_stacked = F,
   axis_scenario_text_angle = 0, language="en") {
+
+  value <- variable <- NULL
 
   # REPLACED THIS FUNCTION WITH 1-LINE CODE (SEE LINE 52).
   # wrap_text <- function(x, width=60){
@@ -118,7 +121,7 @@ mipplot_bar <- function(
         # default color palette is applied.
         # This color_map is used to sort variable names too.
         if (color_code_specify == FALSE || !("Color_code" %in% colnames(R))) {
-          color_mapper <- mipplot_default_color_palette
+          color_mapper <- mipplot::mipplot_default_color_palette
         } else {
           # otherwise, generate palette.
           color_mapper <- mipplot_generate_color_mapper(R)
