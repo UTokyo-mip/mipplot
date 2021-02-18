@@ -8,3 +8,6 @@
 ^images$
 ^vignettes/images/.*$
 ^mipplot-Manual-v1\.md$
+^LICENSE\.md$
+^cran-comments\.md$
+
