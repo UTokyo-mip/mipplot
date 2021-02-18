@@ -7,7 +7,7 @@
 get_scenario_name_list(D)
 }
 \arguments{
-\item{D}{A quitte format dataframe of IAMC data to produce garph.}
+\item{D}{A quitte format dataframe of IAMC data to produce graph.}
 }
 \description{
 select name of scenarios from the column "scenario" then make unique it.

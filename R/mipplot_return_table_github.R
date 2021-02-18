@@ -4,14 +4,14 @@
 #--------------------------------------------------------------------
 #====================================================================
 # Mutated Table using filtered variable from the rule table
-#     The function arguments inlcude the input dataframes:
+#     The function arguments include the input dataframes:
 #     The SR15 dataset and the Rule Table and returns a mutated
 #     table with variable, value, model, scenario, region, period
 #====================================================================
 
 #' @title Mutated table of SR15 Data
 #' @description  Mutated Table using filtered variable from the rule table
-#'          The function arguments inlcude the input dataframes:
+#'          The function arguments include the input dataframes:
 #'          The SR15 dataset and the Rule Table and returns a mutated
 #'          table with variable, value, model, scenario, region, period
 #' @param D A dataframe of IAMC data in tibble format to produce mutated table

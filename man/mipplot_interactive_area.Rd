@@ -2,7 +2,7 @@
 % Please edit documentation in R/mipplot_interactive_area.R
 \name{mipplot_interactive_area}
 \alias{mipplot_interactive_area}
-\title{A function to launch interactive plotting session on Shniy}
+\title{A function to launch interactive plotting session on Shiny}
 \usage{
 mipplot_interactive_area(D, R, language = "en")
 }

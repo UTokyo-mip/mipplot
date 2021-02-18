@@ -36,7 +36,7 @@ mipplot_line(
 
 \item{shapeby}{an axis for shape setting.}
 
-\item{scenario}{A list of cenarios.}
+\item{scenario}{A list of scenarios.}
 
 \item{facet_x}{facet_x}
 

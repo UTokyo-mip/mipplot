@@ -7,7 +7,7 @@
 mipplot_interactive_bar(D, R, language = "en")
 }
 \arguments{
-\item{D}{A quitte format dataframe of IAMC data to produce garph.}
+\item{D}{A quitte format dataframe of IAMC data to produce graph.}
 
 \item{R}{A table with additivity rules.}
 

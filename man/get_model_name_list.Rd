@@ -7,7 +7,7 @@
 get_model_name_list(D)
 }
 \arguments{
-\item{D}{A quitte format dataframe of IAMC data to produce garph.}
+\item{D}{A quitte format dataframe of IAMC data to produce graph.}
 }
 \description{
 select name of models from the column "model" then make unique it.

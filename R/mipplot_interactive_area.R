@@ -1,4 +1,4 @@
-#' @title A function to launch interactive plotting session on Shniy
+#' @title A function to launch interactive plotting session on Shiny
 #' @description Provides gui to set plotting parameter for area plot.
 #' @param D A dataframe of IAMC data in tibble format to produce area plots.
 #' @param R A dataframe of data aggregation rules (meta data).

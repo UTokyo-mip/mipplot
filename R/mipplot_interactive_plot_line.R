@@ -1,6 +1,6 @@
 #' @title A function to launch interactive plot using Shiny
 #' @description A function to launch interactive plot using Shiny
-#' @param D A quitte format dataframe of IAMC data to produce garph.
+#' @param D A quitte format dataframe of IAMC data to produce graph.
 #' @param R A table with additivity rules.
 #' @importFrom shiny fluidPage selectInput textOutput mainPanel plotOutput renderPlot shinyApp
 #' @examples

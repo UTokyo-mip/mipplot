@@ -7,7 +7,7 @@
 mipplot_interactive_line(D, language = "en")
 }
 \arguments{
-\item{D}{A quitte format dataframe of IAMC data to produce garph.}
+\item{D}{A quitte format dataframe of IAMC data to produce graph.}
 
 \item{language}{A string of language for initial plot.
 Possible values are "en", "jp",

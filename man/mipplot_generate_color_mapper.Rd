@@ -19,7 +19,7 @@ for example,
 
   result = list(
     "Emissions|CO2" = c(
-      "Fossi Fuels and Industry" = "#17202a",
+      "Fossil Fuels and Industry" = "#17202a",
       "Land Use" = "#008000", ...),
     "Emissions|CO2|Fossil Fuels and Industry" = c(
       "Energy Demand" = "#444444", ...

@@ -3,7 +3,7 @@
 #'              right-hand-side values of  target additivity rule.
 #'              The function arguments include the input dataframe,
 #'              labels for the plot/axes/legend, and faceting dimensions
-#' @param D A quitte format dataframe of IAMC data to produce garph.
+#' @param D A quitte format dataframe of IAMC data to produce graph.
 #' @param R A table with additivity rules.
 #' @param language A string of language for initial plot.
 #' Possible values are "en", "jp",

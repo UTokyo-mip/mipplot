@@ -12,7 +12,7 @@
 #' @param colorby an axis for color setting.
 #' @param linetypeby an axis for line type setting.
 #' @param shapeby an axis for shape setting.
-#' @param scenario A list of cenarios.
+#' @param scenario A list of scenarios.
 #' @param facet_x facet_x
 #' @param facet_y facet_y
 #' @param legend set TRUE to plot legend. default is TRUE.
