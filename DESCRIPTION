@@ -35,7 +35,8 @@ License: MIT + file LICENSE
 Suggests:
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    utf8
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
