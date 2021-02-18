@@ -16,20 +16,20 @@ knitr::opts_chunk$set(
 )
 ```
 
-## 概要
+## Summary
 
-`mipplot` パッケージは IAMC template format のデータを可視化するための `R` パッケージです。
+The `mipplot` package is an `R` package for visualizing data in the IAMC template format.
 
-この vignette では `mipplot` パッケージの基本機能を紹介します。
+This vignette introduces the basic features of the `mipplot` package.
 
-## 利用するデータ
+## Data
 
-この vignette では SR1.5 データのサブセットを使用します。
-このデータは `mipplot` パッケージに含まれており、別途ダウンロードする必要はありません。
+This vignette uses a subset of the SR1.5 data.
+This data is included in the `mipplot` package and does not need to be downloaded separately.
 
 ## load library
 
-`mipplot` パッケージと `tidyverse`パッケージを読み込みます。
+Load the `mipplot` and `tidyverse` packages.
 
 ```{r, message=FALSE, warning=FALSE}
 library(mipplot)
@@ -38,47 +38,47 @@ library(tidyverse)
 
 ## load sample data
 
-`mipplot` パッケージに付属の SR1.5 のサブセット データは `mipplot::sr15_sample_data` という名前でアクセスできます。中身を見てみましょう。
+The SR1.5 subset data that comes with the `mipplot` package can be accessed under the name `mipplot::sr15_sample_data`. Let's take a look at what's inside.
 
 ```{r}
 sr15_sample_data
 ```
 
-中身は `tibble` 形式のデータです。ここには `model`, `scenario`, `region`, `variable`, `unit`, `period`, `value` というデータが保存されています。
+The data is in `tibble` format. It contains the following columns: `model`, `scenario`, `region`, `variable`, `unit`, `period`, and `value`.
 
-なお、ファイルから別のデータを読み込むには、以下のようにします。
+In addition, to read another data from a file, do the following.
 
 ```{r, eval=FALSE}
 iamc_data <- mipplot_read_iamc("path_to_data.csv")
 ```
 
-データに含まれるモデルの一覧を確認しましょう。
+Check the list of models included in the data.
 
 ```{r}
 sr15_sample_data$model %>% levels
 ```
 
-シナリオの一覧を確認しましょう。
+Check the list of scenarios.
 
 ```{r}
 sr15_sample_data$scenario %>% levels
 ```
 
-地域の一覧を確認しましょう。
+Check the list of regions.
 
 ```{r}
 sr15_sample_data$region %>% levels
 ```
 
-変数の一覧を確認しましょう。
+Let's check the list of variables.
 
 ```{r}
 sr15_sample_data %>% select(variable, unit) %>% distinct
 ```
 
-## データのフィルタリング
+## Data Filtering
 
-`SSP2` のシナリオを含むモデルのみ抽出を例に、データのフィルタリングの方法を説明します。
+This section explains how to filter data, using the example of extracting only models that contain `SSP2` scenarios.
 
 ```{r}
 sr15_sample_data %>% 
@@ -86,15 +86,14 @@ sr15_sample_data %>%
   select(model, scenario) %>% distinct
 ```
 
-`str_detect` 関数に与えられている `"^SSP2"` は正規表現と呼ばれています。
-`"^"` は文頭を表し、"^SSP2" という正規表現は、
-"SSP2" から始まる文字列であるかをチェックするという意味になります。
+The `"^SSP2"` given to the `str_detect` function is called a regular expression.
+The `"^"` stands for the beginning of a sentence, and the regular expression "^SSP2"" means to check if the string starts with "SSP2".
 
-`distinct` は、データの重複を除く関数です。
+`distinct` is a function that removes duplicate data.
 
-次に、 **Secondary Energy|Electricity|** 以下の変数の一覧を抽出してみましょう。
+Next, let's extract the list of variables under **Secondary Energy|Electricity|**.
 
-"|" は正規表現の中で特別な意味を持つので、これを検索するには"\\|" のようにしなければなりません。これをエスケープするといいます。
+"|" has a special meaning in regular expressions, so to search for it we must use something like "\\\|". This is called escaping.
 
 ```{r}
 sr15_sample_data %>% 
@@ -105,26 +104,26 @@ sr15_sample_data %>%
 
 ## Visualization with interactive tool
 
-`mipplot` の対話的インターフェースを使って、データのフィルタリングと可視化を行ってみましょう。
+Let's use the interactive interface of `mipplot` to filter and visualize the data.
 
 ### line plot
 
-まず line plot を行います。line plot を行うには以下のようにします。
+The first step is to perform a line plot, which can be done as follows:
 
 ```{r, eval=FALSE}
 mipplot_interactive_line(sr15_sample_data)
 ```
 
-すると、以下のような画面が表示されます。
+You will then see a screen like the one below.
 
 ```{r, echo=FALSE, out.width="100%"}
 knitr::include_graphics("screenshot_mipplot_interactive_line.png")
 ```
 
-各種の条件を選択して、グラフをプロットしてください。
+Select the various conditions and plot the graph.
 
-なお、画面にはグラフを再現するための R のコードが表示されます。
-これをコピー＆ペーストすると、以下のようにプロットを編集できます。
+The R code for reproducing the graph will be displayed on the screen.
+You can copy and paste it to edit the plot as shown below.
 
 ```{r, fig.width=10, fig.height=7, out.width="100%"}
 data_subset <- sr15_sample_data %>%
@@ -144,8 +143,8 @@ mipplot_line(
 
 ### bar plot
 
-次に、bar plot を行います。bar plot には、ルール表が必要なため、
-AR5 用のルール `ar5_db_sample_rule_table` を流用します。
+Next, we will create a bar plot.
+Since bar plot needs a rule table, we will use the rule `ar5_db_sample_rule_table` for AR5.
 
 ```{r, eval=FALSE}
 mipplot_interactive_bar(sr15_sample_data, ar5_db_sample_rule_table)
@@ -155,8 +154,8 @@ mipplot_interactive_bar(sr15_sample_data, ar5_db_sample_rule_table)
 knitr::include_graphics("screenshot_mipplot_interactive_bar.png")
 ```
 
-画面にはプロットを再現するための R のコードが表示されます。
-これをコピー＆ペーストすると、以下のようにプロットを編集できます。
+On the screen you will see the R code to reproduce the plot.
+Copy and paste this to edit the plot as shown below.
 
 ```{r, fig.width=10, fig.height=7, out.width="100%"}
 data_subset <- sr15_sample_data %>%
@@ -175,8 +174,7 @@ mipplot_bar(data_subset, ar5_db_sample_rule_table,
 
 ### area plot
 
-area plot を行います。area plot にもルールが必要なため、
-AR5 用のルール `ar5_db_sample_rule_table` を流用します。
+Since area plot also requires a rule, we will use the rule `ar5_db_sample_rule_table` for AR5.
 
 ```{r, eval=FALSE}
 mipplot_interactive_area(sr15_sample_data, ar5_db_sample_rule_table)
@@ -186,8 +184,8 @@ mipplot_interactive_area(sr15_sample_data, ar5_db_sample_rule_table)
 knitr::include_graphics("screenshot_mipplot_interactive_area.png")
 ```
 
-画面にはプロットを再現するための R のコードが表示されます。
-これをコピー＆ペーストすると、以下のようにプロットを編集できます。
+On the screen you will see the R code to reproduce the plot.
+Copy and paste this to edit the plot as shown below.
 
 ```{r, fig.width=10, fig.height=7, out.width="100%"}
 data_subset <- sr15_sample_data %>%
@@ -203,15 +201,11 @@ mipplot_area(data_subset, ar5_db_sample_rule_table,
   language = 'en')[[1]]
 ```
 
-## 別の言語での出力
+## Output in another language
 
-これまで、英語でのプロットを行ってきましたが、
-これ以外にも中国語（簡体字）、中国語（繁体字）、日本語、スペイン語での
-プロットが可能です。
+So far, we have plotted in English, but in addition to this, we can plot in Chinese (Simplified), Chinese (Traditional), Japanese, and Spanish.
 
-これまでのプロットでは、すべて `language = "en"` (English) と指定していたので、
-これを例えば以下のように置き換えます。
-
+All plots so far have specified `language = "en"` (English), so replace this with, for example, the following:
 
 ```{r, warning=FALSE, fig.width=10, fig.height=7, out.width="100%"}
 data_subset <- sr15_sample_data %>%
@@ -224,24 +218,24 @@ mipplot_area(data_subset, ar5_db_sample_rule_table,
   region = c("World"),
   scenario = c("SSP3-Baseline"),
   one_hundred_percent_stacked = FALSE,
-  language = 'jp')[[1]]  # <--------------- ここを置き換えました
+  language = 'jp')[[1]]  # <--------------- We changed here
 ```
 
 
-設定可能な言語と言語コードの対応表は以下の通りです。
+The following table shows the languages and language codes that can be set.
 
-| 言語   |  言語コード  |
+| language | language code |
 | ---- | ---- |
-|  英語  |  en  |
-|  中国語(簡体字)  |  zh-cn  |
-|  中国語(繁体字)  |  zh-tw  |
-|  日本語  |  jp  |
-|  スペイン語  |  es  |
+| English | en |
+| Chinese (Simplified) | zh-cn |
+| Chinese (Traditional) | zh-tw |
+| Japanese | jp |
+| Spanish | es |
 
 
-## PDF ファイルへの出力
+## Output to PDF file
 
-画像を PDF ファイルに出力するには、以下のようにします。
+To output an image to a PDF file, do the following:
 
 ```{r, eval=FALSE, fig.width=10}
 data_subset <- sr15_sample_data %>%
@@ -250,18 +244,18 @@ data_subset <- sr15_sample_data %>%
   filter(2000 <= period) %>%
   filter(period <= 2100)
 
-# グラフを変数に保存します。
+# Save plot to `graph` variable
 graph <- mipplot_area(data_subset, ar5_db_sample_rule_table,
   region = c("World"),
   scenario = c("SSP3-Baseline"),
   one_hundred_percent_stacked = FALSE,
   language = 'zh-cn')[[1]]
 
-# グラフを保存した変数を mipplot_print_pdf 関数に与えます。
+# Give `graph` to `mipplot_print_pdf`
 mipplot_print_pdf(graph)
 
 ```
 
-するとファイルを保存するダイアログが表示され、
-PDF ファイルとして保存できます。
+This will bring up a dialog box to save the file.
+You can save the file as a PDF file.
 
