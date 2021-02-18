@@ -1,6 +1,6 @@
 Package: mipplot
 Type: Package
-Title: mip plot tool
+Title: Mip Plot Tool
 Version: 0.3.1
 Authors@R: c(person("Diego", "Silva Herran", email = "silva-herran@iges.or.jp",role = "aut"),
              person("Jiayang", "WANG", email = "wang@pari.u-tokyo.ac.jp",role = "aut"),
