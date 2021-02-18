@@ -1,6 +1,6 @@
 Package: mipplot
 Type: Package
-Title: Mip Plot Tool
+Title: MIP Plot Tool
 Version: 0.3.1
 Authors@R: c(person("Diego", "Silva Herran", email = "silva-herran@iges.or.jp",role = "aut"),
              person("Jiayang", "WANG", email = "wang@pari.u-tokyo.ac.jp",role = "aut"),
@@ -8,21 +8,17 @@ Authors@R: c(person("Diego", "Silva Herran", email = "silva-herran@iges.or.jp",r
              person("Hiroto", "SHIRAKI", email = "shiraki.h@ses.usp.ac.jp",role = "aut"),
              person("Akimitsu", "Inoue", email = "inoue.akimitsu@chino-js.com", role = c("ctr", "cre")))
 Maintainer: Akimitsu Inoue <inoue.akimitsu@chino-js.com>
-Description: Package contains generic functions to produce area/bar/box/line plots of data following Integrated Assessment Modeling Consortium submission format.
+Description: Package contains generic functions to produce area/bar/box/line plots of data following IAMC (Integrated Assessment Modeling Consortium) submission format.
 Imports:
     ggplot2,
     stringr,
-    tibble,
     tidyr,
     shinyWidgets,
     data.table,
-    openxlsx,
     readxl,
     shiny.i18n (>= 0.2.0),
     showtextdb,
     shinyalert,
-    tidyverse,
-    forcats,
     readr,
     showtext,
     shiny (>= 1.5.0),
@@ -36,7 +32,7 @@ Suggests:
     testthat,
     knitr,
     rmarkdown,
-    utf8
+    tidyverse
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
