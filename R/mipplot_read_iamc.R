@@ -44,20 +44,28 @@ read_iamc <- function(file_path, sep = ",") {
   # extract year columns
   year_columns <- extract_year_columns(all_columns)
 
-  # read contents
-  content <- readr::read_delim(file_path, delim = sep, col_types = cols(
-    .default = col_double(),
-    MODEL = col_factor(NULL),
-    SCENARIO = col_factor(NULL),
-    REGION = col_factor(NULL),
-    VARIABLE = col_factor(NULL),
-    UNIT = col_factor(NULL),
-    Model = col_factor(NULL),
-    Scenario = col_factor(NULL),
-    Region = col_factor(NULL),
-    Variable = col_factor(NULL),
-    Unit = col_factor(NULL)
-  ))
+  # read procedure:
+  # 1. try lower case columns first.
+  # 2. if some lower case column doesn't exist,
+  #    then retry upper case columns.
+  content <- tryCatch({
+    return(readr::read_delim(file_path, delim = sep, col_types = cols(
+      .default = col_double(),
+      Model = col_factor(NULL),
+      Scenario = col_factor(NULL),
+      Region = col_factor(NULL),
+      Variable = col_factor(NULL),
+      Unit = col_factor(NULL))))
+  }, warning = function(e){
+    return(readr::read_delim(file_path, delim = sep, col_types = cols(
+      .default = col_double(),
+      MODEL = col_factor(NULL),
+      SCENARIO = col_factor(NULL),
+      REGION = col_factor(NULL),
+      VARIABLE = col_factor(NULL),
+      UNIT = col_factor(NULL))))
+  },
+  silent=TRUE)
 
   colnames(content) <- tolower(colnames(content))
   content <- tidyr::gather_(content, "period", "value", year_columns)
