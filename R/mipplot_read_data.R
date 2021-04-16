@@ -27,7 +27,7 @@ mipplot_read_data <- function(filename = NULL, rule_table_filename=NULL,
   if(is.null(filename)){
       filename <- file.choose()
   }
-  df1 <- data.table::fread(filename, header=T)
+  df1 <- data.table::fread(filename, header=TRUE)
 
 
   # Transform input data into format ready-to-use for diagnostics and plotting.

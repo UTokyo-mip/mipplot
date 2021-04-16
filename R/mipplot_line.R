@@ -36,7 +36,7 @@ mipplot_line <- function(
   D, region = levels(D$region), variable = levels(D$variable),
   colorby = "scenario", linetypeby = "model", shapeby = "model",
   scenario = levels(D$scenario), facet_x = NULL,
-  facet_y = NULL, legend = TRUE, PRINT_OUT = F, DEBUG = T,
+  facet_y = NULL, legend = TRUE, PRINT_OUT = FALSE, DEBUG = TRUE,
   axis_year_text_angle=0, language="en",
   max_scenarios = 15, max_models = 15) {
 

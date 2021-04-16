@@ -165,7 +165,7 @@ get_variable_group_name_list <- function(rule_table) {
 
       # remove parent part, then get base name
       # new_right_side_name <- stringr::str_replace(new_row$Right_side, "^.*\\|", "")
-      new_right_side_name <- gsub(paste(current_left_side_name, "|", sep = ""), "", new_row$Right_side, fixed = T)
+      new_right_side_name <- gsub(paste(current_left_side_name, "|", sep = ""), "", new_row$Right_side, fixed = TRUE)
 
       # add RHS entry to current_group_name with " + " separator.
       current_right_side_name_list <- c(current_right_side_name_list, new_right_side_name)

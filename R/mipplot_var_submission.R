@@ -141,14 +141,14 @@ mipplot_var_submission <- function(D, V, na_name = "N/A") {
 
   V_missing <- V_out[V_out$Outcome == "Missing_var", c("model", "scenario", "region", "variable","Outcome")]
   filename <- sprintf("../data_output/Var_missing_%s.csv", format(Sys.time(), "%Y_%m%d"))
-  write.csv(V_missing, file = filename, row.names = F)
+  write.csv(V_missing, file = filename, row.names = FALSE)
 
   V_missing_wide <- dcast(V_missing, ...~model+scenario)
   filename <- sprintf("../data_output/Var_missing_wide_%s.csv", format(Sys.time(), "%Y_%m%d"))
-  write.csv(V_missing_wide, file = filename, row.names = F)
+  write.csv(V_missing_wide, file = filename, row.names = FALSE)
 
   filename <- sprintf("../data_output/Var_submission_check_%s.csv", format(Sys.time(), "%Y_%m%d"))
-  write.csv(V_out, file = filename, row.names = F)
+  write.csv(V_out, file = filename, row.names = FALSE)
   return(V_out)
 }
 

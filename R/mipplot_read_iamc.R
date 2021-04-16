@@ -14,7 +14,7 @@
 #' mipplot_read_iamc("filename")
 #' }
 #' @export
-mipplot_read_iamc <- function(filename=NULL, sep=",", interactive=FALSE, DEBUG=T){
+mipplot_read_iamc <- function(filename=NULL, sep=",", interactive=FALSE, DEBUG=TRUE){
 
   if (interactive == TRUE) {
     filename <- file.choose()

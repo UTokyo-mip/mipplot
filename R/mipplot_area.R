@@ -37,8 +37,8 @@
 
 mipplot_area <- function(
   D, R, region=levels(D$region), scenario=levels(D$scenario),
-  facet_x=NULL, facet_y=NULL, PRINT_OUT=F, DEBUG=T, fontsize=20,
-  color_code_specify=T, one_hundred_percent_stacked=F,
+  facet_x=NULL, facet_y=NULL, PRINT_OUT=FALSE, DEBUG=TRUE, fontsize=20,
+  color_code_specify=TRUE, one_hundred_percent_stacked=FALSE,
   axis_year_text_angle=0, language="en"){
 
   period <- value <- variable <- NULL
@@ -115,7 +115,7 @@ mipplot_area <- function(
         # Change name of variable by removing
         # common part from aggregated vairable (LHS).
         D_RHS$variable <- factor(
-          gsub(paste(var_common_name, "|", sep = ""),"", D_RHS$variable, fixed = T),
+          gsub(paste(var_common_name, "|", sep = ""),"", D_RHS$variable, fixed = TRUE),
           levels = rev(names(color_mapper[[var_common_name]])))
 
         ## Generate plots only if data is available for a given scenario.

@@ -31,7 +31,7 @@ mipplot_point <- function(
   target_year = levels(as.factor(D$period)), colorby = "model",
   shapeby = "model", xby = "scenario",
   facetby = NULL, facet_x = NULL, facet_y=NULL,
-  fontsize=20, PRINT_OUT = F, DEBUG = T) {
+  fontsize=20, PRINT_OUT = FALSE, DEBUG = TRUE) {
 
   value <- NULL
 

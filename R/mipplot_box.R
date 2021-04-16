@@ -23,7 +23,7 @@
 mipplot_box <- function(
   D, region=levels(D$region),
   variable=levels(D$variable),
-  target_year=levels(as.factor(D$period)), PRINT_OUT=F, DEBUG=T,
+  target_year=levels(as.factor(D$period)), PRINT_OUT=FALSE, DEBUG=TRUE,
   language="en") {
 
   scenario <- value <- NULL
