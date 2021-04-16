@@ -229,10 +229,6 @@ mipplot_interactive_line <- function(D, language = "en") {
 #' c("AIM-Enduse 12.1", "GCAM 3.0", "IMAGE 2.4" )
 #' @param D A quitte format dataframe of IAMC data to produce graph.
 #' @return A list of strings representing model names
-#' @examples
-#' \dontrun{
-#' get_model_name_list(ar5_db_sample_data)
-#' }
 #' @importFrom rlang .data
 get_model_name_list <- function(D) {
   return (D %>% dplyr::pull(.data$model) %>% unique() %>% levels())
@@ -244,10 +240,6 @@ get_model_name_list <- function(D) {
 #' c("EMF27-450-Conv", "EMF27-450-FullTech", "EMF27-450-NoCCS", "EMF27-450-NucOff")
 #' @param D A quitte format dataframe of IAMC data to produce graph.
 #' @return A list of strings representing scenario names
-#' @examples
-#' \dontrun{
-#' get_scenario_name_list(ar5_db_sample_data)
-#' }
 #' @importFrom rlang .data
 get_scenario_name_list <- function(D) {
   return (D %>% dplyr::pull(.data$scenario) %>% unique() %>% levels())
