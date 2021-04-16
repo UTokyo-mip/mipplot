@@ -103,6 +103,7 @@ add_credit_to_plot <- function(plot_object) {
 #' @title Get expression of vector of string in string format
 #' @description To evaluate expression, get string of expression
 #' @param vector_of_strings vector of strings, such as c("A", "B")
+#' @return An R code representing character vector
 #' @examples
 #' \dontrun{
 #' noquote(
@@ -200,6 +201,7 @@ generate_variable_group_name_from_lhs_and_rhs_list <- function(lhs, rhs_list) {
 #' @title Get variable name list in given variable-group
 #' @description Scan rule-table and extract variable names in given variable-group.
 #' @param group_name variable-group-name
+#' @return A list of strings representing variable names
 #' @examples
 #' \dontrun{
 #' noquote(

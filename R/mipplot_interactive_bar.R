@@ -8,6 +8,7 @@
 #' @param language A string of language for initial plot.
 #' Possible values are "en", "jp",
 #' "es", "zh-cn", "zh-tw". The default value is "en".
+#' @return No return value, called for side effects
 #' @importFrom shiny titlePanel sidebarLayout sidebarPanel selectInput checkboxInput submitButton mainPanel plotOutput renderPlot validate need
 #' @examples
 #' \dontrun{
@@ -208,6 +209,7 @@ mipplot_interactive_bar <- function(D, R, language = "en") {
 #' @param input This is the same as the input argument in the shiny:ui().
 #' @param name_of_input_data_variable A string such as "ar5_sample_data".
 #' @param name_of_input_rule_table_variable A string such as "ar5_sample_rule".
+#' @return A string representing the R code for rerun.
 generate_code_to_plot_bar <- function(
   input,
   name_of_input_data_variable,

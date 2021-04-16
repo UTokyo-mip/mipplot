@@ -8,6 +8,8 @@
 #' @param max_n_plots The maximum number of output plots.
 #' @param plot_all set FALSE to plot only inconsistent combinations
 #' @return A list of area plots.
+#' \value{
+#' }
 #' @examples
 #' \dontrun{
 #' mipplot_print_pdf(mipplot_additivity_check(

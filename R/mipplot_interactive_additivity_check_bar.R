@@ -3,6 +3,7 @@
 #' @param D A quitte format dataframe of IAMC data to produce graph.
 #' @param R A table with additivity rules.
 #' @param debug Set TRUE if table view is required.
+#' @return No return value, called for side effects
 #' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel mainPanel plotOutput renderPlot validate need shinyApp
 #' @examples
 #' \dontrun{

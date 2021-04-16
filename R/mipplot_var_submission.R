@@ -17,6 +17,7 @@
 #' @param D input data table
 #' @param V list of variables
 #' @param na_name string for N/A
+#' @return A dataframe representing variable availabilities.
 #' @importFrom stats aggregate complete.cases na.omit
 #' @importFrom utils write.csv
 #' @export

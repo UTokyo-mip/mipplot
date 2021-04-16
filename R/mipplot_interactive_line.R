@@ -6,6 +6,7 @@
 #' @param language A string of language for initial plot.
 #' Possible values are "en", "jp",
 #' "es", "zh-cn", "zh-tw". The default value is "en".
+#' @return No return value, called for side effects
 #' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel selectInput checkboxInput submitButton mainPanel plotOutput renderPlot validate need shinyApp
 #' @importFrom utils head tail
 #' @examples
@@ -227,6 +228,7 @@ mipplot_interactive_line <- function(D, language = "en") {
 #' output is character vector such as,
 #' c("AIM-Enduse 12.1", "GCAM 3.0", "IMAGE 2.4" )
 #' @param D A quitte format dataframe of IAMC data to produce graph.
+#' @return A list of strings representing model names
 #' @examples
 #' \dontrun{
 #' get_model_name_list(ar5_db_sample_data)
@@ -241,6 +243,7 @@ get_model_name_list <- function(D) {
 #' output is character vector such as,
 #' c("EMF27-450-Conv", "EMF27-450-FullTech", "EMF27-450-NoCCS", "EMF27-450-NucOff")
 #' @param D A quitte format dataframe of IAMC data to produce graph.
+#' @return A list of strings representing scenario names
 #' @examples
 #' \dontrun{
 #' get_scenario_name_list(ar5_db_sample_data)

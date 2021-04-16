@@ -8,6 +8,7 @@
 #' @param filelabel A string of prefix of output filename.
 #' @param filename A string of filename. If it is given,
 #' filelabel is ignored.
+#' @return No return value, called for side effects
 #' @examples
 #' \dontrun{
 #' p <- mipplot_area(ar5_db_sample_data, ar5_db_sample_rule_table,
