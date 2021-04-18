@@ -5,7 +5,7 @@
 #' @return No return value, called for side effects
 #' @importFrom shiny fluidPage selectInput textOutput mainPanel plotOutput renderPlot shinyApp
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' mipplot_interactive_plot_line(ar5_db_sample_data, ar5_db_sample_rule_table)
 #' }
 #' @export

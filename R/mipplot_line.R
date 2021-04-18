@@ -27,7 +27,7 @@
 #' @importFrom dplyr select filter
 #' @importFrom utils head
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' mipplot_line(ar5_db_sample_data)
 #' }
 #' @export

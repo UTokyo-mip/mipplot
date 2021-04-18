@@ -115,11 +115,7 @@ get_string_expression_of_vector_of_strings <- function(vector_of_strings) {
 #' @param rule_table A rule table
 #' @return variable group name
 #' @examples
-#' \dontrun{
-#' noquote(
-#'   get_variable_group_name_list(R)
-#' )
-#' }
+#' get_variable_group_name_list(ar5_db_sample_rule_table)
 #' @export
 get_variable_group_name_list <- function(rule_table) {
 
@@ -197,13 +193,8 @@ generate_variable_group_name_from_lhs_and_rhs_list <- function(lhs, rhs_list) {
 #' @param group_name variable-group-name
 #' @return A list of strings representing variable names
 #' @examples
-#' \dontrun{
-#' noquote(
-#'   get_variable_name_list_in_variable_group(
-#'     ar5_db_sample_rule_table,
-#'     "Final Energy|Industry,Residential and Commercial,Transportation")
-#' )
-#' }
+#' get_variable_name_list_in_variable_group(
+#'   "Final Energy|Industry,Residential and Commercial,Transportation")
 #' @export
 get_variable_name_list_in_variable_group <- function(group_name) {
 

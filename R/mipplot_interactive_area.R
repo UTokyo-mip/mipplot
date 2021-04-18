@@ -8,7 +8,7 @@
 #' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel selectInput checkboxInput submitButton div tags textOutput mainPanel plotOutput reactive renderPlot validate need shinyApp
 #' @importFrom utils head tail
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' mipplot_interactive_area(ar5_db_sample_data, ar5_db_sample_rule_table)
 #' }
 #' @export

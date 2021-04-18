@@ -21,7 +21,7 @@
 #' @param DEBUG set TRUE to show debug messages.
 #' @return A list of point plots.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' mipplot_point(ar5_db_sample_data)
 #' }
 #' @export

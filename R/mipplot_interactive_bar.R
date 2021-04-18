@@ -11,7 +11,7 @@
 #' @return No return value, called for side effects
 #' @importFrom shiny titlePanel sidebarLayout sidebarPanel selectInput checkboxInput submitButton mainPanel plotOutput renderPlot validate need
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' mipplot_interactive_bar(ar5_db_sample_data, ar5_db_sample_rule_table)
 #' }
 #' @export

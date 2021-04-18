@@ -10,7 +10,7 @@
 #' filelabel is ignored.
 #' @return No return value, called for side effects
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' p <- mipplot_area(ar5_db_sample_data, ar5_db_sample_rule_table,
 #'              region = "World", scenario = "EMF27-450-FullTech")
 #' mipplot_print_pdf(p)

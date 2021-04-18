@@ -30,7 +30,7 @@
 #' @return A list of area plots.
 #' @importFrom stats na.omit
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' mipplot_area(ar5_db_sample_data, ar5_db_sample_rule_table)
 #' }
 #' @export

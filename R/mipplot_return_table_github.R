@@ -19,9 +19,7 @@
 #' @return Mutated Table of model,scenario,region,variable,unit,period,value
 #' @importFrom dplyr select
 #' @examples
-#' \dontrun{
 #' mipplot_return_table(sr15_sample_data, sr15_sample_conversion_rule_table)
-#' }
 #' @export
 
 mipplot_return_table <- function(D, R) {
@@ -56,7 +54,7 @@ mipplot_return_table <- function(D, R) {
       dplyr::mutate(unit = paste(unit.x, unit.y, sep = "/")) %>%
       dplyr::mutate(value = value.x / value.y) %>%
       reshape::rename(
-        variable = new_variable
+        c(variable = new_variable)
       )
     #Assigns final table to results
     if (is.null(results)) {

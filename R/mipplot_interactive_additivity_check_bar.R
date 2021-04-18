@@ -6,7 +6,7 @@
 #' @return No return value, called for side effects
 #' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel mainPanel plotOutput renderPlot validate need shinyApp
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' mipplot_interactive_additivity_check_bar(ar5_db_sample_data, ar5_db_sample_rule_table)
 #' }
 #' @export

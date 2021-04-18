@@ -11,7 +11,7 @@
 #' \value{
 #' }
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' mipplot_print_pdf(mipplot_additivity_check(
 #'     ar5_db_sample_data, ar5_db_sample_rule_table, max_n_plots = 10))
 #' }

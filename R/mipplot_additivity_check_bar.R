@@ -12,11 +12,9 @@
 #' @param debug Set TRUE if show intermediate dataframe using View function.
 #' @return A list of bar plots.
 #' @examples
-#' \dontrun{
 #' mipplot_additivity_check_bar(
 #'    ar5_db_sample_data, ar5_db_sample_rule_table,
 #'    target_scenarios = c("EMF27-450-Conv", "EMF27-Base-NucOff"))
-#' }
 #' @export
 #' @importFrom rlang .data
 mipplot_additivity_check_bar <- function(
