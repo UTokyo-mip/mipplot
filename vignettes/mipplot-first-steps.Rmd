@@ -207,7 +207,7 @@ So far, we have plotted in English, but in addition to this, we can plot in Chin
 
 All plots so far have specified `language = "en"` (English), so replace this with, for example, the following:
 
-```{r, warning=FALSE, fig.width=10, fig.height=7, out.width="100%"}
+```{r, warning=FALSE, fig.width=10, fig.height=7, out.width="100%", eval=FALSE}
 data_subset <- sr15_sample_data %>%
   filter(variable %in% c("Secondary Energy|Electricity", "Secondary Energy|Electricity|Coal", "Secondary Energy|Electricity|Gas", "Secondary Energy|Electricity|Oil", "Secondary Energy|Electricity|Nuclear", "Secondary Energy|Electricity|Hydro", "Secondary Energy|Electricity|Biomass", "Secondary Energy|Electricity|Solar", "Secondary Energy|Electricity|Wind", "Secondary Energy|Electricity|Geothermal", "Secondary Energy|Electricity|Ocean")) %>%
   filter(model %in% c("AIM/CGE 2.0", "GCAM 4.2", "IMAGE 3.0.1")) %>%
