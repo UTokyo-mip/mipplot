@@ -1,6 +1,5 @@
 #--------------------------------------------------------------------
 # PLOTTING FUNCTION: MUTATED TABLE.
-# AUTHORS: SNEH DESHPANDE, KEITARO HANZAWA
 #--------------------------------------------------------------------
 #====================================================================
 # Mutated Table using filtered variable from the rule table

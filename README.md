@@ -136,3 +136,7 @@ In case of questions / problems please contact Diego Silva Herran <silva-herran@
 ## License
 
 The mipplot R package is open source licensed under the MIT license.
+
+## Thanks
+
+- SNEH DESHPANDE and KEITARO HANZAWA for implementing the mipplot_return_table function
