@@ -252,7 +252,7 @@ graph <- mipplot_area(data_subset, ar5_db_sample_rule_table,
   language = 'zh-cn')[[1]]
 
 # Give `graph` to `mipplot_print_pdf`
-mipplot_print_pdf(graph)
+# mipplot_print_pdf(graph)
 
 ```
 
