@@ -16,7 +16,12 @@
 #' @return A list of box plots.
 #' @examples
 #' \donttest{
-#' mipplot_box(ar5_db_sample_data)
+#' library(dplyr)
+#' data_subset <- ar5_db_sample_data %>%
+#' filter(variable == "Emissions|CO2|Land Use") %>%
+#' filter(model %in% c("AIM-Enduse 12.1", "GCAM 3.0", "IMAGE 2.4")) %>%
+#' filter(period == 2100) %>% filter(region == "OECD90")
+#' mipplot_box(data_subset)
 #' }
 #' @export
 

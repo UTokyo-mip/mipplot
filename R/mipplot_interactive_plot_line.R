@@ -6,7 +6,9 @@
 #' @importFrom shiny fluidPage selectInput textOutput mainPanel plotOutput renderPlot shinyApp
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' mipplot_interactive_plot_line(ar5_db_sample_data, ar5_db_sample_rule_table)
+#' }
 #' }
 #' @export
 

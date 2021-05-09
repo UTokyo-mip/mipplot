@@ -11,9 +11,11 @@
 #' @return No return value, called for side effects
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' p <- mipplot_area(ar5_db_sample_data, ar5_db_sample_rule_table,
 #'              region = "World", scenario = "EMF27-450-FullTech")
 #' mipplot_print_pdf(p)
+#' }
 #' }
 #' @importFrom  grDevices dev.off pdf
 #' @export

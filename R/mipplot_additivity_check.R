@@ -8,12 +8,12 @@
 #' @param max_n_plots The maximum number of output plots.
 #' @param plot_all set FALSE to plot only inconsistent combinations
 #' @return A list of area plots.
-#' \value{
-#' }
 #' @examples
 #' \donttest{
-#' mipplot_print_pdf(mipplot_additivity_check(
-#'     ar5_db_sample_data, ar5_db_sample_rule_table, max_n_plots = 10))
+#' if (interactive()) {
+#'   mipplot_additivity_check(
+#'     ar5_db_sample_data, ar5_db_sample_rule_table, max_n_plots = 10)
+#'   }
 #' }
 #' @export
 #' @importFrom rlang .data

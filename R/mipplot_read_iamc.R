@@ -86,7 +86,7 @@ extract_year_columns <- function(columns) {
 #' @return A dataframe in tibble format ("model, scenario, variable, unit, period, value")
 #' @examples
 #' \dontrun{
-#' read_iamc_xlsx("c:\\...\\...", sheet = 2)
+#' read_iamc_xlsx("filename", sheet = 2)
 #' }
 #' @export
 read_iamc_xlsx <- function(file_path, sheet = 2) {

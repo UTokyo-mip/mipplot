@@ -28,7 +28,19 @@
 #' @importFrom utils head
 #' @examples
 #' \donttest{
-#' mipplot_line(ar5_db_sample_data)
+#' library(dplyr)
+#' data_subset <- ar5_db_sample_data %>%
+#' filter( model %in% c("AIM-Enduse 12.1", "GCAM 3.0", "IMAGE 2.4") ) %>%
+#' filter(2005 <= period) %>%
+#' filter(period <= 2100)
+#' mipplot_line(
+#' data_subset,
+#' variable = c("Emissions|CO2"),
+#' scenario = c("EMF27-450-Conv", "EMF27-450-FullTech", "EMF27-450-NoCCS"),
+#' region = c("ASIA"),
+#' legend = TRUE,
+#' axis_year_text_angle = 0,
+#' language = 'en')
 #' }
 #' @export
 

@@ -7,7 +7,9 @@
 #' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel mainPanel plotOutput renderPlot validate need shinyApp
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' mipplot_interactive_additivity_check_bar(ar5_db_sample_data, ar5_db_sample_rule_table)
+#' }
 #' }
 #' @export
 

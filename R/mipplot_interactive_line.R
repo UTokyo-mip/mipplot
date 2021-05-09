@@ -11,7 +11,9 @@
 #' @importFrom utils head tail
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' mipplot_interactive_line(ar5_db_sample_data)
+#' }
 #' }
 #' @export
 

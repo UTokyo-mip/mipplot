@@ -31,7 +31,18 @@
 #' @importFrom stats na.omit
 #' @examples
 #' \donttest{
-#' mipplot_area(ar5_db_sample_data, ar5_db_sample_rule_table)
+#' library(dplyr)
+#' data_subset <- ar5_db_sample_data %>%
+#' filter(variable == "Emissions|CO2|Land Use") %>%
+#' filter(model %in% c("AIM-Enduse 12.1", "GCAM 3.0", "IMAGE 2.4")) %>%
+#' filter(2005 <= period) %>%
+#' filter(period <= 2100)
+#' mipplot_area(data_subset, ar5_db_sample_rule_table,
+#' region = c("ASIA"),
+#' scenario = c("EMF27-450-Conv"),
+#' one_hundred_percent_stacked = FALSE,
+#' axis_year_text_angle = 0,
+#' language = 'en')
 #' }
 #' @export
 

@@ -9,7 +9,9 @@
 #' @importFrom utils head tail
 #' @examples
 #' \donttest{
+#' if (interactive()) {
 #' mipplot_interactive_area(ar5_db_sample_data, ar5_db_sample_rule_table)
+#' }
 #' }
 #' @export
 
