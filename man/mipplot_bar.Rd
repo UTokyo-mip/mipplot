@@ -12,11 +12,11 @@ mipplot_bar(
   target_year = levels(as.factor(D$period)),
   facet_x = NULL,
   facet_y = NULL,
-  PRINT_OUT = F,
-  DEBUG = T,
+  PRINT_OUT = FALSE,
+  DEBUG = TRUE,
   fontsize = 20,
-  color_code_specify = T,
-  one_hundred_percent_stacked = F,
+  color_code_specify = TRUE,
+  one_hundred_percent_stacked = FALSE,
   axis_scenario_text_angle = 0,
   language = "en"
 )
@@ -61,7 +61,18 @@ Bar plots using right-hand-side values of
              faceting dimensions.
 }
 \examples{
-\dontrun{
-mipplot_bar(ar5_db_sample_data, ar5_db_sample_rule_table)
+\donttest{
+library(dplyr)
+data_subset <- ar5_db_sample_data \%>\%
+filter(variable == "Emissions|CO2|Land Use") \%>\%
+filter(model \%in\% c("AIM-Enduse 12.1", "GCAM 3.0", "IMAGE 2.4")) \%>\%
+filter(scenario \%in\% c("EMF27-450-Conv", "EMF27-450-FullTech"))
+
+mipplot_bar(data_subset, ar5_db_sample_rule_table,
+region = c("ASIA"),
+target_year = 2005,
+one_hundred_percent_stacked = FALSE,
+axis_scenario_text_angle = 0,
+language = 'en')
 }
 }

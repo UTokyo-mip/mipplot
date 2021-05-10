@@ -19,7 +19,9 @@ Possible values are "en", "jp",
 Provides gui to set plotting parameter for area plot.
 }
 \examples{
-\dontrun{
+\donttest{
+if (interactive()) {
 mipplot_interactive_area(ar5_db_sample_data, ar5_db_sample_rule_table)
+}
 }
 }

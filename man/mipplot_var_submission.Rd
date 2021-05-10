@@ -13,6 +13,9 @@ mipplot_var_submission(D, V, na_name = "N/A")
 
 \item{na_name}{string for N/A}
 }
+\value{
+A dataframe representing variable availabilities.
+}
 \description{
 Verify whether data of variables included
  in list template have been submitted.

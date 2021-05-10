@@ -21,7 +21,5 @@ Mutated Table using filtered variable from the rule table
          table with variable, value, model, scenario, region, period
 }
 \examples{
-\dontrun{
 mipplot_return_table(sr15_sample_data, sr15_sample_conversion_rule_table)
-}
 }

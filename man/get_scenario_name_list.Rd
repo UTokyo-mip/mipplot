@@ -9,13 +9,11 @@ get_scenario_name_list(D)
 \arguments{
 \item{D}{A quitte format dataframe of IAMC data to produce graph.}
 }
+\value{
+A list of strings representing scenario names
+}
 \description{
 select name of scenarios from the column "scenario" then make unique it.
 output is character vector such as,
 c("EMF27-450-Conv", "EMF27-450-FullTech", "EMF27-450-NoCCS", "EMF27-450-NucOff")
-}
-\examples{
-\dontrun{
-get_scenario_name_list(ar5_db_sample_data)
-}
 }

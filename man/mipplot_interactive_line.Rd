@@ -13,13 +13,18 @@ mipplot_interactive_line(D, language = "en")
 Possible values are "en", "jp",
 "es", "zh-cn", "zh-tw". The default value is "en".}
 }
+\value{
+No return value, called for side effects
+}
 \description{
 A function to launch interactive line plot.
              The function arguments include the input dataframe,
              labels for the plot/axes/legend, and faceting dimensions
 }
 \examples{
-\dontrun{
+\donttest{
+if (interactive()) {
 mipplot_interactive_line(ar5_db_sample_data)
+}
 }
 }

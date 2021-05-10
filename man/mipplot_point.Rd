@@ -16,8 +16,8 @@ mipplot_point(
   facet_x = NULL,
   facet_y = NULL,
   fontsize = 20,
-  PRINT_OUT = F,
-  DEBUG = T
+  PRINT_OUT = FALSE,
+  DEBUG = TRUE
 )
 }
 \arguments{
@@ -55,7 +55,12 @@ The function arguments include the input dataframe,
              labels for the plot/axes/legend, and faceting dimensions
 }
 \examples{
-\dontrun{
-mipplot_point(ar5_db_sample_data)
+\donttest{
+library(dplyr)
+data_subset <- ar5_db_sample_data \%>\%
+filter(variable == "Emissions|CO2|Land Use") \%>\%
+filter(model \%in\% c("AIM-Enduse 12.1", "GCAM 3.0", "IMAGE 2.4")) \%>\%
+filter(period == 2100) \%>\% filter(region == "OECD90")
+mipplot_point(data_subset)
 }
 }

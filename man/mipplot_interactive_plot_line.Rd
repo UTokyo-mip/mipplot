@@ -11,11 +11,16 @@ mipplot_interactive_plot_line(D, R)
 
 \item{R}{A table with additivity rules.}
 }
+\value{
+No return value, called for side effects
+}
 \description{
 A function to launch interactive plot using Shiny
 }
 \examples{
-\dontrun{
+\donttest{
+if (interactive()) {
 mipplot_interactive_plot_line(ar5_db_sample_data, ar5_db_sample_rule_table)
+}
 }
 }

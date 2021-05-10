@@ -19,6 +19,6 @@ Read scenario input data (in IAMC format) as tibble format dataframe from Excel
 }
 \examples{
 \dontrun{
-read_iamc_xlsx("c:\\\\...\\\\...", sheet = 2)
+read_iamc_xlsx("filename", sheet = 2)
 }
 }
