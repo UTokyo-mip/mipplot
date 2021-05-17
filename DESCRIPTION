@@ -1,6 +1,6 @@
 Package: mipplot
 Type: Package
-Title: An open-source tool for visualization of climate mitigation scenarios
+Title: An Open-Source Tool for Visualization of Climate Mitigation Scenarios
 Version: 0.3.1
 Authors@R: c(person("Diego", "Silva Herran", email = "silva-herran@iges.or.jp",role = "aut"),
              person("Jiayang", "WANG", email = "wang@pari.u-tokyo.ac.jp",role = "aut"),
