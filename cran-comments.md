@@ -2,23 +2,9 @@
 
 This is a resubmission. In this version I have:
 
-* Converted T and F to TRUE and FALSE.
+* Rewrite Title and Description in DESCRIPTION file.
 
-* Added \value to .Rd files.
-
-* Omitted examples for unexported functions in
-  * get_model_name_list()
-  * get_scenario_name_list()
-  * get_string_expression_of_vector_of_strings()
-
-* Removed unnecessary \dontrun{}.
-
-* Converted some \dotnrun{} to \donttest{}.
-
-* Set eval=FALSE in the chunk in vignette which accesses user's folder.
-
-* Move some contributor names in mipplot_return_table_github.R to README.md.
-  * SNEH DESHPANDE and KEITARO HANZAWA gave their code for us so we didn't add them to Authors@R field.
+* Add \value to mipplot_interactive_area.Rd
 
 ## Test environments
 
