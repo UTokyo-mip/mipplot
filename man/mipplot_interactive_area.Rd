@@ -15,6 +15,9 @@ mipplot_interactive_area(D, R, language = "en")
 Possible values are "en", "jp",
 "es", "zh-cn", "zh-tw". The default value is "en".}
 }
+\value{
+No return value, called for side effects
+}
 \description{
 Provides gui to set plotting parameter for area plot.
 }

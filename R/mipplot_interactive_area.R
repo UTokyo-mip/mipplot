@@ -5,6 +5,7 @@
 #' @param language A string of language for initial plot.
 #' Possible values are "en", "jp",
 #' "es", "zh-cn", "zh-tw". The default value is "en".
+#' @return No return value, called for side effects
 #' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel selectInput checkboxInput submitButton div tags textOutput mainPanel plotOutput reactive renderPlot validate need shinyApp
 #' @importFrom utils head tail
 #' @examples
