@@ -6,6 +6,16 @@
 \usage{
 mipplot_var_submission(D, V, na_name = "N/A")
 }
+\arguments{
+\item{D}{input data table}
+
+\item{V}{list of variables}
+
+\item{na_name}{string for N/A}
+}
+\value{
+A dataframe representing variable availabilities.
+}
 \description{
 Verify whether data of variables included
  in list template have been submitted.

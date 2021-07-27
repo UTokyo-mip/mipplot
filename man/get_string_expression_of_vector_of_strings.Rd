@@ -9,13 +9,9 @@ get_string_expression_of_vector_of_strings(vector_of_strings)
 \arguments{
 \item{vector_of_strings}{vector of strings, such as c("A", "B")}
 }
+\value{
+An R code representing character vector
+}
 \description{
 To evaluate expression, get string of expression
-}
-\examples{
-\dontrun{
-noquote(
-  get_string_expression_of_vector_of_strings(c("A", "B"))
-)
-}
 }

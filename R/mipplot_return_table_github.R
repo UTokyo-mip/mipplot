@@ -1,29 +1,29 @@
 #--------------------------------------------------------------------
 # PLOTTING FUNCTION: MUTATED TABLE.
-# AUTHORS: SNEH DESHPANDE, KEITARO HANZAWA
 #--------------------------------------------------------------------
 #====================================================================
 # Mutated Table using filtered variable from the rule table
-#     The function arguments inlcude the input dataframes:
+#     The function arguments include the input dataframes:
 #     The SR15 dataset and the Rule Table and returns a mutated
 #     table with variable, value, model, scenario, region, period
 #====================================================================
 
 #' @title Mutated table of SR15 Data
 #' @description  Mutated Table using filtered variable from the rule table
-#'          The function arguments inlcude the input dataframes:
+#'          The function arguments include the input dataframes:
 #'          The SR15 dataset and the Rule Table and returns a mutated
 #'          table with variable, value, model, scenario, region, period
 #' @param D A dataframe of IAMC data in tibble format to produce mutated table
 #' @param R A dataframe of data aggregation rules
 #' @return Mutated Table of model,scenario,region,variable,unit,period,value
+#' @importFrom dplyr select
 #' @examples
-#' \dontrun{
 #' mipplot_return_table(sr15_sample_data, sr15_sample_conversion_rule_table)
-#' }
 #' @export
 
 mipplot_return_table <- function(D, R) {
+
+  variable <- model <- period <- region <- scenario <- unit <- unit.x <- unit.y <- value.x  <- value.y <- value <- new_variable <- NULL
 
   #Assign value NULL to results
   results <- NULL
@@ -52,8 +52,8 @@ mipplot_return_table <- function(D, R) {
       dplyr::group_by(model, period, region, scenario) %>% #group to keep columns in table
       dplyr::mutate(unit = paste(unit.x, unit.y, sep = "/")) %>%
       dplyr::mutate(value = value.x / value.y) %>%
-      rename(
-        variable = new_variable
+      reshape::rename(
+        c(variable = new_variable)
       )
     #Assigns final table to results
     if (is.null(results)) {

@@ -14,6 +14,12 @@
 #' @title variable SUBMISSION CHECK
 #' @description Verify whether data of variables included
 #'  in list template have been submitted.
+#' @param D input data table
+#' @param V list of variables
+#' @param na_name string for N/A
+#' @return A dataframe representing variable availabilities.
+#' @importFrom stats aggregate complete.cases na.omit
+#' @importFrom utils write.csv
 #' @export
 #'
 mipplot_var_submission <- function(D, V, na_name = "N/A") {
@@ -136,14 +142,14 @@ mipplot_var_submission <- function(D, V, na_name = "N/A") {
 
   V_missing <- V_out[V_out$Outcome == "Missing_var", c("model", "scenario", "region", "variable","Outcome")]
   filename <- sprintf("../data_output/Var_missing_%s.csv", format(Sys.time(), "%Y_%m%d"))
-  write.csv(V_missing, file = filename, row.names = F)
+  write.csv(V_missing, file = filename, row.names = FALSE)
 
   V_missing_wide <- dcast(V_missing, ...~model+scenario)
   filename <- sprintf("../data_output/Var_missing_wide_%s.csv", format(Sys.time(), "%Y_%m%d"))
-  write.csv(V_missing_wide, file = filename, row.names = F)
+  write.csv(V_missing_wide, file = filename, row.names = FALSE)
 
   filename <- sprintf("../data_output/Var_submission_check_%s.csv", format(Sys.time(), "%Y_%m%d"))
-  write.csv(V_out, file = filename, row.names = F)
+  write.csv(V_out, file = filename, row.names = FALSE)
   return(V_out)
 }
 

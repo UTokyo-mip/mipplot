@@ -13,11 +13,16 @@ mipplot_interactive_additivity_check_bar(D, R, debug = FALSE)
 
 \item{debug}{Set TRUE if table view is required.}
 }
+\value{
+No return value, called for side effects
+}
 \description{
 A function to launch interactive plot for additivity check.
 }
 \examples{
-\dontrun{
+\donttest{
+if (interactive()) {
 mipplot_interactive_additivity_check_bar(ar5_db_sample_data, ar5_db_sample_rule_table)
+}
 }
 }

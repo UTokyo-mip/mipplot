@@ -9,15 +9,13 @@ get_variable_name_list_in_variable_group(group_name)
 \arguments{
 \item{group_name}{variable-group-name}
 }
+\value{
+A list of strings representing variable names
+}
 \description{
 Scan rule-table and extract variable names in given variable-group.
 }
 \examples{
-\dontrun{
-noquote(
-  get_variable_name_list_in_variable_group(
-    ar5_db_sample_rule_table,
-    "Final Energy|Industry,Residential and Commercial,Transportation")
-)
-}
+get_variable_name_list_in_variable_group(
+  "Final Energy|Industry,Residential and Commercial,Transportation")
 }

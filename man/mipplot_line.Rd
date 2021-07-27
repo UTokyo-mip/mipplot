@@ -15,8 +15,8 @@ mipplot_line(
   facet_x = NULL,
   facet_y = NULL,
   legend = TRUE,
-  PRINT_OUT = F,
-  DEBUG = T,
+  PRINT_OUT = FALSE,
+  DEBUG = TRUE,
   axis_year_text_angle = 0,
   language = "en",
   max_scenarios = 15,
@@ -36,7 +36,7 @@ mipplot_line(
 
 \item{shapeby}{an axis for shape setting.}
 
-\item{scenario}{A list of cenarios.}
+\item{scenario}{A list of scenarios.}
 
 \item{facet_x}{facet_x}
 
@@ -65,7 +65,19 @@ The function arguments include the input dataframe,
              labels for the plot/axes/legend, and faceting dimensions
 }
 \examples{
-\dontrun{
-mipplot_line(ar5_db_sample_data)
+\donttest{
+library(dplyr)
+data_subset <- ar5_db_sample_data \%>\%
+filter( model \%in\% c("AIM-Enduse 12.1", "GCAM 3.0", "IMAGE 2.4") ) \%>\%
+filter(2005 <= period) \%>\%
+filter(period <= 2100)
+mipplot_line(
+data_subset,
+variable = c("Emissions|CO2"),
+scenario = c("EMF27-450-Conv", "EMF27-450-FullTech", "EMF27-450-NoCCS"),
+region = c("ASIA"),
+legend = TRUE,
+axis_year_text_angle = 0,
+language = 'en')
 }
 }

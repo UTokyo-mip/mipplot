@@ -7,6 +7,12 @@ as an IAMC dataset.}
 \usage{
 check_format_of_iamc_dataframe(iamc_data)
 }
+\arguments{
+\item{iamc_data}{IAMC dataset in dataframe format}
+}
+\value{
+TRUE if it is valid
+}
 \description{
 check if the format of given data is valid
 as an IAMC dataset.

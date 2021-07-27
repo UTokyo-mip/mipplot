@@ -1,36 +1,38 @@
 Package: mipplot
 Type: Package
-Title: mip plot tool
-Version: 0.3.0
-Authors@R: c(person("Diego", "Silva Herran", email = "silva-herran@iges.or.jp",role = c("aut","cre")),
+Title: An Open-Source Tool for Visualization of Climate Mitigation Scenarios
+Version: 0.3.1
+Authors@R: c(person("Diego", "Silva Herran", email = "silva-herran@iges.or.jp",role = "aut"),
              person("Jiayang", "WANG", email = "wang@pari.u-tokyo.ac.jp",role = "aut"),
              person("Masahiro", "SUGIYAMA", email = "masahiro_sugiyama@alum.mit.edu",role = "aut"),
-             person("Hiroto", "SHIRAKI", email = "shiraki.h@ses.usp.ac.jp",role = "aut"))
-Maintainer: Diego SilvaHerran <silva-herran@iges.or.jp>
-Description: Package contains generic functions to produce area/bar/box/line plots of data following IAMC submission format.
+             person("Hiroto", "SHIRAKI", email = "shiraki.h@ses.usp.ac.jp",role = "aut"),
+             person("Akimitsu", "Inoue", email = "inoue.akimitsu@chino-js.com", role = c("ctr", "cre")))
+Maintainer: Akimitsu Inoue <inoue.akimitsu@chino-js.com>
+Description: Generic functions to produce area/bar/box/line plots of data following IAMC (Integrated Assessment Modeling Consortium) submission format.
 Imports:
-    grDevices,
-    graphics,
-    utils,
-    stats,
     ggplot2,
     stringr,
-    tibble,
     tidyr,
     shinyWidgets,
     data.table,
-    openxlsx,
     readxl,
-    shiny.i18n,
+    shiny.i18n (>= 0.2.0),
     showtextdb,
     shinyalert,
-    tidyverse
-Depends: R (>= 2.10), reshape2, dplyr, forcats, readr, showtext, shiny
+    readr,
+    showtext,
+    shiny (>= 1.5.0),
+    reshape,
+    rlang,
+    dplyr,
+    reshape2
+Depends: R (>= 3.5.0), stats, utils, graphics, grDevices,
 License: MIT + file LICENSE
 Suggests:
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    tidyverse
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1

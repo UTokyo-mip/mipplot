@@ -7,7 +7,10 @@
 get_variable_group_name_list(rule_table)
 }
 \arguments{
-\item{R}{rule-table}
+\item{rule_table}{A rule table}
+}
+\value{
+variable group name
 }
 \description{
 variable-group is a combination of one LHS and one or more RHS.
@@ -15,9 +18,5 @@ this function outputs the list of names of variable-group in given rule-table.
 the format of return value is "LHS|RHS1,RHS2,RHS3,...".
 }
 \examples{
-\dontrun{
-noquote(
-  get_variable_group_name_list(R)
-)
-}
+get_variable_group_name_list(ar5_db_sample_rule_table)
 }

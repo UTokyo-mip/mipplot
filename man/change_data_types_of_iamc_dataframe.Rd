@@ -2,12 +2,17 @@
 % Please edit documentation in R/utility.R
 \name{change_data_types_of_iamc_dataframe}
 \alias{change_data_types_of_iamc_dataframe}
-\title{change column data type in dataset to be able to
-be treated as an IAMC dataset.}
+\title{change column data type in data-set}
 \usage{
 change_data_types_of_iamc_dataframe(iamc_data)
 }
+\arguments{
+\item{iamc_data}{data frame which has columns `model`, `scenario`, `region`, `variable`, `period`, `unit`}
+}
+\value{
+converted data-frame.
+}
 \description{
-change column data type in dataset to be able to
-be treated as an IAMC dataset.
+change column data type in data-set to be able to
+be treated as an IAMC data-set.
 }

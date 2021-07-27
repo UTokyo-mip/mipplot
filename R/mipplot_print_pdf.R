@@ -8,12 +8,16 @@
 #' @param filelabel A string of prefix of output filename.
 #' @param filename A string of filename. If it is given,
 #' filelabel is ignored.
+#' @return No return value, called for side effects
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' if (interactive()) {
 #' p <- mipplot_area(ar5_db_sample_data, ar5_db_sample_rule_table,
 #'              region = "World", scenario = "EMF27-450-FullTech")
 #' mipplot_print_pdf(p)
 #' }
+#' }
+#' @importFrom  grDevices dev.off pdf
 #' @export
 
 mipplot_print_pdf <- function(p_list1, filelabel = "", filename=tryCatch(file.choose(new = TRUE), error=function(e) {NA})){

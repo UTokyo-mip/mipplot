@@ -7,9 +7,9 @@
 read_iamc_xlsx(file_path, sheet = 2)
 }
 \arguments{
-\item{sheet}{the index of sheet which contains records.}
+\item{file_path}{Path to a file containing scenario data in IAMC format.}
 
-\item{filename}{Path to a file containing scenario data in IAMC format.}
+\item{sheet}{the index of sheet which contains records.}
 }
 \value{
 A dataframe in tibble format ("model, scenario, variable, unit, period, value")
@@ -19,6 +19,6 @@ Read scenario input data (in IAMC format) as tibble format dataframe from Excel
 }
 \examples{
 \dontrun{
-read_iamc_xlsx("c:\\\\...\\\\...", sheet = 2)
+read_iamc_xlsx("filename", sheet = 2)
 }
 }

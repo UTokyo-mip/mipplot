@@ -21,8 +21,13 @@
 #' @param DEBUG set TRUE to show debug messages.
 #' @return A list of point plots.
 #' @examples
-#' \dontrun{
-#' mipplot_point(ar5_db_sample_data)
+#' \donttest{
+#' library(dplyr)
+#' data_subset <- ar5_db_sample_data %>%
+#' filter(variable == "Emissions|CO2|Land Use") %>%
+#' filter(model %in% c("AIM-Enduse 12.1", "GCAM 3.0", "IMAGE 2.4")) %>%
+#' filter(period == 2100) %>% filter(region == "OECD90")
+#' mipplot_point(data_subset)
 #' }
 #' @export
 
@@ -31,7 +36,9 @@ mipplot_point <- function(
   target_year = levels(as.factor(D$period)), colorby = "model",
   shapeby = "model", xby = "scenario",
   facetby = NULL, facet_x = NULL, facet_y=NULL,
-  fontsize=20, PRINT_OUT = F, DEBUG = T) {
+  fontsize=20, PRINT_OUT = FALSE, DEBUG = TRUE) {
+
+  value <- NULL
 
   p_list1 <- list()
 

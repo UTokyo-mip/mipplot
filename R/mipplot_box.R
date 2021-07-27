@@ -15,29 +15,36 @@
 #' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @return A list of box plots.
 #' @examples
-#' \dontrun{
-#' mipplot_box(ar5_db_sample_data)
+#' \donttest{
+#' library(dplyr)
+#' data_subset <- ar5_db_sample_data %>%
+#' filter(variable == "Emissions|CO2|Land Use") %>%
+#' filter(model %in% c("AIM-Enduse 12.1", "GCAM 3.0", "IMAGE 2.4")) %>%
+#' filter(period == 2100) %>% filter(region == "OECD90")
+#' mipplot_box(data_subset)
 #' }
 #' @export
 
 mipplot_box <- function(
   D, region=levels(D$region),
   variable=levels(D$variable),
-  target_year=levels(as.factor(D$period)), PRINT_OUT=F, DEBUG=T,
+  target_year=levels(as.factor(D$period)), PRINT_OUT=FALSE, DEBUG=TRUE,
   language="en") {
 
+  scenario <- value <- NULL
+
   # load translations
-  i18n_header <- shiny.i18n::Translator(
+  i18n_header <- shiny.i18n::Translator$new(
     translation_json_path =
       system.file("mipplot", "translation_header.json", package="mipplot"))
   i18n_header$set_translation_language(language)
 
-  i18n_region <- shiny.i18n::Translator(
+  i18n_region <- shiny.i18n::Translator$new(
     translation_json_path =
       system.file("mipplot", "translation_region.json", package="mipplot"))
   i18n_region$set_translation_language(language)
 
-  i18n_variable <- shiny.i18n::Translator(
+  i18n_variable <- shiny.i18n::Translator$new(
     translation_json_path =
       system.file("mipplot", "translation_variable.json", package="mipplot"))
   i18n_variable$set_translation_language(language)

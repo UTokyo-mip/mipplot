@@ -17,6 +17,9 @@ generate_code_to_plot_area(
 
 \item{name_of_input_rule_table_variable}{A string such as "ar5_sample_rule".}
 }
+\value{
+A string representing the R code for rerun.
+}
 \description{
 This function is called in the mipplot_interactive_area()
 and provides R code to reproduce the currently drawn plot.

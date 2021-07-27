@@ -7,13 +7,16 @@
 mipplot_interactive_bar(D, R, language = "en")
 }
 \arguments{
-\item{D}{A quitte format dataframe of IAMC data to produce garph.}
+\item{D}{A quitte format dataframe of IAMC data to produce graph.}
 
 \item{R}{A table with additivity rules.}
 
 \item{language}{A string of language for initial plot.
 Possible values are "en", "jp",
 "es", "zh-cn", "zh-tw". The default value is "en".}
+}
+\value{
+No return value, called for side effects
 }
 \description{
 A function to launch interactive bar plot using
@@ -22,7 +25,9 @@ A function to launch interactive bar plot using
              labels for the plot/axes/legend, and faceting dimensions
 }
 \examples{
-\dontrun{
+\donttest{
+if (interactive()) {
 mipplot_interactive_bar(ar5_db_sample_data, ar5_db_sample_rule_table)
+}
 }
 }

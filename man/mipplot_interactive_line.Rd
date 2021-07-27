@@ -7,11 +7,14 @@
 mipplot_interactive_line(D, language = "en")
 }
 \arguments{
-\item{D}{A quitte format dataframe of IAMC data to produce garph.}
+\item{D}{A quitte format dataframe of IAMC data to produce graph.}
 
 \item{language}{A string of language for initial plot.
 Possible values are "en", "jp",
 "es", "zh-cn", "zh-tw". The default value is "en".}
+}
+\value{
+No return value, called for side effects
 }
 \description{
 A function to launch interactive line plot.
@@ -19,7 +22,9 @@ A function to launch interactive line plot.
              labels for the plot/axes/legend, and faceting dimensions
 }
 \examples{
-\dontrun{
+\donttest{
+if (interactive()) {
 mipplot_interactive_line(ar5_db_sample_data)
+}
 }
 }

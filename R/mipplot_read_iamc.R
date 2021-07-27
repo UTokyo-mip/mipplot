@@ -14,7 +14,7 @@
 #' mipplot_read_iamc("filename")
 #' }
 #' @export
-mipplot_read_iamc <- function(filename=NULL, sep=",", interactive=FALSE, DEBUG=T){
+mipplot_read_iamc <- function(filename=NULL, sep=",", interactive=FALSE, DEBUG=TRUE){
 
   if (interactive == TRUE) {
     filename <- file.choose()
@@ -35,6 +35,7 @@ mipplot_read_iamc <- function(filename=NULL, sep=",", interactive=FALSE, DEBUG=T
   return(loaded_iamc)
 }
 
+#' @importFrom readr cols col_factor col_double
 read_iamc <- function(file_path, sep = ",") {
 
   # read column names from data file
@@ -43,20 +44,28 @@ read_iamc <- function(file_path, sep = ",") {
   # extract year columns
   year_columns <- extract_year_columns(all_columns)
 
-  # read contents
-  content <- readr::read_delim(file_path, delim = sep, col_types = cols(
-    .default = col_double(),
-    MODEL = col_factor(NULL),
-    SCENARIO = col_factor(NULL),
-    REGION = col_factor(NULL),
-    VARIABLE = col_factor(NULL),
-    UNIT = col_factor(NULL),
-    Model = col_factor(NULL),
-    Scenario = col_factor(NULL),
-    Region = col_factor(NULL),
-    Variable = col_factor(NULL),
-    Unit = col_factor(NULL)
-  ))
+  # read procedure:
+  # 1. try lower case columns first.
+  # 2. if some lower case column doesn't exist,
+  #    then retry upper case columns.
+  content <- tryCatch({
+    return(readr::read_delim(file_path, delim = sep, col_types = cols(
+      .default = col_double(),
+      Model = col_factor(NULL),
+      Scenario = col_factor(NULL),
+      Region = col_factor(NULL),
+      Variable = col_factor(NULL),
+      Unit = col_factor(NULL))))
+  }, warning = function(e){
+    return(readr::read_delim(file_path, delim = sep, col_types = cols(
+      .default = col_double(),
+      MODEL = col_factor(NULL),
+      SCENARIO = col_factor(NULL),
+      REGION = col_factor(NULL),
+      VARIABLE = col_factor(NULL),
+      UNIT = col_factor(NULL))))
+  },
+  silent=TRUE)
 
   colnames(content) <- tolower(colnames(content))
   content <- tidyr::gather_(content, "period", "value", year_columns)
@@ -72,12 +81,12 @@ extract_year_columns <- function(columns) {
 
 #' @title Read IAMC scenario input data in Excel format
 #' @description Read scenario input data (in IAMC format) as tibble format dataframe from Excel
-#' @param filename Path to a file containing scenario data in IAMC format.
+#' @param file_path Path to a file containing scenario data in IAMC format.
 #' @param sheet the index of sheet which contains records.
 #' @return A dataframe in tibble format ("model, scenario, variable, unit, period, value")
 #' @examples
 #' \dontrun{
-#' read_iamc_xlsx("c:\\...\\...", sheet = 2)
+#' read_iamc_xlsx("filename", sheet = 2)
 #' }
 #' @export
 read_iamc_xlsx <- function(file_path, sheet = 2) {

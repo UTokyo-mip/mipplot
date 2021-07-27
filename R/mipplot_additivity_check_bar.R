@@ -12,12 +12,11 @@
 #' @param debug Set TRUE if show intermediate dataframe using View function.
 #' @return A list of bar plots.
 #' @examples
-#' \dontrun{
 #' mipplot_additivity_check_bar(
 #'    ar5_db_sample_data, ar5_db_sample_rule_table,
 #'    target_scenarios = c("EMF27-450-Conv", "EMF27-Base-NucOff"))
-#' }
 #' @export
+#' @importFrom rlang .data
 mipplot_additivity_check_bar <- function(
   D,
   R,
@@ -26,6 +25,8 @@ mipplot_additivity_check_bar <- function(
   show_all_scenarios = FALSE,
   show_all_rule_ids = FALSE,
   debug = FALSE) {
+
+  side <- value <- variable <- NULL
 
   # Initialize plot object list
   # This stores multiple ggplot objects.
@@ -64,18 +65,18 @@ mipplot_additivity_check_bar <- function(
 
     # Select data
     D[D$variable %in% Var_set$Left_side,] %>%
-      mutate(side = "L") -> D_temp1
+      dplyr::mutate(side = "L") -> D_temp1
 
     D[D$variable %in% Var_set$Right_side,] %>%
-      mutate(side = "R") -> D_temp2
+      dplyr::mutate(side = "R") -> D_temp2
 
     rbind(D_temp1, D_temp2) -> D_temp0
 
-    D_temp0 %>% filter(scenario == target_scenario) -> D_temp
+    D_temp0 %>% dplyr::filter(.data$scenario == target_scenario) -> D_temp
 
     # Display the table to be plotted
     if (debug) {
-      View(D_temp)
+      utils::View(D_temp)
     }
 
     # Check the stacked graph to see if the left and right sides are consistent.

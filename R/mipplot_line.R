@@ -12,7 +12,7 @@
 #' @param colorby an axis for color setting.
 #' @param linetypeby an axis for line type setting.
 #' @param shapeby an axis for shape setting.
-#' @param scenario A list of cenarios.
+#' @param scenario A list of scenarios.
 #' @param facet_x facet_x
 #' @param facet_y facet_y
 #' @param legend set TRUE to plot legend. default is TRUE.
@@ -24,9 +24,23 @@
 #' @param max_scenarios Maximum number of scenarios to be shown. If legend is FALSE, this option is .
 #' @param max_models Maximum number of models to be shown. If legend is FALSE, this option is
 #' @return A list of line plots.
+#' @importFrom dplyr select filter
+#' @importFrom utils head
 #' @examples
-#' \dontrun{
-#' mipplot_line(ar5_db_sample_data)
+#' \donttest{
+#' library(dplyr)
+#' data_subset <- ar5_db_sample_data %>%
+#' filter( model %in% c("AIM-Enduse 12.1", "GCAM 3.0", "IMAGE 2.4") ) %>%
+#' filter(2005 <= period) %>%
+#' filter(period <= 2100)
+#' mipplot_line(
+#' data_subset,
+#' variable = c("Emissions|CO2"),
+#' scenario = c("EMF27-450-Conv", "EMF27-450-FullTech", "EMF27-450-NoCCS"),
+#' region = c("ASIA"),
+#' legend = TRUE,
+#' axis_year_text_angle = 0,
+#' language = 'en')
 #' }
 #' @export
 
@@ -34,9 +48,11 @@ mipplot_line <- function(
   D, region = levels(D$region), variable = levels(D$variable),
   colorby = "scenario", linetypeby = "model", shapeby = "model",
   scenario = levels(D$scenario), facet_x = NULL,
-  facet_y = NULL, legend = TRUE, PRINT_OUT = F, DEBUG = T,
+  facet_y = NULL, legend = TRUE, PRINT_OUT = FALSE, DEBUG = TRUE,
   axis_year_text_angle=0, language="en",
   max_scenarios = 15, max_models = 15) {
+
+  model <- period <- value <- NULL
 
   # load translations
   i18n_header <- shiny.i18n::Translator$new(

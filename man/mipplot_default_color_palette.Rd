@@ -5,14 +5,14 @@
 \alias{mipplot_default_color_palette}
 \title{Default color palette.}
 \format{
-An object of class \code{list} of length 6.
+A default color palette object,
+which maps variable name (such as "Land Use")
+to hex color code.
 }
 \usage{
 mipplot_default_color_palette
 }
 \description{
-A default color palette object,
-which maps variable name (such as "Land Use")
-to hex color code.
+Default color palette.
 }
 \keyword{datasets}

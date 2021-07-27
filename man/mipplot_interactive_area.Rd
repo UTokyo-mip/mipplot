@@ -2,7 +2,7 @@
 % Please edit documentation in R/mipplot_interactive_area.R
 \name{mipplot_interactive_area}
 \alias{mipplot_interactive_area}
-\title{A function to launch interactive plotting session on Shniy}
+\title{A function to launch interactive plotting session on Shiny}
 \usage{
 mipplot_interactive_area(D, R, language = "en")
 }
@@ -15,11 +15,16 @@ mipplot_interactive_area(D, R, language = "en")
 Possible values are "en", "jp",
 "es", "zh-cn", "zh-tw". The default value is "en".}
 }
+\value{
+No return value, called for side effects
+}
 \description{
 Provides gui to set plotting parameter for area plot.
 }
 \examples{
-\dontrun{
+\donttest{
+if (interactive()) {
 mipplot_interactive_area(ar5_db_sample_data, ar5_db_sample_rule_table)
+}
 }
 }

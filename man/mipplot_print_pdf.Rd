@@ -18,13 +18,18 @@ mipplot_print_pdf(
 \item{filename}{A string of filename. If it is given,
 filelabel is ignored.}
 }
+\value{
+No return value, called for side effects
+}
 \description{
 This function plots a ggplot plots to PDF file.
 }
 \examples{
-\dontrun{
+\donttest{
+if (interactive()) {
 p <- mipplot_area(ar5_db_sample_data, ar5_db_sample_rule_table,
              region = "World", scenario = "EMF27-450-FullTech")
 mipplot_print_pdf(p)
+}
 }
 }

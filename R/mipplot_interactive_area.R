@@ -1,17 +1,25 @@
-#' @title A function to launch interactive plotting session on Shniy
+#' @title A function to launch interactive plotting session on Shiny
 #' @description Provides gui to set plotting parameter for area plot.
 #' @param D A dataframe of IAMC data in tibble format to produce area plots.
 #' @param R A dataframe of data aggregation rules (meta data).
 #' @param language A string of language for initial plot.
 #' Possible values are "en", "jp",
 #' "es", "zh-cn", "zh-tw". The default value is "en".
+#' @return No return value, called for side effects
+#' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel selectInput checkboxInput submitButton div tags textOutput mainPanel plotOutput reactive renderPlot validate need shinyApp
+#' @importFrom utils head tail
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' if (interactive()) {
 #' mipplot_interactive_area(ar5_db_sample_data, ar5_db_sample_rule_table)
+#' }
 #' }
 #' @export
 
 mipplot_interactive_area <- function(D, R, language = "en") {
+
+  variable <- model <- period <- NULL
+
 
   # name_of_input_data_variable is a string such as "ar5_db_sample_data"
   # this variable is used for generating R code to reproduce plot
@@ -190,6 +198,7 @@ mipplot_interactive_area <- function(D, R, language = "en") {
 #' @param input This is the same as the input argument in the shiny:ui().
 #' @param name_of_input_data_variable A string such as "ar5_sample_data".
 #' @param name_of_input_rule_table_variable A string such as "ar5_sample_rule".
+#' @return A string representing the R code for rerun.
 generate_code_to_plot_area <- function(
   input,
   name_of_input_data_variable,

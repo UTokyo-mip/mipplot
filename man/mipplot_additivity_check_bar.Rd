@@ -39,9 +39,7 @@ showing the divergence between the left-side variable and
 the sum of the right-side variables.
 }
 \examples{
-\dontrun{
 mipplot_additivity_check_bar(
    ar5_db_sample_data, ar5_db_sample_rule_table,
    target_scenarios = c("EMF27-450-Conv", "EMF27-Base-NucOff"))
-}
 }

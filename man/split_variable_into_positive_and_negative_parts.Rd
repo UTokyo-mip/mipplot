@@ -13,9 +13,23 @@ split_variable_into_positive_and_negative_parts(
   increment_of_domain_in_interpolation = 0.1
 )
 }
+\arguments{
+\item{df_all}{input data frame}
+
+\item{domain_column_name}{domain column name, such as year}
+
+\item{variable_column_name}{variable column name, such as 'coal'}
+
+\item{value_column_name}{value column name, such as 'val'}
+
+\item{variable_name_converter}{function which convert original variable name into its negative part name}
+
+\item{increment_of_domain_in_interpolation}{step size for interpolation}
+}
 \value{
 modified data frame
 }
 \description{
-Split variable into positive and negative parts
+Generally, the range of the input value of stacked chart is greater than or equal to zero.
+This function splits variable into positive and negative parts in order to include negative values to stacked chart.
 }

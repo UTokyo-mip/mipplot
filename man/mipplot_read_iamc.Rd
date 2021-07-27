@@ -4,7 +4,12 @@
 \alias{mipplot_read_iamc}
 \title{Read IAMC scenario input data.}
 \usage{
-mipplot_read_iamc(filename = NULL, sep = ",", interactive = FALSE, DEBUG = T)
+mipplot_read_iamc(
+  filename = NULL,
+  sep = ",",
+  interactive = FALSE,
+  DEBUG = TRUE
+)
 }
 \arguments{
 \item{filename}{Path to a file containing scenario data in IAMC format.}

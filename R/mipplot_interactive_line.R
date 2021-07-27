@@ -2,17 +2,24 @@
 #' @description A function to launch interactive line plot.
 #'              The function arguments include the input dataframe,
 #'              labels for the plot/axes/legend, and faceting dimensions
-#' @param D A quitte format dataframe of IAMC data to produce garph.
+#' @param D A quitte format dataframe of IAMC data to produce graph.
 #' @param language A string of language for initial plot.
 #' Possible values are "en", "jp",
 #' "es", "zh-cn", "zh-tw". The default value is "en".
+#' @return No return value, called for side effects
+#' @importFrom shiny fluidPage titlePanel sidebarLayout sidebarPanel selectInput checkboxInput submitButton mainPanel plotOutput renderPlot validate need shinyApp
+#' @importFrom utils head tail
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' if (interactive()) {
 #' mipplot_interactive_line(ar5_db_sample_data)
+#' }
 #' }
 #' @export
 
 mipplot_interactive_line <- function(D, language = "en") {
+
+  model <- period <- NULL
 
   # name_of_input_df is a string such as "ar5_db_sample_data"
   # this variable is used for generating R code to reproduce plot
@@ -222,26 +229,22 @@ mipplot_interactive_line <- function(D, language = "en") {
 #' @description select name of models from the column "model" then make unique it.
 #' output is character vector such as,
 #' c("AIM-Enduse 12.1", "GCAM 3.0", "IMAGE 2.4" )
-#' @param D A quitte format dataframe of IAMC data to produce garph.
-#' @examples
-#' \dontrun{
-#' get_model_name_list(ar5_db_sample_data)
-#' }
+#' @param D A quitte format dataframe of IAMC data to produce graph.
+#' @return A list of strings representing model names
+#' @importFrom rlang .data
 get_model_name_list <- function(D) {
-  return (D %>% dplyr::pull(model) %>% unique() %>% levels())
+  return (D %>% dplyr::pull(.data$model) %>% unique() %>% levels())
 }
 
 #' @title Get name list of scenarios in IAMC formatted data frame
 #' @description select name of scenarios from the column "scenario" then make unique it.
 #' output is character vector such as,
 #' c("EMF27-450-Conv", "EMF27-450-FullTech", "EMF27-450-NoCCS", "EMF27-450-NucOff")
-#' @param D A quitte format dataframe of IAMC data to produce garph.
-#' @examples
-#' \dontrun{
-#' get_scenario_name_list(ar5_db_sample_data)
-#' }
+#' @param D A quitte format dataframe of IAMC data to produce graph.
+#' @return A list of strings representing scenario names
+#' @importFrom rlang .data
 get_scenario_name_list <- function(D) {
-  return (D %>% dplyr::pull(scenario) %>% unique() %>% levels())
+  return (D %>% dplyr::pull(.data$scenario) %>% unique() %>% levels())
 }
 
 #' @title generate code to reproduce line plot
@@ -256,6 +259,8 @@ get_scenario_name_list <- function(D) {
 #' - variable
 #' - scenario
 #' - region
+#' @param name_of_iamc_data_variable name of IAMC data variable
+#' @return R code
 generate_code_to_plot_line <- function(input, name_of_iamc_data_variable = "D") {
     return(stringr::str_interp(
 "data_subset <- ${name_of_iamc_data_variable} %>%
