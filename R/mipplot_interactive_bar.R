@@ -34,7 +34,7 @@ mipplot_interactive_bar <- function(D, R, language = "en") {
   var_list <- levels(D$variable)
   model_list <- levels(D$model)
   scenario_list <- levels(D$scenario)
-  period_list <- levels(as.factor(D$period))
+  period_list <- unique(D$period)
 
   # get variable-group-name list
   variable_group_name_list <- get_variable_group_name_list(R)
