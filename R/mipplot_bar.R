@@ -106,21 +106,21 @@ mipplot_bar <- function(
 
   p_list1 <- list()
 
-  for (i in levels(as.factor(R$Rule_ID))) {
+  for (r in levels(as.factor(region))) {
 
-    for (r in levels(as.factor(region))) {
+    for (i in levels(as.factor(R$Rule_ID))) {
+
+      Var_set <- R[R$Rule_ID == i, ]
+
+      ## Select data in higher loop leve for decreasing computation time
+      D_LHS_region_selected <- D[D$region == r & D$variable %in% Var_set$Left_side, ]
+      D_RHS_region_selected <- D[D$region == r & D$variable %in% Var_set$Right_side, ]
 
       for (ty in levels(as.factor(target_year))) {
 
-        Var_set <- R[R$Rule_ID == i, ]
-
         ## SELECT DATA
-        D_LHS <-
-          D[D$region == r & D$period == ty &
-              D$variable %in% Var_set$Left_side, ]
-        D_RHS <-
-          D[D$region == r & D$period == ty &
-              D$variable %in% Var_set$Right_side, ]
+        D_LHS <- D_LHS_region_selected[D_LHS_region_selected$period == ty, ]
+        D_RHS <- D_RHS_region_selected[D_RHS_region_selected$period == ty, ]
 
         # Renaming levels of a factor
         # http://www.cookbook-r.com/Manipulating_data/Renaming_levels_of_a_factor/
