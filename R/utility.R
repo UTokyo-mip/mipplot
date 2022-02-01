@@ -338,24 +338,15 @@ split_variable_into_positive_and_negative_parts <- function(
       # we will copy it then modify domain_column, value_column and variable_column.
       template_row <- partial_df[1, ]
 
-      for (new_domain_value in new_domain_for_interpolation) {
+      template_row[variable_column_name] <- original_variable_name
+      template_row['model'] <- current_model
+      template_row['scenario'] <- current_scenario
+      template_row['region'] <- current_region
 
-        # copy template
-        new_row <- template_row
 
-        # replace values of row
-        new_row[domain_column_name] <- new_domain_value
-        new_row[value_column_name] <- func_get_value_at_given_domain(new_domain_value)
-        new_row[variable_column_name] <- original_variable_name
-        new_row['model'] <- current_model
-        new_row['scenario'] <- current_scenario
-        new_row['region'] <- current_region
-
-        # add the row to new_partial_df
-        new_partial_df <- rbind(new_partial_df, new_row)
-      }
-
-      partial_df <- new_partial_df
+      partial_df <- template_row[rep(seq_len(nrow(template_row)), each = length(new_domain_for_interpolation)),]
+      partial_df[domain_column_name] <- new_domain_for_interpolation
+      partial_df[value_column_name] <- func_get_value_at_given_domain(new_domain_for_interpolation)
 
       # command <-
       #   paste("add_row(",
