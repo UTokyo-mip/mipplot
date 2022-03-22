@@ -27,6 +27,8 @@
 #' @param axis_scenario_text_angle text angle of x axis
 #' @param language A string of language. Possible values are "en", "jp",
 #' "es", "zh-cn", "zh-tw". The default value is "en".
+#' @param max_scenarios Maximum number of scenarios to be shown.
+#' @param max_models Maximum number of models to be shown.
 #' @return A list of bar plots.
 #' @importFrom stats na.omit
 #' @examples
@@ -54,7 +56,8 @@ mipplot_bar <- function(
   target_year = levels(as.factor(D$period)),
   facet_x = NULL, facet_y = NULL, PRINT_OUT = FALSE, DEBUG = TRUE, fontsize = 20,
   color_code_specify = TRUE, one_hundred_percent_stacked = FALSE,
-  axis_scenario_text_angle = 0, language="en") {
+  axis_scenario_text_angle = 0, language="en",
+  max_scenarios = 2, max_models = 2) {
 
   value <- variable <- NULL
 
@@ -136,6 +139,30 @@ mipplot_bar <- function(
         } else {
           # otherwise, generate palette.
           color_mapper <- mipplot_generate_color_mapper(R)
+        }
+
+        ## Limit number of scenarios and models to be plotted
+
+        # get all scenarios
+        D_RHS %>% select(scenario) %>% unique %>%
+          unlist %>% as.character -> scenario_list
+
+        # get all models
+        D_RHS %>% select(model) %>% unique %>%
+          unlist %>% as.character -> model_list
+        
+        if (max_scenarios < length(scenario_list)) {
+          warning(paste("too many scenarios. first", max_scenarios, "are shown."))
+          scenario_list %>% head(max_scenarios) -> scenario_list_part
+          D_RHS %>% filter(scenario %in% scenario_list_part) -> D_RHS
+          D_LHS %>% filter(scenario %in% scenario_list_part) -> D_LHS
+        }
+
+        if (max_models < length(model_list)) {
+          warning(paste("too many models. first", max_models, "are shown."))
+          model_list %>% head(max_models) -> model_list_part
+          D_RHS %>% filter(model %in% model_list_part) -> D_RHS
+          D_LHS %>% filter(model %in% model_list_part) -> D_LHS
         }
 
         # Title

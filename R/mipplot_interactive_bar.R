@@ -10,6 +10,7 @@
 #' "es", "zh-cn", "zh-tw". The default value is "en".
 #' @return No return value, called for side effects
 #' @importFrom shiny titlePanel sidebarLayout sidebarPanel selectInput checkboxInput submitButton mainPanel plotOutput renderPlot validate need
+#' @importFrom utils head tail
 #' @examples
 #' \donttest{
 #' if (interactive()) {
@@ -40,6 +41,8 @@ mipplot_interactive_bar <- function(D, R, language = "en") {
   variable_group_name_list <- get_variable_group_name_list(R)
 
   ui <- fluidPage(
+
+    shinyalert::useShinyalert(),
 
     titlePanel("mipplot"),
 
@@ -118,6 +121,12 @@ mipplot_interactive_bar <- function(D, R, language = "en") {
           submitButton(text = "Apply Changes", icon = NULL, width = NULL)
         ),
 
+        shiny::div(
+          class = "form-group shiny-input-container",
+          style = "color:red;",
+          shiny::textOutput("warning_message_label")
+        ),
+
         # Show container which shows R code
         # to reproduce current plot.
         shiny::div(
@@ -151,6 +160,9 @@ mipplot_interactive_bar <- function(D, R, language = "en") {
 
     output$bar_plot <- renderPlot({
 
+      # clear warning message in side panel
+      output$warning_message_label <- shiny::reactive("")
+
       # print error message if condition is not given.
       validate(
         need(
@@ -175,12 +187,36 @@ mipplot_interactive_bar <- function(D, R, language = "en") {
         dplyr::filter(scenario %in% input$scenario)
 
       # Generates an image that does not contain a copyright notice.
-      plotted_image <- mipplot_bar(
-        data_subset, R, region = input$region,
-                  target_year = input$target_year,
-        one_hundred_percent_stacked = input$aHundredPercentStacked,
-        axis_scenario_text_angle = ifelse(input$rotateScenarioLabel45Degrees, 45, 0),
-        language = input$language)
+      withCallingHandlers({
+        plotted_image <- mipplot_bar(
+          data_subset, R,
+          region = input$region,
+          target_year = input$target_year,
+          one_hundred_percent_stacked = input$aHundredPercentStacked,
+          axis_scenario_text_angle = ifelse(input$rotateScenarioLabel45Degrees, 45, 0),
+          language = input$language)
+      }, warning = function(e) {
+
+        if (grepl("too many", e$message, fixed=TRUE)) {
+          shinyalert::shinyalert(
+            title = "Info",
+            text = e$message,
+            closeOnEsc = TRUE,
+            closeOnClickOutside = TRUE,
+            html = FALSE,
+            type = "info",
+            showConfirmButton = FALSE,
+            showCancelButton = FALSE,
+            timer = 2000,
+            imageUrl = "",
+            animation = TRUE
+          )
+
+          output$warning_message_label <- shiny::reactive({
+            e$message
+          })
+        }
+      })
 
       # If specified, a copyright notice will be added to the image.
       if (input$printCredit) {
